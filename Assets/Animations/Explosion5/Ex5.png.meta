@@ -1,0 +1,424 @@
+fileFormatVersion: 2
+guid: 26721d493cbfd4f39aca74b7fff0032e
+timeCreated: 1463258226
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Ex5_0
+    21300002: Ex5_1
+    21300004: Ex5_2
+    21300006: Ex5_3
+    21300008: Ex5_4
+    21300010: Ex5_5
+    21300012: Ex5_6
+    21300014: Ex5_7
+    21300016: Ex5_8
+    21300018: Ex5_9
+    21300020: Ex5_10
+    21300022: Ex5_11
+    21300024: Ex5_12
+    21300026: Ex5_13
+    21300028: Ex5_14
+    21300030: Ex5_15
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Ex5_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -15, y: 32}
+        - {x: -31, y: 7}
+        - {x: -31, y: -4}
+        - {x: -22, y: -32}
+        - {x: 25, y: -32}
+        - {x: 32, y: -24}
+        - {x: 32, y: 11}
+        - {x: 19, y: 32}
+    - name: Ex5_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -29, y: 32}
+        - {x: -32, y: 29}
+        - {x: -32, y: -20}
+        - {x: -25, y: -32}
+        - {x: 22, y: -32}
+        - {x: 29, y: -22}
+        - {x: 29, y: 28}
+        - {x: 17, y: 32}
+    - name: Ex5_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -24, y: 32}
+        - {x: -24, y: -32}
+        - {x: 27, y: -32}
+        - {x: 32, y: -22}
+        - {x: 32, y: 28}
+        - {x: 18, y: 32}
+      - - {x: -32, y: 4}
+        - {x: -32, y: -3}
+        - {x: -31, y: -4}
+        - {x: -28, y: -4}
+        - {x: -27, y: -2}
+        - {x: -27, y: 2}
+        - {x: -30, y: 4}
+      - - {x: -25, y: 9}
+        - {x: -30, y: 9}
+        - {x: -30, y: 4}
+        - {x: -28, y: 3}
+        - {x: -25, y: 3}
+        - {x: -24, y: 5}
+        - {x: -24, y: 8}
+    - name: Ex5_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16, y: 32}
+        - {x: -24, y: 15}
+        - {x: -24, y: -20}
+        - {x: -19, y: -32}
+        - {x: 25, y: -32}
+        - {x: 29, y: -25}
+        - {x: 29, y: 18}
+        - {x: 21, y: 32}
+      - - {x: -30, y: 4}
+        - {x: -30, y: -2}
+        - {x: -25, y: -2}
+        - {x: -24, y: 0}
+        - {x: -24, y: 4}
+    - name: Ex5_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 21, y: 32}
+        - {x: -19, y: 32}
+        - {x: -24, y: 21}
+        - {x: -24, y: -19}
+        - {x: -17, y: -32}
+        - {x: 18, y: -32}
+        - {x: 19, y: -31}
+        - {x: 28, y: -17}
+        - {x: 28, y: 12}
+      - - {x: -29, y: 2}
+        - {x: -29, y: -4}
+        - {x: -24, y: -4}
+        - {x: -23, y: -2}
+        - {x: -23, y: 2}
+    - name: Ex5_5
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 19, y: 32}
+        - {x: -18, y: 32}
+        - {x: -24, y: 7}
+        - {x: -24, y: -17}
+        - {x: -12, y: -32}
+        - {x: 19, y: -32}
+        - {x: 27, y: -19}
+        - {x: 27, y: 14}
+        - {x: 20, y: 30}
+    - name: Ex5_6
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -23, y: 32}
+        - {x: -28, y: 19}
+        - {x: -28, y: -17}
+        - {x: -14, y: -32}
+        - {x: 18, y: -32}
+        - {x: 26, y: -22}
+        - {x: 26, y: 17}
+        - {x: 22, y: 32}
+    - name: Ex5_7
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 18, y: 32}
+        - {x: -19, y: 32}
+        - {x: -26, y: 28}
+        - {x: -26, y: -22}
+        - {x: -23, y: -32}
+        - {x: 17, y: -32}
+        - {x: 25, y: -17}
+        - {x: 25, y: 8}
+        - {x: 23, y: 24}
+      - - {x: 24, y: -13}
+        - {x: 23, y: -15}
+        - {x: 23, y: -18}
+        - {x: 25, y: -19}
+        - {x: 28, y: -19}
+        - {x: 29, y: -18}
+        - {x: 29, y: -13}
+    - name: Ex5_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -17, y: 32}
+        - {x: -24, y: 12}
+        - {x: -24, y: -18}
+        - {x: -11, y: -32}
+        - {x: 17, y: -32}
+        - {x: 25, y: -26}
+        - {x: 25, y: 29}
+        - {x: 24, y: 32}
+    - name: Ex5_9
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 25, y: 10}
+        - {x: 23, y: 31}
+        - {x: 19, y: 32}
+        - {x: -21, y: 32}
+        - {x: -24, y: 28}
+        - {x: -24, y: -18}
+        - {x: -9, y: -32}
+        - {x: 14, y: -32}
+        - {x: 15, y: -29}
+        - {x: 25, y: -15}
+    - name: Ex5_10
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16, y: 32}
+        - {x: -23, y: 13}
+        - {x: -23, y: -21}
+        - {x: -11, y: -32}
+        - {x: 14, y: -32}
+        - {x: 25, y: -18}
+        - {x: 25, y: 20}
+        - {x: 20, y: 32}
+    - name: Ex5_11
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -14, y: 32}
+        - {x: -23, y: 9}
+        - {x: -23, y: -19}
+        - {x: -9, y: -32}
+        - {x: 14, y: -32}
+        - {x: 25, y: -22}
+        - {x: 25, y: 23}
+        - {x: 23, y: 32}
+    - name: Ex5_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -15, y: 32}
+        - {x: -23, y: 11}
+        - {x: -23, y: -20}
+        - {x: -8, y: -32}
+        - {x: 14, y: -32}
+        - {x: 25, y: -23}
+        - {x: 25, y: 23}
+        - {x: 22, y: 32}
+    - name: Ex5_13
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 16, y: 32}
+        - {x: -10, y: 32}
+        - {x: -23, y: 5}
+        - {x: -23, y: -13}
+        - {x: -10, y: -32}
+        - {x: 10, y: -32}
+        - {x: 25, y: -19}
+        - {x: 25, y: 18}
+        - {x: 22, y: 30}
+    - name: Ex5_14
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 16, y: 32}
+        - {x: -7, y: 32}
+        - {x: -23, y: 6}
+        - {x: -23, y: -15}
+        - {x: -10, y: -32}
+        - {x: 12, y: -32}
+        - {x: 25, y: -18}
+        - {x: 25, y: 21}
+        - {x: 24, y: 24}
+    - name: Ex5_15
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8, y: 32}
+        - {x: -16, y: 18}
+        - {x: -15, y: 6}
+        - {x: -21, y: -2}
+        - {x: -23, y: -6}
+        - {x: -23, y: -14}
+        - {x: -8, y: -32}
+        - {x: 21, y: -32}
+        - {x: 22, y: -27}
+        - {x: 22, y: 31}
+        - {x: 15, y: 32}
+      - - {x: 22, y: -5}
+        - {x: 19, y: -5}
+        - {x: 18, y: -7}
+        - {x: 18, y: -11}
+        - {x: 21, y: -12}
+        - {x: 23, y: -12}
+        - {x: 25, y: -10}
+        - {x: 25, y: -7}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

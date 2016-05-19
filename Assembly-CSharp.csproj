@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.20506</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <RootNamespace></RootNamespace>
+    <ProjectGuid>{AD8A5B4B-EB7B-9771-D094-29A715235CDE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <AssemblyName>Assembly-CSharp</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <BaseDirectory>Assets</BaseDirectory>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Temp\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;UNITY_5_3_OR_NEWER;UNITY_5_3_4;UNITY_5_3;UNITY_5;ENABLE_NEW_BUGREPORTER;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_FRAME_DEBUGGER;ENABLE_GENERICS;ENABLE_HOME_SCREEN;ENABLE_IMAGEEFFECTS;ENABLE_LIGHT_PROBES_LEGACY;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_PLUGIN_INSPECTOR;ENABLE_SHADOWS;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_SPRITERENDERER_FLIPPING;ENABLE_SPRITES;ENABLE_SPRITE_POLYGON;ENABLE_TERRAIN;ENABLE_UNET;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_METRICS;ENABLE_EDITOR_METRICS_CACHING;INCLUDE_DYNAMIC_GI;INCLUDE_GI;INCLUDE_IL2CPP;INCLUDE_DIRECTX12;RENDER_SOFTWARE_CURSOR;ENABLE_LOCALIZATION;ENABLE_ANDROID_ATLAS_ETC1_COMPRESSION;ENABLE_EDITOR_TESTS_RUNNER;UNITY_WEBGL;UNITY_WEBGL_API;UNITY_DISABLE_WEB_VERIFICATION;ENABLE_TEXTUREID_MAP;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_UNITYWEBREQUEST;ENABLE_LOG_MIXED_STACKTRACE;ENABLE_IL2CPP;ENABLE_PROFILER;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_OSX</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn>0169</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Temp\bin\Release\</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn>0169</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.XML" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="UnityEngine">
+      <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor">
+      <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEditor.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+     <Compile Include="Assets\Prefabs\UI\Game Jam Menu Template\Scripts\DontDestroy.cs" />
+     <Compile Include="Assets\Prefabs\UI\Game Jam Menu Template\Scripts\EventSystemChecker.cs" />
+     <Compile Include="Assets\Prefabs\UI\Game Jam Menu Template\Scripts\Pause.cs" />
+     <Compile Include="Assets\Prefabs\UI\Game Jam Menu Template\Scripts\PlayMusic.cs" />
+     <Compile Include="Assets\Prefabs\UI\Game Jam Menu Template\Scripts\QuitApplication.cs" />
+     <Compile Include="Assets\Prefabs\UI\Game Jam Menu Template\Scripts\SetAudioLevels.cs" />
+     <Compile Include="Assets\Prefabs\UI\Game Jam Menu Template\Scripts\ShowPanels.cs" />
+     <Compile Include="Assets\Prefabs\UI\Game Jam Menu Template\Scripts\StartOptions.cs" />
+     <Compile Include="Assets\Scripts\CameraController.cs" />
+     <Compile Include="Assets\Scripts\ChangeResolution.cs" />
+     <Compile Include="Assets\Scripts\DestroyByBoundary.cs" />
+     <Compile Include="Assets\Scripts\DestroyByBullet.cs" />
+     <Compile Include="Assets\Scripts\DestroyByTime.cs" />
+     <Compile Include="Assets\Scripts\EnemyAController.cs" />
+     <Compile Include="Assets\Scripts\ExplosionController.cs" />
+     <Compile Include="Assets\Scripts\GameController.cs" />
+     <Compile Include="Assets\Scripts\GameOverBackgroudns.cs" />
+     <Compile Include="Assets\Scripts\GameTitle.cs" />
+     <Compile Include="Assets\Scripts\MainMenu.cs" />
+     <Compile Include="Assets\Scripts\Mover.cs" />
+     <Compile Include="Assets\Scripts\PlayerController.cs" />
+     <Compile Include="Assets\Scripts\RandomRotator.cs" />
+     <Compile Include="Assets\Scripts\Rotator.cs" />
+     <Compile Include="Assets\Scripts\SaturateRed.cs" />
+     <Compile Include="Assets\Scripts\ScrollTexture.cs" />
+     <Compile Include="Assets\UpdateGameTimer.cs" />
+     <None Include="Assets\Standard Assets\ParticleSystems\Shaders\PriorityParticleAlpha.shader" />
+     <None Include="Assets\Standard Assets\ParticleSystems\ParticleSystemsGuidelines.txt" />
+     <None Include="Assets\Prefabs\UI\Game Jam Menu Template\Fonts\OpenSans\License!.txt" />
+     <None Include="Assets\Standard Assets\ParticleSystems\Shaders\PriorityParticleAddSoft.shader" />
+     <None Include="Assets\Prefabs\UI\Game Jam Menu Template\GameJamTemplateReadMe.txt" />
+     <None Include="Assets\Standard Assets\ParticleSystems\Shaders\PriorityParticleAdd.shader" />
+ <Reference Include="UnityEngine.Networking">
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.UI">
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+ </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
+      <Project>{A1F9813D-D7A6-6139-3584-958A336D4CD3}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  
+</Project>

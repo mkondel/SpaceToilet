@@ -1,0 +1,29 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2008
+
+Project("{9BFEEAF7-EA18-E568-9DF3-6268AFB45CF6}") = "Space Toilet", "Assembly-CSharp-firstpass.csproj", "{A1F9813D-D7A6-6139-3584-958A336D4CD3}"
+EndProject
+Project("{9BFEEAF7-EA18-E568-9DF3-6268AFB45CF6}") = "Space Toilet", "Assembly-CSharp.csproj", "{AD8A5B4B-EB7B-9771-D094-29A715235CDE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A1F9813D-D7A6-6139-3584-958A336D4CD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1F9813D-D7A6-6139-3584-958A336D4CD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1F9813D-D7A6-6139-3584-958A336D4CD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1F9813D-D7A6-6139-3584-958A336D4CD3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD8A5B4B-EB7B-9771-D094-29A715235CDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD8A5B4B-EB7B-9771-D094-29A715235CDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD8A5B4B-EB7B-9771-D094-29A715235CDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD8A5B4B-EB7B-9771-D094-29A715235CDE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal

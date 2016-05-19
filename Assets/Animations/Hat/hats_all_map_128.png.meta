@@ -1,0 +1,248 @@
+fileFormatVersion: 2
+guid: 6b426d46cf6cc403890cdbd79348f03e
+timeCreated: 1463419816
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: hats_all_map_128_0
+    21300002: hats_all_map_128_1
+    21300004: hats_all_map_128_2
+    21300006: hats_all_map_128_3
+    21300008: hats_all_map_128_4
+    21300010: hats_all_map_128_5
+    21300012: hats_all_map_128_6
+    21300014: hats_all_map_128_7
+    21300016: hats_all_map_128_8
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: hats_all_map_128_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 192
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -73, y: 55}
+        - {x: -96, y: 0}
+        - {x: -96, y: -55}
+        - {x: 96, y: -55}
+        - {x: 96, y: 51}
+        - {x: 74, y: 55}
+    - name: hats_all_map_128_1
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 256
+        width: 192
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 10, y: 64}
+        - {x: -40, y: 64}
+        - {x: -86, y: 39}
+        - {x: -86, y: -14}
+        - {x: -45, y: -64}
+        - {x: 78, y: -64}
+        - {x: 86, y: -42}
+        - {x: 86, y: 19}
+        - {x: 66, y: 46}
+    - name: hats_all_map_128_2
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 256
+        width: 192
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -35, y: 64}
+        - {x: -76, y: 47}
+        - {x: -76, y: -55}
+        - {x: -48, y: -64}
+        - {x: 60, y: -64}
+        - {x: 76, y: -55}
+        - {x: 76, y: 63}
+        - {x: 71, y: 64}
+    - name: hats_all_map_128_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 192
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 42, y: 64}
+        - {x: -60, y: 64}
+        - {x: -89, y: 30}
+        - {x: -89, y: -53}
+        - {x: -85, y: -58}
+        - {x: -54, y: -64}
+        - {x: 22, y: -64}
+        - {x: 83, y: -28}
+        - {x: 89, y: -17}
+        - {x: 89, y: 24}
+    - name: hats_all_map_128_4
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 128
+        width: 192
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 62, y: 62}
+        - {x: -48, y: 62}
+        - {x: -96, y: 23}
+        - {x: -96, y: -62}
+        - {x: 96, y: -62}
+        - {x: 96, y: 11}
+        - {x: 70, y: 58}
+    - name: hats_all_map_128_5
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 128
+        width: 192
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -47, y: 64}
+        - {x: -83, y: 12}
+        - {x: -85, y: 8}
+        - {x: -85, y: -25}
+        - {x: -39, y: -64}
+        - {x: 69, y: -64}
+        - {x: 85, y: -54}
+        - {x: 85, y: 48}
+        - {x: 39, y: 64}
+    - name: hats_all_map_128_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 192
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 23, y: 64}
+        - {x: -16, y: 64}
+        - {x: -28, y: 53}
+        - {x: -65, y: 31}
+        - {x: -76, y: 20}
+        - {x: -76, y: -33}
+        - {x: -38, y: -64}
+        - {x: 36, y: -64}
+        - {x: 76, y: -47}
+        - {x: 76, y: 40}
+        - {x: 68, y: 45}
+    - name: hats_all_map_128_7
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 192
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 45, y: 64}
+        - {x: -27, y: 64}
+        - {x: -71, y: 50}
+        - {x: -87, y: 9}
+        - {x: -88, y: 7}
+        - {x: -88, y: -58}
+        - {x: -72, y: -64}
+        - {x: 11, y: -64}
+        - {x: 88, y: 0}
+        - {x: 88, y: 14}
+        - {x: 83, y: 29}
+    - name: hats_all_map_128_8
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 192
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -38, y: 55}
+        - {x: -96, y: 3}
+        - {x: -96, y: -55}
+        - {x: 84, y: -55}
+        - {x: 96, y: -49}
+        - {x: 96, y: 0}
+        - {x: 59, y: 55}
+      - - {x: 8, y: 64}
+        - {x: 9, y: 61}
+        - {x: 15, y: 61}
+        - {x: 17, y: 63}
+        - {x: 17, y: 64}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,413 @@
+fileFormatVersion: 2
+guid: 175de332c0a8148918d320ded7da2b41
+timeCreated: 1463510125
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: ani7_0
+    21300002: ani7_1
+    21300004: ani7_2
+    21300006: ani7_3
+    21300008: ani7_4
+    21300010: ani7_5
+    21300012: ani7_6
+    21300014: ani7_7
+    21300016: ani7_8
+    21300018: ani7_9
+    21300020: ani7_10
+    21300022: ani7_11
+    21300024: ani7_12
+    21300026: ani7_13
+    21300028: ani7_14
+    21300030: ani7_15
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: ani7_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -32, y: 32}
+        - {x: -32, y: -18}
+        - {x: -18, y: -32}
+        - {x: 32, y: -32}
+        - {x: 32, y: 18}
+        - {x: 18, y: 32}
+    - name: ani7_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -18, y: 32}
+        - {x: -32, y: 18}
+        - {x: -32, y: -18}
+        - {x: 32, y: -18}
+        - {x: 32, y: 18}
+        - {x: 18, y: 32}
+    - name: ani7_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -29, y: 32}
+        - {x: -32, y: 20}
+        - {x: -32, y: -18}
+        - {x: 32, y: -18}
+        - {x: 32, y: 29}
+        - {x: 21, y: 32}
+    - name: ani7_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -21, y: 32}
+        - {x: -32, y: 19}
+        - {x: -32, y: -18}
+        - {x: 22, y: -18}
+        - {x: 32, y: -8}
+        - {x: 32, y: 24}
+        - {x: 25, y: 32}
+    - name: ani7_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 25, y: 32}
+        - {x: -30, y: 32}
+        - {x: -32, y: 23}
+        - {x: -32, y: -18}
+        - {x: 18, y: -18}
+        - {x: 29, y: -11}
+        - {x: 32, y: -4}
+        - {x: 32, y: 31}
+    - name: ani7_5
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19, y: 32}
+        - {x: -32, y: 16}
+        - {x: -32, y: -18}
+        - {x: 22, y: -18}
+        - {x: 32, y: -8}
+        - {x: 32, y: 18}
+        - {x: 18, y: 32}
+    - name: ani7_6
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 30, y: 27}
+        - {x: 24, y: 32}
+        - {x: -19, y: 32}
+        - {x: -32, y: 25}
+        - {x: -32, y: -18}
+        - {x: 22, y: -18}
+        - {x: 32, y: -11}
+        - {x: 32, y: 20}
+      - - {x: 6, y: 32}
+        - {x: 7, y: 29}
+        - {x: 10, y: 29}
+        - {x: 12, y: 31}
+        - {x: 12, y: 32}
+    - name: ani7_7
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 18, y: 32}
+        - {x: -13, y: 32}
+        - {x: -22, y: 30}
+        - {x: -32, y: 14}
+        - {x: -32, y: -18}
+        - {x: 18, y: -18}
+        - {x: 26, y: -9}
+        - {x: 26, y: 21}
+    - name: ani7_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -18, y: 32}
+        - {x: -18, y: 27}
+        - {x: -16, y: 25}
+        - {x: -13, y: 25}
+        - {x: -18, y: 23}
+        - {x: -32, y: 19}
+        - {x: -32, y: -18}
+        - {x: 19, y: -18}
+        - {x: 26, y: -1}
+        - {x: 26, y: 19}
+        - {x: 15, y: 32}
+    - name: ani7_9
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -18, y: 32}
+        - {x: -32, y: 20}
+        - {x: -32, y: -18}
+        - {x: 19, y: -18}
+        - {x: 26, y: -11}
+        - {x: 26, y: 18}
+        - {x: 21, y: 32}
+      - - {x: 11, y: 32}
+        - {x: 11, y: 31}
+        - {x: 14, y: 28}
+        - {x: 16, y: 28}
+        - {x: 18, y: 30}
+        - {x: 18, y: 32}
+    - name: ani7_10
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -25, y: 32}
+        - {x: -32, y: 28}
+        - {x: -32, y: -17}
+        - {x: -31, y: -18}
+        - {x: 17, y: -18}
+        - {x: 26, y: -4}
+        - {x: 26, y: 22}
+        - {x: 17, y: 32}
+    - name: ani7_11
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 26, y: -2}
+        - {x: 26, y: 12}
+        - {x: 12, y: 32}
+        - {x: -27, y: 32}
+        - {x: -32, y: 30}
+        - {x: -32, y: -18}
+        - {x: -28, y: -18}
+        - {x: -26, y: -16}
+        - {x: -22, y: -18}
+        - {x: 17, y: -18}
+      - - {x: -24, y: -18}
+        - {x: -21, y: -17}
+        - {x: -21, y: -14}
+        - {x: -24, y: -13}
+        - {x: -26, y: -15}
+    - name: ani7_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -28, y: -15}
+        - {x: -27, y: -18}
+        - {x: -24, y: -18}
+        - {x: -22, y: -16}
+        - {x: -23, y: -13}
+        - {x: -26, y: -13}
+      - - {x: -14, y: 32}
+        - {x: -32, y: 17}
+        - {x: -32, y: -13}
+        - {x: -24, y: -18}
+        - {x: 18, y: -18}
+        - {x: 23, y: -5}
+        - {x: 23, y: 18}
+        - {x: 13, y: 32}
+    - name: ani7_13
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -28, y: -15}
+        - {x: -27, y: -18}
+        - {x: -24, y: -18}
+        - {x: -22, y: -16}
+        - {x: -23, y: -13}
+        - {x: -26, y: -13}
+      - - {x: 2, y: 32}
+        - {x: -19, y: 32}
+        - {x: -31, y: 21}
+        - {x: -32, y: 17}
+        - {x: -32, y: -18}
+        - {x: 18, y: -18}
+        - {x: 18, y: 18}
+        - {x: 10, y: 19}
+    - name: ani7_14
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 13, y: -13}
+        - {x: 18, y: -13}
+        - {x: 18, y: 22}
+        - {x: 13, y: 23}
+        - {x: -13, y: 23}
+        - {x: -32, y: 9}
+        - {x: -32, y: -9}
+        - {x: -27, y: -18}
+        - {x: 16, y: -18}
+        - {x: 18, y: -17}
+        - {x: 18, y: -15}
+        - {x: 17, y: -13}
+    - name: ani7_15
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 17, y: 6}
+        - {x: 17, y: 5}
+        - {x: 18, y: 8}
+        - {x: 18, y: 18}
+        - {x: 12, y: 24}
+        - {x: -20, y: 24}
+        - {x: -32, y: 14}
+        - {x: -32, y: -18}
+        - {x: 9, y: -18}
+        - {x: 18, y: -9}
+        - {x: 18, y: 3}
+      - - {x: -24, y: 5}
+        - {x: -21, y: 6}
+        - {x: -21, y: 9}
+        - {x: -24, y: 10}
+        - {x: -26, y: 8}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
