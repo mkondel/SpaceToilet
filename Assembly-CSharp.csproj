@@ -60,6 +60,7 @@
      <Compile Include="Assets\Scripts\DestroyByTime.cs" />
      <Compile Include="Assets\Scripts\EnemyAController.cs" />
      <Compile Include="Assets\Scripts\ExplosionController.cs" />
+     <Compile Include="Assets\Scripts\FaceChange.cs" />
      <Compile Include="Assets\Scripts\GameController.cs" />
      <Compile Include="Assets\Scripts\GameOverBackgroudns.cs" />
      <Compile Include="Assets\Scripts\GameTitle.cs" />
@@ -69,8 +70,10 @@
      <Compile Include="Assets\Scripts\RandomRotator.cs" />
      <Compile Include="Assets\Scripts\Rotator.cs" />
      <Compile Include="Assets\Scripts\SaturateRed.cs" />
+     <Compile Include="Assets\Scripts\ScoreBoardController.cs" />
      <Compile Include="Assets\Scripts\ScrollTexture.cs" />
-     <Compile Include="Assets\UpdateGameTimer.cs" />
+     <Compile Include="Assets\Scripts\SliderValueDisplayer.cs" />
+     <Compile Include="Assets\Scripts\UpdateGameTimer.cs" />
      <None Include="Assets\Standard Assets\ParticleSystems\Shaders\PriorityParticleAlpha.shader" />
      <None Include="Assets\Standard Assets\ParticleSystems\ParticleSystemsGuidelines.txt" />
      <None Include="Assets\Prefabs\UI\Game Jam Menu Template\Fonts\OpenSans\License!.txt" />

@@ -19,18 +19,35 @@ public class EnemyAController : MonoBehaviour {
 	private bool in_game;
 	private int hops;
 	private int hp;
+
+	public int Hp {get {return hp;} set {hp = value;}}
+
 	private GameObject boom;
+	private Vector3 move_back_vector = new Vector3 (0,0,1);
+	private Vector3 original_speed;
+	private Vector3 original_scale;
+	private float original_radius;
 
 	// Use this for initialization
 	void Start () {
-		loudDeath = true;
-		boom = explosion;
-		in_game = false;
+		get_game_controller ();
+		original_speed = speed;
+		original_scale = me.transform.localScale;
+		original_radius = GetComponent<SphereCollider> ().radius;
+		Reset ();
+	}
+
+	void Reset(){
+		speed = original_speed;
+		me.transform.localScale = original_scale;
+		GetComponent<SphereCollider> ().radius = original_radius;
 		hops = 1;
 		hp = 1;
+		in_game = false;
+		loudDeath = true;
+		boom = explosion;
 		PickNewStartingPoint ();
-		get_game_controller ();
-//		while (hops < hop_limit) Shrink ();
+		//		while (hops < hop_limit) Shrink ();
 	}
 	
 	// Update is called once per frame
@@ -45,7 +62,7 @@ public class EnemyAController : MonoBehaviour {
 	void OnTriggerEnter(Collider other) {
 		if (in_game) {
 			if (other.tag == "Bullet") {
-				Destroy (other.gameObject);
+//				Destroy (other.gameObject);
 				GC.ShotHit ();
 				hp--;
 			} else if (other.tag == "Player") {
@@ -59,13 +76,25 @@ public class EnemyAController : MonoBehaviour {
 			}
 		} else { //not in game space (yet?)
 			loudDeath = false;
-			if (other.tag == "Enemy") {
+			if (other.tag == "GameSpace") {
+				in_game = true;
+			}
+		}
+	}
+
+	void OnTriggerStay(Collider other) {
+		if (other.tag == "Enemy") {
+			if (!in_game) {
 				if (hops < hop_limit) {
 					Shrink ();
-//					PickNewStartingPoint ();
+					//					PickNewStartingPoint ();
+				} else {
+					//hop_limit reaches
+					startingPoint += move_back_vector;
+					zMin += move_back_vector.z;
+					zMax += move_back_vector.z;
+					Reset ();
 				}
-			}else if (other.tag == "GameSpace") {
-				in_game = true;
 			}
 		}
 	}
@@ -75,7 +104,7 @@ public class EnemyAController : MonoBehaviour {
 		if(hp<hp_max) hp++;
 		speed *= scale_factor;
 		me.transform.localScale *= scale_factor;
-		GetComponent<SphereCollider> ().transform.localScale *= scale_factor;
+		GetComponent<SphereCollider> ().radius *= scale_factor;
 	}
 
 	void OnTriggerExit(Collider other) {

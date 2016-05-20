@@ -9,8 +9,9 @@ public class GameController : MonoBehaviour {
 	public PlayerController player;
 	public float megahertz;
 	public Button game_over_menu;
-	public Text game_won_text;
-	public GameObject game_lost_text;
+	public GameObject game_won_panel;
+	public GameObject game_lost_panel;
+	public GameObject score_board;
 	public AudioSource winning_sound;
 	public AudioSource losing_sound;
 	public Slider health_slider;
@@ -19,13 +20,11 @@ public class GameController : MonoBehaviour {
 	public AudioClip bg_music_clip;
 	public AudioMixerSnapshot volumeDown;
 	public AudioMixerSnapshot volumeUp;
+	public FaceChange pilot_face;
 
 	private int enemiesMax;
 	private int total_monsters;
-	private int killed_monsters;
 	private int escaped_monsters;
-	private int shots_fired;
-	private int shots_hit;
 	private WaitForSeconds win_blowup = new WaitForSeconds (0.02f);
 	private WaitForSeconds restart_wait = new WaitForSeconds (5.0f);
 	private bool gameover;
@@ -33,10 +32,32 @@ public class GameController : MonoBehaviour {
 	private bool destroying;
 	private int starting_health;
 	private AudioSource bg_music;
+	private float hp_percentage;
+	private class score_card{
+		public int kills = 0;
+		public int shots = 0;
+		public int hits  = 0;
+		public int total = 0;
+		public override string ToString(){
+			return kills+" kills, "+shots+" shots, "+hits+" hits, "+total+" total";
+		}
+		public string GetGrade(){
+			string possible_grades = "XXXXXFDCBA";
+			float acc = (float)hits/shots;
+			float kill_ratio = (float)kills/total;
+			float grade_value = (acc + kill_ratio)/2.0f;
+			int idx = (int)(grade_value * (float)possible_grades.Length);
+			if (idx < 5) idx = 5;
+			if (idx >= possible_grades.Length) idx = possible_grades.Length-1;
+			return possible_grades[idx].ToString();
+		}
+	};
+	private score_card score;
 
 	void Awake () {
-		total_monsters = killed_monsters = shots_fired = escaped_monsters = 0;
-		enemiesMax = 100;
+		total_monsters = escaped_monsters = 0;
+		score = new score_card();
+		enemiesMax = 1;
 		gameover = false;
 		gamewon = false;
 		destroying = false;
@@ -68,32 +89,37 @@ public class GameController : MonoBehaviour {
 			game_over_menu.onClick.Invoke ();
 		}
 
-		health_slider.value = (float)player.health/starting_health;
+		hp_percentage = (float)player.health / starting_health;
+		health_slider.value = hp_percentage;
+
+		if(pilot_face) pilot_face.HealthToFace(hp_percentage);
 
 		if (!gameover) {
 			if (total_monsters < enemiesMax) {
 				Instantiate (possible_enemy_types [Random.Range (0, possible_enemy_types.Length)]);
 				total_monsters++;
+				score.total++;
 			}
 
-			float KE = killed_monsters / (escaped_monsters + 1.0f);
-			float KS = shots_hit / (shots_fired + 1.0f);
-			float hertz = KS * KE;
+			float KE = score.kills / (escaped_monsters + 1.0f);
+			float KS = score.hits / (score.shots + 1.0f);
+//			float hertz = KS * KE;
+			float hertz = score.kills - escaped_monsters;
 			player.SetFireRateHZ (hertz);
 
 			hertz_slider.value = (float)hertz / megahertz;
 
-			if (hertz > megahertz) {
+			if (hertz >= megahertz) {
 				gameover = true;
 				gamewon = true;
-				game_won_text.gameObject.SetActive (true);
+				game_won_panel.gameObject.SetActive (true);
 			}
 
-			if (player.health < 0) {
+			if (player.health <= 0) {
 				health_slider.value = 0;
 				gameover = true;
 				gamewon = false;
-				game_lost_text.gameObject.SetActive (true);
+				game_lost_panel.gameObject.SetActive (true);
 			}
 		} else {
 			StartCoroutine (FadeDown (5f));
@@ -115,6 +141,9 @@ public class GameController : MonoBehaviour {
 			} else if (losing_sound)
 				losing_sound.Play ();
 			Destroy (player.gameObject);
+			score_board.SetActive(true);
+
+			score_board.GetComponent<ScoreBoardController> ().ShowScores(score.GetGrade(), score.kills, score.total, score.shots, score.hits);
 		}
 	}
 
@@ -138,10 +167,11 @@ public class GameController : MonoBehaviour {
 	}
 
 	public void MonsterDown(){
-		killed_monsters++;
+		score.kills++;
 		total_monsters--;
 		if (!gameover) {
 			enemiesMax++;
+//			enemiesMax--;
 		}
 	}
 
@@ -150,10 +180,10 @@ public class GameController : MonoBehaviour {
 	}
 
 	public void ShotFired(){
-		shots_fired++;
+		score.shots++;
 	}
 
 	public void ShotHit(){
-		shots_hit++;
+		score.hits++;
 	}
 }
