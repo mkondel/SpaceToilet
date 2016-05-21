@@ -5,45 +5,45 @@ using System.Collections;
 
 public class GameController : MonoBehaviour {
 	
-	public GameObject[] possible_enemy_types;
+	public GameObject[] possibleEnemyTypes;
 	public PlayerController player;
 	public float killahertz;
-	public Button game_over_menu;
-	public GameObject game_won_panel;
-	public GameObject game_lost_panel;
-	public GameObject score_board;
-	public AudioSource winning_sound;
-	public AudioSource losing_sound;
-	public Slider health_slider;
-	public Slider hertz_slider;
-	public UpdateGameTimer big_timer;
-	public AudioClip bg_music_clip;
+	public Button gameOverMenu;
+	public GameObject gameWonPanel;
+	public GameObject gameLostPanel;
+	public GameObject scoreBoard;
+	public AudioSource winningSound;
+	public AudioSource losingSound;
+	public Slider healthSlider;
+	public Slider hertzSlider;
+	public UpdateGameTimer bigTimer;
+	public AudioClip bgMusicClip;
 	public AudioMixerSnapshot volumeDown;
 	public AudioMixerSnapshot volumeUp;
-	public FaceChange pilot_face;
+	public FaceChange pilotFace;
 
 	private int enemiesMax;
-	private int total_monsters;
-	private int escaped_monsters;
-	private static WaitForSeconds win_blowup = new WaitForSeconds (0.02f);
-	private static WaitForSeconds restart_wait = new WaitForSeconds (5.0f);
+	private int totalMonsters;
+	private int escapedMonsters;
+	private static WaitForSeconds winBlowup = new WaitForSeconds (0.02f);
+	private static WaitForSeconds restartWait = new WaitForSeconds (5.0f);
 	private bool gameover;
 	private bool gamewon;
 	private bool destroying;
-	private int starting_health;
-	private AudioSource bg_music;
-	private float hp_percentage;
+	private int startingHealth;
+	private AudioSource bgMusic;
+	private float hpPercent;
 	private bool KHz;
 
 
-	private class score_card{
+	private class ScoreCard{
 		public int kills = 0;
 		public int shots = 0;
 		public int hits  = 0;
 		public int total = 0;
-		public override string ToString(){
-			return kills+" kills, "+shots+" shots, "+hits+" hits, "+total+" total";
-		}
+
+		public override string ToString(){return kills+" kills, "+shots+" shots, "+hits+" hits, "+total+" total";}
+
 		public string GetGrade(){
 			string possible_grades = "XXXXXFDCBA";
 			float acc = (float)hits/shots;
@@ -55,23 +55,23 @@ public class GameController : MonoBehaviour {
 			return possible_grades[idx].ToString();
 		}
 	};
-	private score_card score;
+	private ScoreCard score;
 
 
 	void Awake () {
-		total_monsters = escaped_monsters = 0;
-		score = new score_card();
+		totalMonsters = escapedMonsters = 0;
+		score = new ScoreCard();
 		enemiesMax = 1;
 		gameover = false;
 		gamewon = false;
 		destroying = false;
 		KHz = false;
-		big_timer.enabled = true;
-		starting_health = player.health;
-		if (bg_music_clip) {
-			bg_music = GetComponent<AudioSource> ();
-			bg_music.clip = bg_music_clip;
-			bg_music.Play ();
+		bigTimer.enabled = true;
+		startingHealth = player.health;
+		if (bgMusicClip) {
+			bgMusic = GetComponent<AudioSource> ();
+			bgMusic.clip = bgMusicClip;
+			bgMusic.Play ();
 		}
 	}
 
@@ -84,8 +84,8 @@ public class GameController : MonoBehaviour {
 	void Update () {
 
 		//When the game is either won or lost, display restart button, and allow for user to restart by pressing 'R'
-		if (game_over_menu.IsActive() && Input.GetKeyDown (KeyCode.R)) {
-			game_over_menu.onClick.Invoke ();
+		if (gameOverMenu.IsActive() && Input.GetKeyDown (KeyCode.R)) {
+			gameOverMenu.onClick.Invoke ();
 		}
 
 		//Player health bar and face changes
@@ -93,13 +93,13 @@ public class GameController : MonoBehaviour {
 
 		if (!gameover) {
 		//Game is not over
-			if (total_monsters < enemiesMax) {
+			if (totalMonsters < enemiesMax) {
 			//Make sure to make new monsters as long as necessary
 				RandomlyPlacedNewMonster();
 			}
 
 			//Set gun fire rate and Hz bar display
-			float hertz = score.kills - escaped_monsters;
+			float hertz = score.kills - escapedMonsters;
 			UpdateGunAndDisplay (hertz);
 
 			if (hertz >= killahertz)
@@ -116,10 +116,10 @@ public class GameController : MonoBehaviour {
 		} else {
 		//Game is over, one way or another
 			StartCoroutine (FadeDown (5f));
-			big_timer.enabled = false;
+			bigTimer.enabled = false;
 			if (!destroying) {
 				GameOver ();
-				if (game_over_menu)
+				if (gameOverMenu)
 					StartCoroutine (ShowRestartButton());
 			}
 		}
@@ -127,8 +127,8 @@ public class GameController : MonoBehaviour {
 
 
 	void RandomlyPlacedNewMonster(){
-		Instantiate (possible_enemy_types [Random.Range (0, possible_enemy_types.Length)]);
-		total_monsters++;	//monsters currently alive
+		Instantiate (possibleEnemyTypes [Random.Range (0, possibleEnemyTypes.Length)]);
+		totalMonsters++;	//monsters currently alive
 		score.total++;		//monsters created since start
 	}
 
@@ -137,25 +137,25 @@ public class GameController : MonoBehaviour {
 	//Fire rate for the basic weapon is equal to the number of monsters killed
 	//Fire rate decreases for each monster that passes all the way though
 		player.SetFireRateHZ (hertz);						//Player weapon fires at this rate
-		hertz_slider.value = hertz / killahertz;		//Show progress to reach KHz
+		hertzSlider.value = hertz / killahertz;		//Show progress to reach KHz
 	}
 
 
 	void PlayerHealthAndFace(){
 	//Update to show current values of health in both the bar and pilot face
-		hp_percentage = (float)player.health / starting_health;
-		health_slider.value = hp_percentage;
-		if (pilot_face)
-			pilot_face.HealthToFace (hp_percentage);
+		hpPercent = (float)player.health / startingHealth;
+		healthSlider.value = hpPercent;
+		if (pilotFace)
+			pilotFace.HealthToFace (hpPercent);
 	}
 
 
 	void PlayerDead(){
 	//Player was killed
-		health_slider.value = 0;
+		healthSlider.value = 0;
 		gameover = true;
 		gamewon = false;
-		game_lost_panel.gameObject.SetActive (true);
+		gameLostPanel.gameObject.SetActive (true);
 	}
 
 
@@ -164,35 +164,35 @@ public class GameController : MonoBehaviour {
 		KHz = true;
 //		gameover = true;
 //		gamewon = true;
-//		game_won_panel.gameObject.SetActive (true);
+//		gameWonPanel.gameObject.SetActive (true);
 	}
 
 
 	void GameOver(){
 		if (player) {
 			if (gamewon) {
-				if (winning_sound)
-					winning_sound.Play ();
+				if (winningSound)
+					winningSound.Play ();
 				StartCoroutine (DestroyAllEnemies ());
-			} else if (losing_sound)
-				losing_sound.Play ();
+			} else if (losingSound)
+				losingSound.Play ();
 			Destroy (player.gameObject);
-			score_board.SetActive(true);
+			scoreBoard.SetActive(true);
 
-			score_board.GetComponent<ScoreBoardController> ().ShowScores(score.GetGrade(), score.kills, score.total, score.shots, score.hits);
+			scoreBoard.GetComponent<ScoreBoardController> ().ShowScores(score.GetGrade(), score.kills, score.total, score.shots, score.hits);
 		}
 	}
 
 
 	private IEnumerator DestroyAllEnemies(){
-	//blow up one at a time, wait 'win_blowup' seconds, blow up one, rpt...
+	//blow up one at a time, wait 'winBlowup' seconds, blow up one, rpt...
 		destroying = true;
 		GameObject e = GameObject.FindWithTag ("Enemy");
 		if (e) {
 			e.GetComponent<EnemyAController> ().MakeLoud ();
-			yield return win_blowup;
+			yield return winBlowup;
 			Destroy (e);
-			enemiesMax = total_monsters;
+			enemiesMax = totalMonsters;
 			StartCoroutine (DestroyAllEnemies ());
 		} else {
 			destroying = false;
@@ -202,15 +202,15 @@ public class GameController : MonoBehaviour {
 
 	private IEnumerator ShowRestartButton(){
 	//Enables the UI button for restarting after win/loss
-		yield return restart_wait;
-		game_over_menu.gameObject.SetActive(true);
+		yield return restartWait;
+		gameOverMenu.gameObject.SetActive(true);
 	}
 
 
 	public void MonsterDown(){
 	//Signifies monster getting killed by player
 		score.kills++;
-		total_monsters--;
+		totalMonsters--;
 		if (!gameover && !KHz) {
 			enemiesMax++;
 //			enemiesMax--;
@@ -218,7 +218,7 @@ public class GameController : MonoBehaviour {
 	}
 	public void MonsterEscaped(){
 	//Signifies monster not dying inside GameSpace, and escaping through the back
-		escaped_monsters++;
+		escapedMonsters++;
 	}
 	public void ShotFired(){
 	//Counts how many times the player fired their weapon
