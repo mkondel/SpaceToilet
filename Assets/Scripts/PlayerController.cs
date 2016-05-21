@@ -33,11 +33,11 @@ public class PlayerController : MonoBehaviour
 
 	private float fireRateHZ;
 	private float nextFire;
-	private GameController GC;
+	private int shots;
+	public int Shots {get {return shots;}}
 
 	void Start(){
-		get_game_controller ();
-		fireRateHZ = 1.0f;
+		fireRateHZ = 1f;
 		hzText.text = "1.00HZ";
 		healthText.text = "Health: "+health;
 	}
@@ -47,12 +47,25 @@ public class PlayerController : MonoBehaviour
 		healthText.text = "Health: "+health;
 
 		if (Input.GetButton ("Fire1") && Time.time >= nextFire && Time.timeScale > 0) {
-			nextFire = Time.time + (1.0f/fireRateHZ);
+			if (fireRateHZ <= 0) {
+				muzzleFlash.gameObject.SetActive (false);
+				nextFire = Time.time + 1f;
+			} else {
+				nextFire = Time.time + (1f / fireRateHZ);
+			}
+
+			if (fireRateHZ > 1) {
+				muzzleFlash.speed = fireRateHZ;
+				muzzleFlash.gameObject.SetActive (true);
+			} else {
+				muzzleFlash.speed = 0;
+			}
+
 			Instantiate (shot, shotSpawn.position, shotSpawn.rotation);
-			muzzleFlash.speed = fireRateHZ;
-			GC.ShotFired ();
+			shots++;
 		} else if (Input.GetButtonUp ("Fire1")) {
 			nextFire = Time.time;
+			muzzleFlash.gameObject.SetActive(false);
 		}
 
 		if (health < 0) {
@@ -87,18 +100,6 @@ public class PlayerController : MonoBehaviour
 
         GetComponent<Rigidbody>().rotation = Quaternion.Euler (0.0f, 0.0f, GetComponent<Rigidbody>().velocity.x * -tilt);
     }
-
-	void get_game_controller(){
-		GameObject gameControllerObject = GameObject.FindGameObjectWithTag ("GameSpace");
-		if (gameControllerObject != null)
-		{
-			GC = gameControllerObject.GetComponent <GameController>();
-		}
-		if (GC == null)
-		{
-			Debug.Log ("Cannot find 'GameController' script");
-		}
-	}
 
 	public void SetFireRateHZ(float hz){
 		fireRateHZ = hz;

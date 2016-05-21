@@ -43,7 +43,8 @@ public class GameController : MonoBehaviour {
 
 		public override string ToString(){return kills+" kills, "+shots+" shots, "+hits+" hits, "+total+" total";}
 
-		public string GetGrade(){
+		public string GetGrade(int s){
+			shots = s;
 			string possible_grades = "XXXXXFDCBA";
 			float acc = (float)hits/shots;
 			float kill_ratio = (float)kills/total;
@@ -181,7 +182,7 @@ public class GameController : MonoBehaviour {
 			Destroy (player.gameObject);
 			scoreBoard.SetActive(true);
 
-			scoreBoard.GetComponent<ScoreBoardController> ().ShowScores(score.GetGrade(), score.kills, score.total, score.shots, score.hits);
+			scoreBoard.GetComponent<ScoreBoardController> ().ShowScores(score.GetGrade(player.Shots), score.kills, score.total, player.Shots, score.hits);
 		}
 	}
 
@@ -208,10 +209,6 @@ public class GameController : MonoBehaviour {
 	public void MonsterEscaped(){
 	//Signifies monster not dying inside GameSpace, and escaping through the back
 		escapedMonsters++;
-	}
-	public void ShotFired(){
-	//Counts how many times the player fired their weapon
-		score.shots++;
 	}
 	public void ShotHit(){
 	//Monster was hit by player weapon
