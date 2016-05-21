@@ -26,10 +26,9 @@ public class GameController : MonoBehaviour {
 	private int totalMonsters;
 	private int escapedMonsters;
 	private static WaitForSeconds winBlowup = new WaitForSeconds (0.02f);
-	private static WaitForSeconds restartWait = new WaitForSeconds (5.0f);
+	private static WaitForSeconds restartButtonWait = new WaitForSeconds (5.0f);
 	private bool gameover;
 	private bool gamewon;
-	private bool destroying;
 	private int startingHealth;
 	private AudioSource bgMusic;
 	private float hpPercent;
@@ -64,7 +63,6 @@ public class GameController : MonoBehaviour {
 		enemiesMax = 1;
 		gameover = false;
 		gamewon = false;
-		destroying = false;
 		KHz = false;
 		bigTimer.enabled = true;
 		startingHealth = player.health;
@@ -96,6 +94,9 @@ public class GameController : MonoBehaviour {
 			if (totalMonsters < enemiesMax) {
 			//Make sure to make new monsters as long as necessary
 				RandomlyPlacedNewMonster();
+			}else if (totalMonsters == 0) {
+			//Game Won!
+				GameWon();
 			}
 
 			//Set gun fire rate and Hz bar display
@@ -103,9 +104,9 @@ public class GameController : MonoBehaviour {
 			UpdateGunAndDisplay (hertz);
 
 			if (hertz >= killahertz)
-				KillaMode ();
+				KillaMode (true);
 			else
-				KHz = false;
+				KillaMode (false);
 				
 			if (player.health <= 0) {
 				PlayerDead ();
@@ -117,12 +118,17 @@ public class GameController : MonoBehaviour {
 		//Game is over, one way or another
 			StartCoroutine (FadeDown (5f));
 			bigTimer.enabled = false;
-			if (!destroying) {
-				GameOver ();
-				if (gameOverMenu)
-					StartCoroutine (ShowRestartButton());
-			}
+			GameOver ();
+			if (gameOverMenu && !gameOverMenu.gameObject.activeInHierarchy)
+				StartCoroutine (ShowRestartButton());
 		}
+	}
+
+
+	void GameWon(){
+	//Player wins!
+		gameover = gamewon = true;
+		gameWonPanel.gameObject.SetActive (true);
 	}
 
 
@@ -159,22 +165,18 @@ public class GameController : MonoBehaviour {
 	}
 
 
-	void KillaMode(){
+	void KillaMode(bool setval){
 	//KHz level reached
-		KHz = true;
-//		gameover = true;
-//		gamewon = true;
-//		gameWonPanel.gameObject.SetActive (true);
+		KHz = setval;
+//		player
 	}
 
 
 	void GameOver(){
 		if (player) {
-			if (gamewon) {
-				if (winningSound)
-					winningSound.Play ();
-				StartCoroutine (DestroyAllEnemies ());
-			} else if (losingSound)
+			if (gamewon && winningSound)
+				winningSound.Play ();
+			else if (losingSound)
 				losingSound.Play ();
 			Destroy (player.gameObject);
 			scoreBoard.SetActive(true);
@@ -184,25 +186,9 @@ public class GameController : MonoBehaviour {
 	}
 
 
-	private IEnumerator DestroyAllEnemies(){
-	//blow up one at a time, wait 'winBlowup' seconds, blow up one, rpt...
-		destroying = true;
-		GameObject e = GameObject.FindWithTag ("Enemy");
-		if (e) {
-			e.GetComponent<EnemyAController> ().MakeLoud ();
-			yield return winBlowup;
-			Destroy (e);
-			enemiesMax = totalMonsters;
-			StartCoroutine (DestroyAllEnemies ());
-		} else {
-			destroying = false;
-		}
-	}
-
-
 	private IEnumerator ShowRestartButton(){
 	//Enables the UI button for restarting after win/loss
-		yield return restartWait;
+		yield return restartButtonWait;
 		gameOverMenu.gameObject.SetActive(true);
 	}
 
@@ -212,8 +198,11 @@ public class GameController : MonoBehaviour {
 		score.kills++;
 		totalMonsters--;
 		if (!gameover && !KHz) {
+//			Debug.Log ("Enemies: "+totalMonsters+" MAX: "+enemiesMax+" basic weapon");
 			enemiesMax++;
-//			enemiesMax--;
+		}else{
+//			Debug.Log ("Enemies: "+totalMonsters+" MAX: "+enemiesMax+" KHz mode");
+			enemiesMax--;
 		}
 	}
 	public void MonsterEscaped(){

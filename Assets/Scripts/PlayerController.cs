@@ -11,7 +11,6 @@ public class Boundary
 public class PlayerController : MonoBehaviour
 {
 	public float speed;
-
 	public float Speed {
 		get {
 			return speed;
@@ -25,12 +24,12 @@ public class PlayerController : MonoBehaviour
 	public Boundary boundary;
 	public GameObject shot;
 	public Transform shotSpawn;
-	public GameObject hz_text;
-	public GameObject health_text;
-	public GameObject muzzle_flash;
+	public Text hzText;
+	public Text healthText;
+	public Animator muzzleFlash;
 	public int health;
 	public GameObject explosion;
-	public GameObject explosion_sound;
+	public GameObject explosionSound;
 
 	private float fireRateHZ;
 	private float nextFire;
@@ -39,19 +38,18 @@ public class PlayerController : MonoBehaviour
 	void Start(){
 		get_game_controller ();
 		fireRateHZ = 1.0f;
-		hz_text.GetComponent<Text>().text = "1.00HZ";
-		health_text.GetComponent<Text>().text = "Health: "+health;
+		hzText.text = "1.00HZ";
+		healthText.text = "Health: "+health;
 	}
 
 	void Update ()
 	{
-		health_text.GetComponent<Text>().text = "Health: "+health;
+		healthText.text = "Health: "+health;
 
 		if (Input.GetButton ("Fire1") && Time.time >= nextFire && Time.timeScale > 0) {
 			nextFire = Time.time + (1.0f/fireRateHZ);
 			Instantiate (shot, shotSpawn.position, shotSpawn.rotation);
-			GameObject foo = (GameObject)Instantiate (muzzle_flash, shotSpawn.position, muzzle_flash.transform.rotation);
-			foo.transform.parent = transform;
+			muzzleFlash.speed = fireRateHZ;
 			GC.ShotFired ();
 		} else if (Input.GetButtonUp ("Fire1")) {
 			nextFire = Time.time;
@@ -59,10 +57,10 @@ public class PlayerController : MonoBehaviour
 
 		if (health < 0) {
 			//die
-			health_text.GetComponent<Text>().text = "DEAD!";
+			healthText.text = "DEAD!";
 			Instantiate (explosion, transform.position, transform.rotation);
-			explosion_sound.SetActive (true);
-			explosion_sound.transform.SetParent (null);
+			explosionSound.SetActive (true);
+			explosionSound.transform.SetParent (null);
 		}
 	}
 
@@ -104,6 +102,6 @@ public class PlayerController : MonoBehaviour
 
 	public void SetFireRateHZ(float hz){
 		fireRateHZ = hz;
-		hz_text.GetComponent<Text>().text = hz.ToString("n2")+"HZ";
+		hzText.text = hz.ToString("n2")+"HZ";
 	}
 }
