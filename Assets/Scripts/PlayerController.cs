@@ -10,24 +10,15 @@ public class Boundary
 
 public class PlayerController : MonoBehaviour
 {
+	public int health;
 	public float speed;
-	public float Speed {
-		get {
-			return speed;
-		}
-		set {
-			speed = value;
-		}
-	}
-
     public float tilt;
-	public Boundary boundary;
-	public GameObject shot;
-	public Transform shotSpawn;
 	public Text hzText;
 	public Text healthText;
+	public Boundary boundary;
+	public Transform shotSpawn;
 	public Animator muzzleFlash;
-	public int health;
+	public GameObject shot;
 	public GameObject explosion;
 	public GameObject explosionSound;
 
@@ -83,7 +74,6 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate ()
 	{
 		float moveHorizontal = Input.GetAxis ("Mouse X");
-
 		Vector3 movement = new Vector3 (moveHorizontal, 0.0f, 0.0f);
         GetComponent<Rigidbody>().velocity = movement * speed;
 
