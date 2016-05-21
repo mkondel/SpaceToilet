@@ -42,23 +42,22 @@ public class PlayerController : MonoBehaviour
 		healthText.text = "Health: "+health;
 	}
 
-	void Update ()
-	{
+	void Update (){
+		//Keep health display current
 		healthText.text = "Health: "+health;
 
 		if (Input.GetButton ("Fire1") && Time.time >= nextFire && Time.timeScale > 0) {
-			if (fireRateHZ <= 0) {
-				muzzleFlash.gameObject.SetActive (false);
-				nextFire = Time.time + 1f;
-			} else {
-				nextFire = Time.time + (1f / fireRateHZ);
+		//Fire button is pressed down AND (fire timeout has passed) AND (the game is not paused)
+			if (fireRateHZ <= 0) { //When fire rate is less than 0, do not play muzzle animation
+				nextFire = Time.time + 1f;					//fire timeout is forced to be 1 second
+				muzzleFlash.gameObject.SetActive (false);	//suppress muzzle flash
+			} else { //Firing rate is non-zero
+				nextFire = Time.time + (1f / fireRateHZ);	//fire timeout is fraction of a second
 			}
 
 			if (fireRateHZ > 1) {
-				muzzleFlash.speed = fireRateHZ;
-				muzzleFlash.gameObject.SetActive (true);
-			} else {
-				muzzleFlash.speed = 0;
+				muzzleFlash.speed = fireRateHZ;				//muzzle flash animation loop speed == fire rate
+				muzzleFlash.gameObject.SetActive (true);	//show muzzle flash
 			}
 
 			Instantiate (shot, shotSpawn.position, shotSpawn.rotation);
@@ -69,7 +68,7 @@ public class PlayerController : MonoBehaviour
 		}
 
 		if (health < 0) {
-			//die
+		//die
 			healthText.text = "DEAD!";
 			Instantiate (explosion, transform.position, transform.rotation);
 			explosionSound.SetActive (true);
@@ -83,12 +82,9 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate ()
 	{
-//		float moveHorizontal = Input.GetAxis ("Horizontal");
-//		float moveVertical = Input.GetAxis ("Vertical");
 		float moveHorizontal = Input.GetAxis ("Mouse X");
-//		float moveVertical = Input.GetAxis ("Mouse Y");
 
-		Vector3 movement = new Vector3 (moveHorizontal, 0.0f, 0.0f);//moveVertical);
+		Vector3 movement = new Vector3 (moveHorizontal, 0.0f, 0.0f);
         GetComponent<Rigidbody>().velocity = movement * speed;
 
         GetComponent<Rigidbody>().position = new Vector3 
