@@ -1,0 +1,694 @@
+fileFormatVersion: 2
+guid: 80eb35370ec594bae93e638328c04c55
+timeCreated: 1463800866
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: shock_0
+    21300002: shock_1
+    21300004: shock_2
+    21300006: shock_3
+    21300008: shock_4
+    21300010: shock_5
+    21300012: shock_6
+    21300014: shock_7
+    21300016: shock_8
+    21300018: shock_9
+    21300020: shock_10
+    21300022: shock_11
+    21300024: shock_12
+    21300026: shock_13
+    21300028: shock_14
+    21300030: shock_15
+    21300032: shock_16
+    21300034: shock_17
+    21300036: shock_18
+    21300038: shock_19
+    21300040: shock_20
+    21300042: shock_21
+    21300044: shock_22
+    21300046: shock_23
+    21300048: shock_24
+    21300050: shock_25
+    21300052: shock_26
+    21300054: shock_27
+    21300056: shock_28
+    21300058: shock_29
+    21300060: shock_30
+    21300062: shock_31
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: shock_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 448
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 24, y: 13}
+        - {x: 1, y: 13}
+        - {x: -31, y: 10}
+        - {x: -32, y: 8}
+        - {x: -32, y: -10}
+        - {x: -28, y: -11}
+        - {x: 26, y: -11}
+        - {x: 32, y: -7}
+        - {x: 32, y: 9}
+    - name: shock_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 448
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -29, y: 13}
+        - {x: -32, y: 10}
+        - {x: -32, y: -4}
+        - {x: -24, y: -11}
+        - {x: 15, y: -11}
+        - {x: 32, y: -7}
+        - {x: 32, y: 13}
+    - name: shock_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 448
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -32, y: 13}
+        - {x: -32, y: -9}
+        - {x: -29, y: -11}
+        - {x: 32, y: -11}
+        - {x: 32, y: 13}
+    - name: shock_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 448
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16, y: 13}
+        - {x: -32, y: 10}
+        - {x: -32, y: -11}
+        - {x: 32, y: -11}
+        - {x: 32, y: 11}
+        - {x: 25, y: 13}
+    - name: shock_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 384
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 1, y: 16}
+        - {x: -22, y: 16}
+        - {x: -27, y: 15}
+        - {x: -27, y: 2}
+        - {x: -23, y: -6}
+        - {x: 10, y: -18}
+        - {x: 23, y: -18}
+        - {x: 27, y: -16}
+        - {x: 27, y: -4}
+        - {x: 18, y: 10}
+    - name: shock_5
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 384
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -10, y: 21}
+        - {x: -25, y: 21}
+        - {x: -27, y: 16}
+        - {x: -27, y: 6}
+        - {x: -21, y: -5}
+        - {x: 7, y: -17}
+        - {x: 24, y: -17}
+        - {x: 29, y: -15}
+        - {x: 29, y: 0}
+        - {x: 5, y: 17}
+    - name: shock_6
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 384
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -2, y: 19}
+        - {x: -27, y: 19}
+        - {x: -27, y: 3}
+        - {x: -12, y: -16}
+        - {x: 4, y: -18}
+        - {x: 28, y: -18}
+        - {x: 30, y: -15}
+        - {x: 30, y: 0}
+    - name: shock_7
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 384
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -27, y: 19}
+        - {x: -29, y: 14}
+        - {x: -29, y: 4}
+        - {x: -24, y: -2}
+        - {x: 6, y: -18}
+        - {x: 27, y: -18}
+        - {x: 29, y: -17}
+        - {x: 29, y: -3}
+        - {x: 24, y: 6}
+        - {x: 7, y: 14}
+        - {x: -12, y: 19}
+    - name: shock_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -12, y: 20}
+        - {x: -13, y: 19}
+        - {x: -13, y: -18}
+        - {x: -7, y: -21}
+        - {x: 6, y: -21}
+        - {x: 12, y: -12}
+        - {x: 12, y: 16}
+        - {x: 11, y: 20}
+    - name: shock_9
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -2, y: 25}
+        - {x: -11, y: 22}
+        - {x: -13, y: 18}
+        - {x: -13, y: -4}
+        - {x: -8, y: -21}
+        - {x: 9, y: -21}
+        - {x: 12, y: -20}
+        - {x: 12, y: 22}
+        - {x: 10, y: 25}
+    - name: shock_10
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -7, y: 23}
+        - {x: -13, y: 19}
+        - {x: -13, y: -19}
+        - {x: -6, y: -23}
+        - {x: 8, y: -23}
+        - {x: 12, y: -22}
+        - {x: 12, y: 23}
+    - name: shock_11
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13, y: -19}
+        - {x: -11, y: -22}
+        - {x: 12, y: -22}
+        - {x: 12, y: 23}
+        - {x: -8, y: 23}
+        - {x: -13, y: 13}
+    - name: shock_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 5, y: 17}
+        - {x: 1, y: 16}
+        - {x: -26, y: 6}
+        - {x: -29, y: -1}
+        - {x: -29, y: -15}
+        - {x: -28, y: -16}
+        - {x: -12, y: -16}
+        - {x: 24, y: -7}
+        - {x: 26, y: -1}
+        - {x: 26, y: 16}
+        - {x: 25, y: 17}
+    - name: shock_13
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 9, y: 21}
+        - {x: -28, y: 1}
+        - {x: -28, y: -16}
+        - {x: -26, y: -17}
+        - {x: -2, y: -17}
+        - {x: 28, y: 3}
+        - {x: 28, y: 18}
+        - {x: 27, y: 21}
+    - name: shock_14
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 5, y: 19}
+        - {x: -5, y: 13}
+        - {x: -17, y: 5}
+        - {x: -27, y: -2}
+        - {x: -27, y: -15}
+        - {x: -24, y: -19}
+        - {x: -9, y: -19}
+        - {x: 29, y: 4}
+        - {x: 29, y: 17}
+        - {x: 23, y: 19}
+    - name: shock_15
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 6, y: 19}
+        - {x: -28, y: 6}
+        - {x: -28, y: -18}
+        - {x: 4, y: -18}
+        - {x: 28, y: -12}
+        - {x: 29, y: -6}
+        - {x: 29, y: 19}
+    - name: shock_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -32, y: 12}
+        - {x: -32, y: -11}
+        - {x: 32, y: -11}
+        - {x: 32, y: 9}
+        - {x: 21, y: 12}
+    - name: shock_17
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -32, y: 12}
+        - {x: -32, y: -7}
+        - {x: -21, y: -11}
+        - {x: 16, y: -11}
+        - {x: 23, y: -10}
+        - {x: 32, y: -5}
+        - {x: 32, y: 11}
+        - {x: 30, y: 12}
+    - name: shock_18
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -22, y: 12}
+        - {x: -32, y: 7}
+        - {x: -32, y: -11}
+        - {x: 32, y: -11}
+        - {x: 32, y: 12}
+    - name: shock_19
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -32, y: 12}
+        - {x: -32, y: -9}
+        - {x: -30, y: -11}
+        - {x: 32, y: -11}
+        - {x: 32, y: 12}
+    - name: shock_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -22, y: 21}
+        - {x: -26, y: 20}
+        - {x: -26, y: 7}
+        - {x: 2, y: -18}
+        - {x: 25, y: -18}
+        - {x: 28, y: -17}
+        - {x: 28, y: -2}
+        - {x: -8, y: 21}
+    - name: shock_21
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -5, y: 20}
+        - {x: -23, y: 20}
+        - {x: -28, y: 18}
+        - {x: -28, y: -2}
+        - {x: 2, y: -16}
+        - {x: 28, y: -16}
+        - {x: 28, y: 0}
+        - {x: 26, y: 7}
+    - name: shock_22
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -26, y: 18}
+        - {x: -29, y: 12}
+        - {x: -29, y: 5}
+        - {x: -18, y: -5}
+        - {x: 9, y: -18}
+        - {x: 22, y: -18}
+        - {x: 28, y: -14}
+        - {x: 28, y: 3}
+        - {x: 0, y: 18}
+    - name: shock_23
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -27, y: -1}
+        - {x: 7, y: -19}
+        - {x: 30, y: -19}
+        - {x: 30, y: 1}
+        - {x: 23, y: 19}
+        - {x: -28, y: 19}
+        - {x: -28, y: 1}
+    - name: shock_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -1, y: 24}
+        - {x: -11, y: 18}
+        - {x: -11, y: -13}
+        - {x: -4, y: -22}
+        - {x: 13, y: -22}
+        - {x: 14, y: -20}
+        - {x: 14, y: 22}
+        - {x: 12, y: 24}
+    - name: shock_25
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -7, y: 24}
+        - {x: -11, y: 22}
+        - {x: -11, y: -10}
+        - {x: -10, y: -14}
+        - {x: -7, y: -19}
+        - {x: 8, y: -19}
+        - {x: 14, y: -17}
+        - {x: 14, y: 8}
+        - {x: 9, y: 24}
+    - name: shock_26
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: 22}
+        - {x: -11, y: 18}
+        - {x: -11, y: -17}
+        - {x: -9, y: -21}
+        - {x: 14, y: -21}
+        - {x: 14, y: 22}
+    - name: shock_27
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 11, y: 21}
+        - {x: 6, y: 23}
+        - {x: -7, y: 23}
+        - {x: -11, y: 17}
+        - {x: -11, y: -16}
+        - {x: -4, y: -22}
+        - {x: 7, y: -22}
+        - {x: 13, y: -15}
+        - {x: 14, y: -3}
+        - {x: 14, y: 9}
+    - name: shock_28
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 6, y: 19}
+        - {x: -25, y: 11}
+        - {x: -25, y: -19}
+        - {x: 3, y: -19}
+        - {x: 30, y: 2}
+        - {x: 30, y: 19}
+    - name: shock_29
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 25, y: 21}
+        - {x: 15, y: 21}
+        - {x: -27, y: 1}
+        - {x: -27, y: -15}
+        - {x: -21, y: -17}
+        - {x: 3, y: -17}
+        - {x: 28, y: 5}
+        - {x: 29, y: 9}
+        - {x: 29, y: 16}
+    - name: shock_30
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 9, y: 19}
+        - {x: -12, y: 11}
+        - {x: -28, y: -2}
+        - {x: -28, y: -17}
+        - {x: -7, y: -17}
+        - {x: 23, y: -7}
+        - {x: 28, y: 1}
+        - {x: 28, y: 14}
+        - {x: 26, y: 19}
+    - name: shock_31
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 4, y: 19}
+        - {x: -28, y: 1}
+        - {x: -28, y: -15}
+        - {x: -25, y: -19}
+        - {x: -7, y: -19}
+        - {x: 22, y: -8}
+        - {x: 29, y: 5}
+        - {x: 29, y: 18}
+        - {x: 28, y: 19}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
