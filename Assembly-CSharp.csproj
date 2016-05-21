@@ -73,8 +73,8 @@
      <Compile Include="Assets\Scripts\ScoreBoardController.cs" />
      <Compile Include="Assets\Scripts\ScrollTexture.cs" />
      <Compile Include="Assets\Scripts\SliderValueDisplayer.cs" />
+     <Compile Include="Assets\Scripts\SpeedDebugger.cs" />
      <Compile Include="Assets\Scripts\UpdateGameTimer.cs" />
-     <Compile Include="Assets\SpeedDebugger.cs" />
      <None Include="Assets\Standard Assets\ParticleSystems\Shaders\PriorityParticleAlpha.shader" />
      <None Include="Assets\Standard Assets\ParticleSystems\ParticleSystemsGuidelines.txt" />
      <None Include="Assets\Prefabs\UI\Game Jam Menu Template\Fonts\OpenSans\License!.txt" />
