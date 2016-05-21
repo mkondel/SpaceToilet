@@ -25,14 +25,15 @@ public class GameController : MonoBehaviour {
 	private int enemiesMax;
 	private int total_monsters;
 	private int escaped_monsters;
-	private WaitForSeconds win_blowup = new WaitForSeconds (0.02f);
-	private WaitForSeconds restart_wait = new WaitForSeconds (5.0f);
+	private static WaitForSeconds win_blowup = new WaitForSeconds (0.02f);
+	private static WaitForSeconds restart_wait = new WaitForSeconds (5.0f);
 	private bool gameover;
 	private bool gamewon;
 	private bool destroying;
 	private int starting_health;
 	private AudioSource bg_music;
 	private float hp_percentage;
+	private bool KHz;
 
 
 	private class score_card{
@@ -64,6 +65,7 @@ public class GameController : MonoBehaviour {
 		gameover = false;
 		gamewon = false;
 		destroying = false;
+		KHz = false;
 		big_timer.enabled = true;
 		starting_health = player.health;
 		if (bg_music_clip) {
@@ -86,48 +88,28 @@ public class GameController : MonoBehaviour {
 			game_over_menu.onClick.Invoke ();
 		}
 
-
 		//Player health bar and face changes
-		hp_percentage = (float)player.health / starting_health;
-		health_slider.value = hp_percentage;
-		if(pilot_face) pilot_face.HealthToFace(hp_percentage);
-
+		PlayerHealthAndFace();
 
 		if (!gameover) {
 		//Game is not over
 			if (total_monsters < enemiesMax) {
 			//Make sure to make new monsters as long as necessary
-				Instantiate (possible_enemy_types [Random.Range (0, possible_enemy_types.Length)]);
-				total_monsters++;	//monsters currently alive
-				score.total++;		//monsters created since start
+				RandomlyPlacedNewMonster();
 			}
 
-
-//	This block was used in first version, but makes no sense
-//			float KE = score.kills / (escaped_monsters + 1.0f);
-//			float KS = score.hits / (score.shots + 1.0f);
-//			float hertz = KS * KE;
-
-
-			//Fire rate for the basic weapon is equal to the number of monsters killed
-			//Fire rate decreases for each monster that passes all the way though
+			//Set gun fire rate and Hz bar display
 			float hertz = score.kills - escaped_monsters;
-			player.SetFireRateHZ (hertz);						//Player weapon fires at this rate
-			hertz_slider.value = (float)hertz / killahertz;		//Show progress to reach KHz
+			UpdateGunAndDisplay (hertz);
 
-			if (hertz >= killahertz) {
-			//KHz level reached
-				gameover = true;
-				gamewon = true;
-				game_won_panel.gameObject.SetActive (true);
-			}
+			if (hertz >= killahertz)
+				KillaMode ();
+			else
+				KHz = false;
 				
 			if (player.health <= 0) {
-			//Player was killed
-				health_slider.value = 0;
-				gameover = true;
-				gamewon = false;
-				game_lost_panel.gameObject.SetActive (true);
+				PlayerDead ();
+				KHz = false;
 			}
 
 
@@ -141,6 +123,48 @@ public class GameController : MonoBehaviour {
 					StartCoroutine (ShowRestartButton());
 			}
 		}
+	}
+
+
+	void RandomlyPlacedNewMonster(){
+		Instantiate (possible_enemy_types [Random.Range (0, possible_enemy_types.Length)]);
+		total_monsters++;	//monsters currently alive
+		score.total++;		//monsters created since start
+	}
+
+
+	void UpdateGunAndDisplay(float hertz){
+	//Fire rate for the basic weapon is equal to the number of monsters killed
+	//Fire rate decreases for each monster that passes all the way though
+		player.SetFireRateHZ (hertz);						//Player weapon fires at this rate
+		hertz_slider.value = hertz / killahertz;		//Show progress to reach KHz
+	}
+
+
+	void PlayerHealthAndFace(){
+	//Update to show current values of health in both the bar and pilot face
+		hp_percentage = (float)player.health / starting_health;
+		health_slider.value = hp_percentage;
+		if (pilot_face)
+			pilot_face.HealthToFace (hp_percentage);
+	}
+
+
+	void PlayerDead(){
+	//Player was killed
+		health_slider.value = 0;
+		gameover = true;
+		gamewon = false;
+		game_lost_panel.gameObject.SetActive (true);
+	}
+
+
+	void KillaMode(){
+	//KHz level reached
+		KHz = true;
+//		gameover = true;
+//		gamewon = true;
+//		game_won_panel.gameObject.SetActive (true);
 	}
 
 
@@ -187,7 +211,7 @@ public class GameController : MonoBehaviour {
 	//Signifies monster getting killed by player
 		score.kills++;
 		total_monsters--;
-		if (!gameover) {
+		if (!gameover && !KHz) {
 			enemiesMax++;
 //			enemiesMax--;
 		}
