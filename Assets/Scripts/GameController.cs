@@ -133,6 +133,7 @@ public class GameController : MonoBehaviour {
 
 
 	void RandomlyPlacedNewMonster(){
+	//Spawn a new enemy object
 		Instantiate (possibleEnemyTypes [Random.Range (0, possibleEnemyTypes.Length)]);
 		totalMonsters++;	//monsters currently alive
 		score.total++;		//monsters created since start
@@ -186,7 +187,7 @@ public class GameController : MonoBehaviour {
 	}
 
 
-	public void MonsterDown(){	//Signifies monster getting killed by player
+	public void MonsterKilled(){	//Signifies monster getting killed by player
 		score.kills++;
 		currHertz++;
 		totalMonsters--;
@@ -200,7 +201,10 @@ public class GameController : MonoBehaviour {
 	}
 	public void MonsterEscaped(){	//Signifies monster not dying inside GameSpace, and escaping through the back
 		escapedMonsters++;
-		currHertz--;
+		if (currHertz>0) {
+			currHertz--;
+		}
+		totalMonsters--;
 	}
 	public void ShotHit(){			//Monster was hit by player weapon
 		score.hits++;

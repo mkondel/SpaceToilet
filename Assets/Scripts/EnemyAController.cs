@@ -7,7 +7,7 @@ public class EnemyAController : MonoBehaviour {
 	public float xMin, xMax, yMin, yMax, zMin, zMax;
 	public Vector3 startingPoint;
 	public GameObject explosion;
-	public GameObject explosion_chink;
+	public GameObject explosionOnPlayerHit;
 	public GameObject[] explosionSprite;
 	public int hop_limit;
 	public GameObject me;
@@ -15,7 +15,6 @@ public class EnemyAController : MonoBehaviour {
 	public int hp_max;
 
 	private GameController GC;
-	private bool loudDeath;
 	private bool in_game;
 	private int hops;
 	private int hp;
@@ -42,7 +41,6 @@ public class EnemyAController : MonoBehaviour {
 		hops = 1;
 		hp = 1;
 		in_game = false;
-		loudDeath = true;
 		boom = explosion;
 		PickNewStartingPoint ();
 		//		while (hops < hop_limit) Shrink ();
@@ -52,7 +50,6 @@ public class EnemyAController : MonoBehaviour {
 	void Update () {
 		transform.position += speed*Time.deltaTime;
 		if (hp <= 0) {
-			loudDeath = true;
 			Destroy (this.gameObject);
 		}
 	}
@@ -63,18 +60,14 @@ public class EnemyAController : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other) {
 		if (in_game) {
-//			if (other.tag == "Bullet") {
-////				Destroy (other.gameObject);
-//				GC.ShotHit ();
-//				hp--;
-//			} else 
 			if (other.tag == "Player") {
 				hp = 0;
 				other.GetComponent<PlayerController> ().health -= hops;
-				boom = explosion_chink;
+				boom = explosionOnPlayerHit;
+			} else if (other.tag == "Bullet") {
+				GC.ShotHit ();
 			}
 		} else { //not in game space (yet?)
-			loudDeath = false;
 			if (other.tag == "GameSpace") {
 				in_game = true;
 			}
@@ -109,27 +102,34 @@ public class EnemyAController : MonoBehaviour {
 	void OnTriggerExit(Collider other) {
 		if (other.tag == "GameSpace") {
 			in_game = false;
-			GC.MonsterEscaped ();
 		}
 	}
 
 	void OnDestroy(){
-		if (loudDeath) {
+		if (in_game) {
+			GotMyselfKilled ();
+
 			GameObject boom_sound = (GameObject)Instantiate (boom, transform.position, transform.rotation);
-			boom_sound.GetComponent<ExplosionController> ().SetHops(hops);
+			boom_sound.GetComponent<ExplosionController> ().SetHops (hops);
 
 			GameObject ex_sprite = explosionSprite [Random.Range (0, explosionSprite.Length)];
 			GameObject boom_sprite = (GameObject)Instantiate (ex_sprite, transform.position, ex_sprite.transform.rotation);
-			boom_sprite.GetComponent<Rotator>().rotations.z = transform.GetComponent<Rigidbody>().angularVelocity.z;
-			boom_sprite.transform.localScale *= hop_limit/hops;
+			boom_sprite.GetComponent<Rotator> ().rotations.z = transform.GetComponent<Rigidbody> ().angularVelocity.z;
+			boom_sprite.transform.localScale *= hop_limit / hops;
 		}
-		if (in_game) {
-			GC.MonsterDown ();
-		}
+		else
+			Escaped ();
 	}
 
-	public void MakeLoud(){
-		loudDeath = true;
+	void Escaped (){
+		// ???
+		GC.MonsterEscaped ();
+		Debug.Log("Monster escaped ->"+transform.position);
+	}
+
+	void GotMyselfKilled(){
+		GC.MonsterKilled ();
+		Debug.Log("Monster got killed ->"+transform.position);
 	}
 
 	void get_game_controller(){
