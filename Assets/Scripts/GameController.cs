@@ -21,6 +21,7 @@ public class GameController : MonoBehaviour {
 	public AudioMixerSnapshot volumeDown;
 	public AudioMixerSnapshot volumeUp;
 	public FaceChange pilotFace;
+	public GameObject pilotLightningBG;
 
 	private int enemiesMax;
 	private int totalMonsters;
@@ -103,8 +104,10 @@ public class GameController : MonoBehaviour {
 			if (currHertz >= killahertz) {
 				currHertz = killahertz;
 				KHz = true;
+				pilotLightningBG.SetActive (true);
 			} else {
 				KHz = false;
+				pilotLightningBG.SetActive (false);
 			}
 				
 			if (player.health <= 0) {
