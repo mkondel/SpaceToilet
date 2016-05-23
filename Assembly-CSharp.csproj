@@ -57,6 +57,7 @@
      <Compile Include="Assets\Scripts\ChangeResolution.cs" />
      <Compile Include="Assets\Scripts\DestroyByBoundary.cs" />
      <Compile Include="Assets\Scripts\DestroyByBullet.cs" />
+     <Compile Include="Assets\Scripts\DestroyByLightning.cs" />
      <Compile Include="Assets\Scripts\DestroyByTime.cs" />
      <Compile Include="Assets\Scripts\EnemyAController.cs" />
      <Compile Include="Assets\Scripts\ExplosionController.cs" />

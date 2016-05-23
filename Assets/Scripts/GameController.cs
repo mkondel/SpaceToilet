@@ -7,7 +7,7 @@ public class GameController : MonoBehaviour {
 	
 	public GameObject[] possibleEnemyTypes;
 	public PlayerController player;
-	public float killahertz;
+	public int killahertz;
 	public Button gameOverMenu;
 	public GameObject gameWonPanel;
 	public GameObject gameLostPanel;
@@ -33,6 +33,7 @@ public class GameController : MonoBehaviour {
 	private AudioSource bgMusic;
 	private float hpPercent;
 	private bool KHz;
+	private int currHertz;
 
 
 	private class ScoreCard{
@@ -62,9 +63,11 @@ public class GameController : MonoBehaviour {
 		totalMonsters = escapedMonsters = 0;
 		score = new ScoreCard();
 		enemiesMax = 1;
+		currHertz = 1;
 		gameover = false;
 		gamewon = false;
 		KHz = false;
+		player.KHz = killahertz;
 		bigTimer.enabled = true;
 		startingHealth = player.health;
 		if (bgMusicClip) {
@@ -90,30 +93,26 @@ public class GameController : MonoBehaviour {
 		//Player health bar and face changes
 		PlayerHealthAndFace();
 
-		if (!gameover) {
-		//Game is not over
+		if (!gameover) {	//Game is not over
 			if (totalMonsters < enemiesMax) {
-			//Make sure to make new monsters as long as necessary
-				RandomlyPlacedNewMonster();
+				RandomlyPlacedNewMonster();		//Make sure to make new monsters as long as necessary
 			}else if (totalMonsters == 0) {
-			//Game Won!
 				GameWon();
 			}
 
-			//Set gun fire rate and Hz bar display
-			float hertz = score.kills - escapedMonsters;
-			UpdateGunAndDisplay (hertz);
-
-			if (hertz >= killahertz)
-				KillaMode (true);
-			else
-				KillaMode (false);
+			if (currHertz >= killahertz) {
+				currHertz = killahertz;
+				KHz = true;
+			} else {
+				KHz = false;
+			}
 				
 			if (player.health <= 0) {
 				PlayerDead ();
 				KHz = false;
 			}
 
+			UpdateGunAndDisplay (currHertz);	//Set gun fire rate and Hz bar display
 
 		} else {
 		//Game is over, one way or another
@@ -166,13 +165,6 @@ public class GameController : MonoBehaviour {
 	}
 
 
-	void KillaMode(bool setval){
-	//KHz level reached
-		KHz = setval;
-//		player
-	}
-
-
 	void GameOver(){
 		if (player) {
 			if (gamewon && winningSound)
@@ -194,33 +186,30 @@ public class GameController : MonoBehaviour {
 	}
 
 
-	public void MonsterDown(){
-	//Signifies monster getting killed by player
+	public void MonsterDown(){	//Signifies monster getting killed by player
 		score.kills++;
+		currHertz++;
 		totalMonsters--;
 		if (!gameover && !KHz) {
-//			Debug.Log ("Enemies: "+totalMonsters+" MAX: "+enemiesMax+" basic weapon");
+			Debug.Log ("Enemies: "+totalMonsters+" MAX: "+enemiesMax+" basic weapon");
 			enemiesMax++;
 		}else{
-//			Debug.Log ("Enemies: "+totalMonsters+" MAX: "+enemiesMax+" KHz mode");
+			Debug.Log ("Enemies: "+totalMonsters+" MAX: "+enemiesMax+" KHz mode");
 			enemiesMax--;
 		}
 	}
-	public void MonsterEscaped(){
-	//Signifies monster not dying inside GameSpace, and escaping through the back
+	public void MonsterEscaped(){	//Signifies monster not dying inside GameSpace, and escaping through the back
 		escapedMonsters++;
+		currHertz--;
 	}
-	public void ShotHit(){
-	//Monster was hit by player weapon
+	public void ShotHit(){			//Monster was hit by player weapon
 		score.hits++;
 	}
-	private IEnumerator FadeUp(float fadeTime){
-	//"Slowly" increase volume until 'volumeUp' is reached
+	private IEnumerator FadeUp(float fadeTime){		//"Slowly" increase volume until 'volumeUp' is reached
 		volumeUp.TransitionTo (fadeTime);
 		yield return null;
 	}
-	private IEnumerator FadeDown(float fadeTime){
-	//"Slowly" decrease volume until 'volumeDown' is reached
+	private IEnumerator FadeDown(float fadeTime){	//"Slowly" decrease volume until 'volumeDown' is reached
 		volumeDown.TransitionTo (fadeTime);
 		yield return null;
 	}

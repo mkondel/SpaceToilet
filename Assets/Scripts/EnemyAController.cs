@@ -19,9 +19,7 @@ public class EnemyAController : MonoBehaviour {
 	private bool in_game;
 	private int hops;
 	private int hp;
-
 	public int Hp {get {return hp;} set {hp = value;}}
-
 	private GameObject boom;
 	private Vector3 move_back_vector = new Vector3 (0,0,1);
 	private Vector3 original_speed;
@@ -53,6 +51,10 @@ public class EnemyAController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		transform.position += speed*Time.deltaTime;
+		if (hp <= 0) {
+			loudDeath = true;
+			Destroy (this.gameObject);
+		}
 	}
 
 	void PickNewStartingPoint(){
@@ -61,18 +63,15 @@ public class EnemyAController : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other) {
 		if (in_game) {
-			if (other.tag == "Bullet") {
-//				Destroy (other.gameObject);
-				GC.ShotHit ();
-				hp--;
-			} else if (other.tag == "Player") {
+//			if (other.tag == "Bullet") {
+////				Destroy (other.gameObject);
+//				GC.ShotHit ();
+//				hp--;
+//			} else 
+			if (other.tag == "Player") {
 				hp = 0;
 				other.GetComponent<PlayerController> ().health -= hops;
 				boom = explosion_chink;
-			}
-			if (hp <= 0) {
-				loudDeath = true;
-				Destroy (this.gameObject);
 			}
 		} else { //not in game space (yet?)
 			loudDeath = false;
