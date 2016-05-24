@@ -116,7 +116,11 @@ public class PlayerController : MonoBehaviour
 
 	public void SetFireRateHZ(float hz){
 		fireRateHZ = hz;
-		hzText.text = hz.ToString("n2")+"HZ";
+		if (fireRateHZ < KHz) {
+			hzText.text = hz.ToString ("n2") + "HZ";
+		} else {
+			hzText.text = "Killa' HZ";
+		}
 	}
 
 	public int TakeDamage(int dmg){

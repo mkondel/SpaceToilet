@@ -81,6 +81,8 @@ public class GameController : MonoBehaviour {
 
 	void Start(){
 		StartCoroutine (FadeUp (0.5f));
+//		pilotFace.KhzMode = true;
+//		pilotLightningBG.SetActive (true);
 	}
 
 
