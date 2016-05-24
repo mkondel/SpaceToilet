@@ -20,8 +20,9 @@ public class PlayerController : MonoBehaviour
 	public Transform shotSpawn;
 	public Animator muzzleFlash;
 	public GameObject[] shot;
-	public GameObject explosion;
-	public GameObject explosionSound;
+	public GameObject deathAnimation;
+	public AudioSource deathSound;
+	public AudioSource damageSound;
 	public int Shots {get {return shots;}}
 
 	private float fireRateHZ;
@@ -52,12 +53,15 @@ public class PlayerController : MonoBehaviour
 			muzzleFlash.gameObject.SetActive(false);
 		}
 
-		if (health < 0) {
+		if (health <= 0) {
 		//die
 			healthText.text = "DEAD!";
-			Instantiate (explosion, transform.position, transform.rotation);
-			explosionSound.SetActive (true);
-			explosionSound.transform.SetParent (null);
+			Instantiate (deathAnimation, transform.position, transform.rotation);
+			if (deathSound && deathSound.enabled) {
+				deathSound.Play();
+				deathSound.transform.SetParent (null);
+//				Destroy (this.gameObject);
+			}
 		}
 	}
 		
@@ -113,5 +117,18 @@ public class PlayerController : MonoBehaviour
 	public void SetFireRateHZ(float hz){
 		fireRateHZ = hz;
 		hzText.text = hz.ToString("n2")+"HZ";
+	}
+
+	public int TakeDamage(int dmg){
+		if (dmg != 0) {
+			if (damageSound && damageSound.isActiveAndEnabled) {
+				damageSound.Play ();
+			}
+			health -= dmg;
+			if (health < 0) {
+				health = 0;
+			}
+		}
+		return health;
 	}
 }

@@ -7,7 +7,6 @@ public class EnemyAController : MonoBehaviour {
 	public float xMin, xMax, yMin, yMax, zMin, zMax;
 	public Vector3 startingPoint;
 	public GameObject explosion;
-	public GameObject explosionOnPlayerHit;
 	public GameObject[] explosionSprite;
 	public int hop_limit;
 	public GameObject me;
@@ -62,8 +61,7 @@ public class EnemyAController : MonoBehaviour {
 		if (in_game) {
 			if (other.tag == "Player") {
 				hp = 0;
-				other.GetComponent<PlayerController> ().health -= hops;
-				boom = explosionOnPlayerHit;
+				other.GetComponent<PlayerController> ().TakeDamage (hops);
 			} else if (other.tag == "Bullet") {
 				GC.ShotHit ();
 			}
@@ -109,8 +107,13 @@ public class EnemyAController : MonoBehaviour {
 		if (in_game) {
 			GotMyselfKilled ();
 
-			GameObject boom_sound = (GameObject)Instantiate (boom, transform.position, transform.rotation);
-			boom_sound.GetComponent<ExplosionController> ().SetHops (hops);
+			if (boom) {
+				Instantiate (boom, transform.position, transform.rotation);
+			} else {
+				Debug.Log ("EnemyA explosion sound is absent");
+			}
+//			ExplosionController boom_sound = Instantiate (boom, transform.position, transform.rotation) as ExplosionController;
+//			boom_sound.SetHops (hops);
 
 			GameObject ex_sprite = explosionSprite [Random.Range (0, explosionSprite.Length)];
 			GameObject boom_sprite = (GameObject)Instantiate (ex_sprite, transform.position, ex_sprite.transform.rotation);
@@ -124,12 +127,12 @@ public class EnemyAController : MonoBehaviour {
 	void Escaped (){
 		// ???
 		GC.MonsterEscaped ();
-		Debug.Log("Monster escaped ->"+transform.position);
+//		Debug.Log("Monster escaped ->"+transform.position);
 	}
 
 	void GotMyselfKilled(){
 		GC.MonsterKilled ();
-		Debug.Log("Monster got killed ->"+transform.position);
+//		Debug.Log("Monster got killed ->"+transform.position);
 	}
 
 	void get_game_controller(){

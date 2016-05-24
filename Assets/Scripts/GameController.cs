@@ -105,9 +105,11 @@ public class GameController : MonoBehaviour {
 				currHertz = killahertz;
 				KHz = true;
 				pilotLightningBG.SetActive (true);
+				pilotFace.KhzMode = true;
 			} else {
 				KHz = false;
 				pilotLightningBG.SetActive (false);
+				pilotFace.KhzMode = false;
 			}
 				
 			if (player.health <= 0) {
@@ -171,11 +173,12 @@ public class GameController : MonoBehaviour {
 
 	void GameOver(){
 		if (player) {
-			if (gamewon && winningSound)
+			if (gamewon && winningSound && winningSound.isActiveAndEnabled)
 				winningSound.Play ();
-			else if (losingSound)
+			else if (losingSound && losingSound.isActiveAndEnabled)
 				losingSound.Play ();
 			Destroy (player.gameObject);
+//			pilotLightningBG.SetActive (false);
 			scoreBoard.SetActive(true);
 
 			scoreBoard.GetComponent<ScoreBoardController> ().ShowScores(score.GetGrade(player.Shots), score.kills, score.total, player.Shots, score.hits);
