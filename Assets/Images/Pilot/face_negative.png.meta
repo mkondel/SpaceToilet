@@ -1,0 +1,205 @@
+fileFormatVersion: 2
+guid: a5ad533683e9c42b194e5bbbff1f158e
+timeCreated: 1464118047
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: face_only_red_0
+    21300002: face_only_red_1
+    21300004: face_only_red_2
+    21300006: face_only_red_3
+    21300008: face_only_red_4
+    21300010: face_only_red_5
+    21300012: face_only_red_6
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -2
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: 0
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 1
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: face_only_red_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 55
+        height: 56
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 2, y: 0}
+        - {x: 2, y: -42}
+        - {x: 18, y: -56}
+        - {x: 40, y: -56}
+        - {x: 54, y: -35}
+        - {x: 54, y: 0}
+    - name: face_only_red_1
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 0
+        width: 55
+        height: 56
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 53, y: -1}
+        - {x: 53, y: 0}
+        - {x: 2, y: 0}
+        - {x: 2, y: -34}
+        - {x: 17, y: -56}
+        - {x: 38, y: -56}
+        - {x: 50, y: -33}
+        - {x: 50, y: -15}
+        - {x: 47, y: -14}
+    - name: face_only_red_2
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 0
+        width: 55
+        height: 56
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 54, y: -1}
+        - {x: 54, y: 0}
+        - {x: 2, y: 0}
+        - {x: 2, y: -29}
+        - {x: 3, y: -34}
+        - {x: 18, y: -56}
+        - {x: 39, y: -56}
+        - {x: 51, y: -33}
+        - {x: 51, y: -15}
+        - {x: 48, y: -14}
+    - name: face_only_red_3
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 0
+        width: 55
+        height: 56
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 2, y: 0}
+        - {x: 3, y: -3}
+        - {x: 8, y: -7}
+        - {x: 7, y: -8}
+        - {x: 4, y: -18}
+        - {x: 14, y: -56}
+        - {x: 41, y: -56}
+        - {x: 46, y: -51}
+        - {x: 54, y: -29}
+        - {x: 54, y: 0}
+    - name: face_only_red_4
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 0
+        width: 55
+        height: 56
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 2, y: 0}
+        - {x: 3, y: -3}
+        - {x: 8, y: -7}
+        - {x: 7, y: -8}
+        - {x: 2, y: -19}
+        - {x: 15, y: -54}
+        - {x: 16, y: -56}
+        - {x: 39, y: -56}
+        - {x: 41, y: -55}
+        - {x: 54, y: -25}
+        - {x: 54, y: 0}
+    - name: face_only_red_5
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 0
+        width: 55
+        height: 56
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 2, y: 0}
+        - {x: 3, y: -3}
+        - {x: 8, y: -7}
+        - {x: 2, y: -13}
+        - {x: 2, y: -27}
+        - {x: 17, y: -56}
+        - {x: 37, y: -56}
+        - {x: 54, y: -32}
+        - {x: 54, y: 0}
+    - name: face_only_red_6
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 0
+        width: 55
+        height: 56
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 0, y: 0}
+        - {x: 1, y: -3}
+        - {x: 6, y: -7}
+        - {x: 5, y: -8}
+        - {x: 2, y: -18}
+        - {x: 12, y: -56}
+        - {x: 36, y: -56}
+        - {x: 55, y: -19}
+        - {x: 55, y: 0}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: face_bundle
+  assetBundleVariant: 

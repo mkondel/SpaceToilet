@@ -18,7 +18,8 @@ public class PlayerController : MonoBehaviour
 	public Text healthText;
 	public Boundary boundary;
 	public Transform shotSpawn;
-	public Animator muzzleFlash;
+	public Animator muzzleFlashBullet;
+	public Animator muzzleFlashPlasma;
 	public GameObject[] shot;
 	public GameObject deathAnimation;
 	public AudioSource deathSound;
@@ -28,11 +29,15 @@ public class PlayerController : MonoBehaviour
 	private float fireRateHZ;
 	private float nextFire;
 	private int shots;
+	private Animator muzzleAnimation;
 
 	void Start(){
 		fireRateHZ = 1f;
 		hzText.text = "1.00HZ";
 		healthText.text = "Health: "+health;
+		muzzleFlashBullet.StartPlayback ();
+		muzzleFlashPlasma.StartPlayback ();
+		muzzleAnimation = muzzleFlashBullet;
 	}
 
 	void Update (){
@@ -40,17 +45,11 @@ public class PlayerController : MonoBehaviour
 		healthText.text = "Health: "+health;
 
 		if (Input.GetButton ("Fire1") && Time.time >= nextFire && Time.timeScale > 0) {
-		//Fire button is pressed down AND (fire timeout has passed) AND (the game is not paused)
-
+			//Fire button is pressed down AND (fire timeout has passed) AND (the game is not paused)
 			FireWeapon();	//FIRE THE WEAPON!!!
-
-			if (fireRateHZ > 1) {
-				muzzleFlash.speed = fireRateHZ;				//muzzle flash animation loop speed == fire rate
-				muzzleFlash.gameObject.SetActive (true);	//show muzzle flash
-			}
 		} else if (Input.GetButtonUp ("Fire1")) {
 //			nextFire = Time.time;
-			muzzleFlash.gameObject.SetActive(false);
+			MuzzleOff();
 		}
 
 		if (health <= 0) {
@@ -67,19 +66,24 @@ public class PlayerController : MonoBehaviour
 		
 	void FireWeapon(){
 		GameObject s;
-		if (fireRateHZ < KHz) {
+		if (fireRateHZ < KHz && fireRateHZ > 0) {
 			s = shot [0];
-			if (fireRateHZ <= 0) { //When fire rate is less than 0, do not play muzzle animation
-				NoMuzzleOneHz();
-			} else { //Firing rate is non-zero
-				nextFire = Time.time + (1f / fireRateHZ);	//fire timeout is fraction of a second
+			nextFire = Time.time + (1f / fireRateHZ);	//fire timeout is fraction of a second
+			if (fireRateHZ > 1) {
+				muzzleFlashBullet.speed = fireRateHZ;		//muzzle flash animation loop speed == fire rate
+			}else{
+				muzzleFlashBullet.speed = 1;
 			}
+			muzzleAnimation = muzzleFlashBullet;
 		} else {
 			s = shot [1];
-			NoMuzzleOneHz ();
+			nextFire = Time.time + 1f;					//fire timeout is forced to be 1 second
+			muzzleAnimation = muzzleFlashPlasma;
 		}
 
 		if (s != null) {
+			MuzzleOff ();
+			muzzleAnimation.gameObject.SetActive(true);
 			Instantiate (s, shotSpawn.position, shotSpawn.rotation);
 			shots++;
 		} else {
@@ -87,12 +91,10 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
-
-	void NoMuzzleOneHz(){
-		nextFire = Time.time + 1f;					//fire timeout is forced to be 1 second
-		muzzleFlash.gameObject.SetActive (false);	//suppress muzzle flash
+	void MuzzleOff(){
+		muzzleFlashBullet.gameObject.SetActive (false);
+		muzzleFlashPlasma.gameObject.SetActive (false);
 	}
-
 
 	void OnTriggerEnter(Collider other) {
 		Destroy(other.gameObject);
