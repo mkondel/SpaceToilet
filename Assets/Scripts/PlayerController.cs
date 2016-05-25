@@ -83,6 +83,7 @@ public class PlayerController : MonoBehaviour
 
 		if (s != null) {
 			MuzzleOff ();
+			muzzleAnimation.speed = fireRateHZ;		//muzzle flash animation loop speed == fire rate
 			muzzleAnimation.gameObject.SetActive(true);
 			Instantiate (s, shotSpawn.position, shotSpawn.rotation);
 			shots++;
