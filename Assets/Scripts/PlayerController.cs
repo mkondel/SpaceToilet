@@ -22,11 +22,12 @@ public class PlayerController : MonoBehaviour
 	public Animator muzzleFlashPlasma;
 	public GameObject[] shot;
 	public GameObject deathAnimation;
-	public AudioSource deathSound;
-	public AudioSource damageSound;
 	public int Shots {get {return shots;}}
 	public AudioClip bulletShotSoundClip;
 	public AudioClip plasmaShotSoundClip;
+	public AudioSource damageAudioSource;
+	public AudioClip damageSoundClip;
+	public AudioClip deathSoundClip;
 
 	private float fireRateHZ;
 	private float nextFire;
@@ -61,10 +62,10 @@ public class PlayerController : MonoBehaviour
 		//die
 			healthText.text = "DEAD!";
 			Instantiate (deathAnimation, transform.position, transform.rotation);
-			if (deathSound && deathSound.enabled) {
-				deathSound.Play();
-				deathSound.transform.SetParent (null);
-//				Destroy (this.gameObject);
+			if (damageAudioSource) {
+				damageAudioSource.clip = deathSoundClip;
+				damageAudioSource.Play();
+				damageAudioSource.transform.SetParent (null);
 			}
 		}
 	}
@@ -84,7 +85,9 @@ public class PlayerController : MonoBehaviour
 			}
 			muzzleAnimation = muzzleFlashBullet;				//muzzle animation is the bullet one (8bit-style)
 			muzzleFlashPlasma.gameObject.SetActive (false);		//disable the muzzle animation for plasma, in case it was playing before
-			shipAudioSource.PlayOneShot(bulletShotSoundClip);	//play the audio clip for the bullet shot
+			if (shipAudioSource && shipAudioSource.isActiveAndEnabled) {
+				shipAudioSource.PlayOneShot(bulletShotSoundClip);	//play the audio clip for the bullet shot
+			}
 
 		//fire the plasma shot
 		} else {
@@ -92,7 +95,9 @@ public class PlayerController : MonoBehaviour
 			nextFire = Time.time + 1f;							//fire timeout is forced to be 1 second
 			muzzleAnimation = muzzleFlashPlasma;				//use the muzzle anim for plasma
 			muzzleFlashBullet.gameObject.SetActive (false);		//disable the bullet flash anim
-			shipAudioSource.PlayOneShot(plasmaShotSoundClip);	//play the plasma shot sound
+			if (shipAudioSource && shipAudioSource.isActiveAndEnabled) {
+				shipAudioSource.PlayOneShot(plasmaShotSoundClip);	//play the plasma shot sound
+			}
 			StartCoroutine (DelayMuzzleOff());					//turn off the plasmaball object after some delay.  makes better shot effect...
 		}
 
@@ -153,8 +158,9 @@ public class PlayerController : MonoBehaviour
 
 	public int TakeDamage(int dmg){
 		if (dmg != 0) {
-			if (damageSound && damageSound.isActiveAndEnabled) {
-				damageSound.Play ();
+			if (damageAudioSource && damageAudioSource.isActiveAndEnabled) {
+				damageAudioSource.clip = damageSoundClip;
+				damageAudioSource.Play ();
 			}
 			health -= dmg;
 			if (health < 0) {
