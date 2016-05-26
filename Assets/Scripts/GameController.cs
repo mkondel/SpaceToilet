@@ -34,7 +34,7 @@ public class GameController : MonoBehaviour {
 	private float hpPercent;
 	private bool KHz;
 	private int currHertz;
-
+	private static float bgMusicFadeTime = 5f;
 
 	private class ScoreCard{
 		public int kills = 0;
@@ -122,7 +122,6 @@ public class GameController : MonoBehaviour {
 
 		} else {
 		//Game is over, one way or another
-			StartCoroutine (FadeDown (5f));
 			bigTimer.enabled = false;
 			GameOver ();
 			if (gameOverMenu && !gameOverMenu.gameObject.activeInHierarchy)
@@ -180,6 +179,7 @@ public class GameController : MonoBehaviour {
 				losingSound.Play ();
 			Destroy (player.gameObject);
 //			pilotLightningBG.SetActive (false);
+			StartCoroutine (FadeDown (bgMusicFadeTime));
 			scoreBoard.SetActive(true);
 
 			scoreBoard.GetComponent<ScoreBoardController> ().ShowScores(score.GetGrade(player.Shots), score.kills, score.total, player.Shots, score.hits);
@@ -222,6 +222,6 @@ public class GameController : MonoBehaviour {
 	}
 	private IEnumerator FadeDown(float fadeTime){	//"Slowly" decrease volume until 'volumeDown' is reached
 		volumeDown.TransitionTo (fadeTime);
-		yield return null;
+		yield return null;		//TransitionTo() handles being the "coroutine", that's why we just return at the end and null
 	}
 }
