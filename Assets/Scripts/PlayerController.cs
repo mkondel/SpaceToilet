@@ -25,12 +25,15 @@ public class PlayerController : MonoBehaviour
 	public AudioSource deathSound;
 	public AudioSource damageSound;
 	public int Shots {get {return shots;}}
+	public AudioClip bulletShotSoundClip;
+	public AudioClip plasmaShotSoundClip;
 
 	private float fireRateHZ;
 	private float nextFire;
 	private int shots;
 	private Animator muzzleAnimation;
 	private static WaitForSeconds plasmaTimeout = new WaitForSeconds (0.5f);
+	private AudioSource shipAudioSource;
 
 	void Start(){
 		fireRateHZ = 1f;
@@ -39,6 +42,7 @@ public class PlayerController : MonoBehaviour
 		muzzleFlashBullet.StartPlayback ();
 		muzzleFlashPlasma.StartPlayback ();
 		muzzleAnimation = muzzleFlashBullet;
+		shipAudioSource = GetComponent<AudioSource> ();
 	}
 
 	void Update (){
@@ -66,42 +70,56 @@ public class PlayerController : MonoBehaviour
 	}
 		
 	void FireWeapon(){
+		//local object used to hold the currently fired shot
 		GameObject s;
-		MuzzleOff ();
+
+		//fire the bullet shot
 		if (fireRateHZ < KHz && fireRateHZ > 0) {
-			s = shot [0];
-			nextFire = Time.time + (1f / fireRateHZ);	//fire timeout is fraction of a second
+			s = shot [0];									//choose the bullet prefab
+			nextFire = Time.time + (1f / fireRateHZ);		//fire timeout is fraction of a second
 			if (fireRateHZ > 1) {
 				muzzleFlashBullet.speed = fireRateHZ;		//muzzle flash animation loop speed == fire rate
 			}else{
-				muzzleFlashBullet.speed = 1;
+				muzzleFlashBullet.speed = 1;				//muzzle flash anim speed is forced to be 1 if actual Hz falls below
 			}
-			muzzleAnimation = muzzleFlashBullet;
+			muzzleAnimation = muzzleFlashBullet;				//muzzle animation is the bullet one (8bit-style)
+			muzzleFlashPlasma.gameObject.SetActive (false);		//disable the muzzle animation for plasma, in case it was playing before
+			shipAudioSource.PlayOneShot(bulletShotSoundClip);	//play the audio clip for the bullet shot
+
+		//fire the plasma shot
 		} else {
-			s = shot [1];
-			nextFire = Time.time + 1f;					//fire timeout is forced to be 1 second
-			muzzleAnimation = muzzleFlashPlasma;
-			StartCoroutine (DelayMuzzleOff());
+			s = shot [1];										//choose the plasma prefab
+			nextFire = Time.time + 1f;							//fire timeout is forced to be 1 second
+			muzzleAnimation = muzzleFlashPlasma;				//use the muzzle anim for plasma
+			muzzleFlashBullet.gameObject.SetActive (false);		//disable the bullet flash anim
+			shipAudioSource.PlayOneShot(plasmaShotSoundClip);	//play the plasma shot sound
+			StartCoroutine (DelayMuzzleOff());					//turn off the plasmaball object after some delay.  makes better shot effect...
 		}
 
+		//common to both types of shots
 		if (s != null) {
-			muzzleAnimation.speed = fireRateHZ;		//muzzle flash animation loop speed == fire rate
-			muzzleAnimation.gameObject.SetActive(true);
-			Instantiate (s, shotSpawn.position, shotSpawn.rotation);
-			shots++;
+			muzzleAnimation.gameObject.SetActive(true);					//play muzzle animation
+			Instantiate (s, shotSpawn.position, shotSpawn.rotation);	//instantiate whatever shot prefab is needed
+			shots++;													//increment number of shots fired
 		} else {
 			Debug.LogError ("Weapons not setup in player?");
 		}
 	}
 
+
+	//turns off muzzle flash after the predefined timeout
 	IEnumerator DelayMuzzleOff(){
 		yield return plasmaTimeout;
 		MuzzleOff ();
 	}
 
+
+	//Both Sound and Animation for shooting weapons stop
 	void MuzzleOff(){
-		muzzleFlashBullet.gameObject.SetActive (false);
-		muzzleFlashPlasma.gameObject.SetActive (false);
+		if (shipAudioSource && !shipAudioSource.isPlaying) {
+			shipAudioSource.Stop ();
+		}
+		muzzleAnimation.gameObject.SetActive (false);
 	}
 
 	void OnTriggerEnter(Collider other) {
