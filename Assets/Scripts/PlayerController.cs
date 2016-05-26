@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour
 	private float nextFire;
 	private int shots;
 	private Animator muzzleAnimation;
+	private static WaitForSeconds plasmaTimeout = new WaitForSeconds (0.5f);
 
 	void Start(){
 		fireRateHZ = 1f;
@@ -44,11 +45,11 @@ public class PlayerController : MonoBehaviour
 		//Keep health display current
 		healthText.text = "Health: "+health;
 
+		//Fire button is pressed down AND (fire timeout has passed) AND (the game is not paused)
 		if (Input.GetButton ("Fire1") && Time.time >= nextFire && Time.timeScale > 0) {
-			//Fire button is pressed down AND (fire timeout has passed) AND (the game is not paused)
 			FireWeapon();	//FIRE THE WEAPON!!!
+		//Player lets go of fire button
 		} else if (Input.GetButtonUp ("Fire1")) {
-//			nextFire = Time.time;
 			MuzzleOff();
 		}
 
@@ -66,6 +67,7 @@ public class PlayerController : MonoBehaviour
 		
 	void FireWeapon(){
 		GameObject s;
+		MuzzleOff ();
 		if (fireRateHZ < KHz && fireRateHZ > 0) {
 			s = shot [0];
 			nextFire = Time.time + (1f / fireRateHZ);	//fire timeout is fraction of a second
@@ -79,10 +81,10 @@ public class PlayerController : MonoBehaviour
 			s = shot [1];
 			nextFire = Time.time + 1f;					//fire timeout is forced to be 1 second
 			muzzleAnimation = muzzleFlashPlasma;
+			StartCoroutine (DelayMuzzleOff());
 		}
 
 		if (s != null) {
-			MuzzleOff ();
 			muzzleAnimation.speed = fireRateHZ;		//muzzle flash animation loop speed == fire rate
 			muzzleAnimation.gameObject.SetActive(true);
 			Instantiate (s, shotSpawn.position, shotSpawn.rotation);
@@ -90,6 +92,11 @@ public class PlayerController : MonoBehaviour
 		} else {
 			Debug.LogError ("Weapons not setup in player?");
 		}
+	}
+
+	IEnumerator DelayMuzzleOff(){
+		yield return plasmaTimeout;
+		MuzzleOff ();
 	}
 
 	void MuzzleOff(){
