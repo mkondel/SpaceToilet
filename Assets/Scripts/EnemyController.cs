@@ -47,7 +47,12 @@ public abstract class EnemyController: MonoBehaviour{
 
 	protected void Explode(){
 		exlosionSprite = explosionSprites[UnityEngine.Random.Range (0, explosionSprites.Length)];
-		explosionObject = (GameObject)Instantiate (exlosionSprite, transform.position, transform.rotation);
+
+		// must instantiate with GameObjet in explosionSprite.  need to inst new obj, add sprite prop, set sprite to my sprite from array, bingo!
+		explosionObject = (GameObject)Instantiate(explosionPrefab, transform.position, transform.rotation);
+
+
+		Debug.Log ( explosionObject );
 		explosionObject.GetComponent<Rotator> ().rotations.z = transform.GetComponent<Rigidbody> ().angularVelocity.z;
 		explosionObject.transform.localScale *= hop_limit / hops;
 	}
