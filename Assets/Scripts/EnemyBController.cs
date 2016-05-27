@@ -75,16 +75,6 @@ public class EnemyBController : EnemyController {
 			GC.MonsterEscaped ();
 	}
 
-	void GetGameController(){
-		GameObject gameControllerObject = GameObject.FindGameObjectWithTag ("GameSpace");
-		if (gameControllerObject != null){
-			GC = gameControllerObject.GetComponent <GameController>();
-		}
-		if (GC == null){
-			Debug.Log ("Cannot find 'GameController' script");
-		}
-	}
-
 	void GetOneAudioSource(){
 		GameObject gameControllerObject = GameObject.FindGameObjectWithTag ("EnemyAudioSource");
 		if (gameControllerObject != null){
@@ -92,6 +82,16 @@ public class EnemyBController : EnemyController {
 		}
 		if (oneEnemySoundSource == null){
 			Debug.Log ("Cannot find oneEnemySoundSource object with tag EnemyAudioSource");
+		}
+	}
+
+	void GetGameController(){
+		GameObject gameControllerObject = GameObject.FindGameObjectWithTag ("GameSpace");
+		if (gameControllerObject != null){
+			GC = gameControllerObject.GetComponent <GameController>();
+		}
+		if (GC == null){
+			Debug.Log ("Cannot find 'GameController' script");
 		}
 	}
 }
