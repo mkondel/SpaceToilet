@@ -65,6 +65,11 @@ public class EnemyBController : EnemyController {
 		}
 	}
 
+	//forces OnDestroy() to not create death sounds/anims
+	void OnApplicationQuit(){
+		in_game = false;
+	}
+
 	void OnDestroy(){
 		if (in_game) {
 			GC.MonsterKilled ();
