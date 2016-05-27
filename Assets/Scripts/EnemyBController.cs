@@ -1,36 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EnemyBController : MonoBehaviour {
-
-	public Vector3 speed;
-	public float xMin, xMax, yMin, yMax, zMin, zMax;
-	public Vector3 startingPoint;
-	public int hop_limit;
-	public GameObject myBodyObject;
-	public float scale_factor;
-	public int hp_max;
-	public AudioSource oneEnemySoundSource;
-	public AudioClip[] deathSounds;
-	public float notes = 1.059463f;
-	public Sprite[] explosionSprites;
-	public GameObject explosionPrefab;
-
-	private GameController GC;
-	private bool in_game;
-	private int hops;
-	private int hp;
-	public int Hp {get {return hp;} set {hp = value;}}
-	private Vector3 move_back_vector = new Vector3 (0,0,1);
-	private Vector3 original_speed;
-	private Vector3 original_scale;
-	private float original_radius;
-	private Sprite exlosionSprite;
-	private GameObject explosionObject;
+public class EnemyBController : EnemyController {
 
 	// Use this for initialization
 	void Start () {
-		get_game_controller ();
+		GetGameController ();
+		GetOneAudioSource ();
 		original_speed = speed;
 		original_scale = myBodyObject.transform.localScale;
 		original_radius = GetComponent<SphereCollider> ().radius;
@@ -91,30 +67,6 @@ public class EnemyBController : MonoBehaviour {
 		}
 	}
 
-	void Shrink(){
-		hops++;
-		if(hp<hp_max) hp++;
-		speed *= scale_factor;
-		myBodyObject.transform.localScale *= scale_factor;
-		GetComponent<SphereCollider> ().radius *= scale_factor;
-	}
-
-	void Explode(){
-		exlosionSprite = explosionSprites[Random.Range (0, explosionSprites.Length)];
-		explosionObject = (GameObject)Instantiate (exlosionSprite, transform.position, transform.rotation);
-		explosionObject.GetComponent<Rotator> ().rotations.z = transform.GetComponent<Rigidbody> ().angularVelocity.z;
-		explosionObject.transform.localScale *= hop_limit / hops;
-	}
-
-	void MakeDeathSound(){
-		if (oneEnemySoundSource && oneEnemySoundSource.isActiveAndEnabled) {
-			oneEnemySoundSource.Stop ();
-			oneEnemySoundSource.transform.position = transform.position;
-			oneEnemySoundSource.pitch *= Mathf.Pow (notes, hops);
-			oneEnemySoundSource.PlayOneShot (deathSounds [Random.Range (0, deathSounds.Length)]);
-		}
-	}
-
 	void OnTriggerExit(Collider other) {
 		if (other.tag == "GameSpace") {
 			in_game = false;
@@ -131,13 +83,23 @@ public class EnemyBController : MonoBehaviour {
 			GC.MonsterEscaped ();
 	}
 
-	void get_game_controller(){
+	void GetGameController(){
 		GameObject gameControllerObject = GameObject.FindGameObjectWithTag ("GameSpace");
 		if (gameControllerObject != null){
 			GC = gameControllerObject.GetComponent <GameController>();
 		}
 		if (GC == null){
 			Debug.Log ("Cannot find 'GameController' script");
+		}
+	}
+
+	void GetOneAudioSource(){
+		GameObject gameControllerObject = GameObject.FindGameObjectWithTag ("EnemyAudioSource");
+		if (gameControllerObject != null){
+			oneEnemySoundSource = gameControllerObject.GetComponent <AudioSource>();
+		}
+		if (oneEnemySoundSource == null){
+			Debug.Log ("Cannot find oneEnemySoundSource object with tag EnemyAudioSource");
 		}
 	}
 }

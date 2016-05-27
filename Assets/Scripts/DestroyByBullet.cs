@@ -9,7 +9,8 @@ public class DestroyByBullet : MonoBehaviour {
 	void OnTriggerEnter(Collider other)
 	{
 		if (other.tag == enemyTag) {
-			other.GetComponent<EnemyAController>().Hp--;
+//			other.GetComponent<EnemyAController>().Hp--;
+			other.GetComponent<EnemyController>().Hp--;
 			Destroy (this.gameObject);
 		}
 	}
