@@ -6,6 +6,7 @@ public class FaceChange : MonoBehaviour {
 
 	public Sprite[] normalFaces;
 	public Sprite[] killaFaces;
+	public bool OneFace = false;
 
 	private Image face_image;
 	private bool khzMode;
@@ -26,7 +27,7 @@ public class FaceChange : MonoBehaviour {
 	public void HealthToFace(float hp){
 		Sprite[] face_array;
 		//check if in khz mode, and use negatives instead
-		if (khzMode) {
+		if (khzMode && OneFace) {
 			face_array = killaFaces;
 		} else {
 			face_array = normalFaces;

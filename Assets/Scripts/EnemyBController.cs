@@ -24,14 +24,6 @@ public class EnemyBController : EnemyController {
 		//		while (hops < hop_limit) Shrink ();
 	}
 
-	// Update is called once per frame
-	void Update () {
-		transform.position += speed*Time.deltaTime;
-		if (hp <= 0) {
-			Destroy (this.gameObject);
-		}
-	}
-
 	void PickNewStartingPoint(){
 		transform.position = startingPoint + new Vector3 (Random.Range (xMin, xMax), Random.Range (yMin, yMax), Random.Range (zMin, zMax));
 	}

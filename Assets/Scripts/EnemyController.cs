@@ -11,8 +11,7 @@ public abstract class EnemyController: MonoBehaviour{
 	public int hp_max;
 	public AudioClip[] deathSounds;
 	public float notes = 1.059463f;
-	public Sprite[] explosionSprites;
-	public GameObject explosionPrefab;
+	public GameObject[] explosionPrefabs;
 
 	protected GameController GC;
 	protected bool in_game;
@@ -23,19 +22,14 @@ public abstract class EnemyController: MonoBehaviour{
 	protected Vector3 original_speed;
 	protected Vector3 original_scale;
 	protected float original_radius;
-	protected Sprite exlosionSprite;
-	protected GameObject explosionObject;
 	protected AudioSource oneEnemySoundSource;
 
-
-	void GetGameController(){}
-	void GetOneAudioSource(){}
-	void PickNewStartingPoint(){}
-	void Reset(){}
-	void OnTriggerEnter(Collider other){}
-	void OnTriggerStay(Collider other){}
-	void OnTriggerExit(Collider other){}
-	void OnDestroy(){}
+	void Update () {
+		transform.position += speed*Time.deltaTime;
+		if (hp <= 0) {
+			Destroy (this.gameObject);
+		}
+	}
 
 	protected void Shrink(){
 		hops++;
@@ -45,16 +39,15 @@ public abstract class EnemyController: MonoBehaviour{
 		GetComponent<SphereCollider> ().radius *= scale_factor;
 	}
 
-	protected void Explode(){
-		exlosionSprite = explosionSprites[UnityEngine.Random.Range (0, explosionSprites.Length)];
-
+	protected void Explode(){ 
 		// must instantiate with GameObjet in explosionSprite.  need to inst new obj, add sprite prop, set sprite to my sprite from array, bingo!
-		explosionObject = (GameObject)Instantiate(explosionPrefab, transform.position, transform.rotation);
+		GameObject explosionPrefab = explosionPrefabs [UnityEngine.Random.Range (0, explosionPrefabs.Length)];
 
+		GameObject myExplosion = (GameObject)Instantiate(explosionPrefab, transform.position, explosionPrefab.transform.rotation);
 
-		Debug.Log ( explosionObject );
-		explosionObject.GetComponent<Rotator> ().rotations.z = transform.GetComponent<Rigidbody> ().angularVelocity.z;
-		explosionObject.transform.localScale *= hop_limit / hops;
+		myExplosion.GetComponent<Rotator> ().rotations.z = transform.GetComponent<Rigidbody> ().angularVelocity.z;
+
+		myExplosion.transform.localScale *= hop_limit / hops;
 	}
 
 	protected void MakeDeathSound(){
