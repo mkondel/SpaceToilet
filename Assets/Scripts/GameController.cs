@@ -17,7 +17,7 @@ public class GameController : MonoBehaviour {
 	public Slider healthSlider;
 	public Slider hertzSlider;
 	public UpdateGameTimer bigTimer;
-	public AudioClip bgMusicClip;
+	public AudioClip[] bgMusicClip;
 	public AudioMixerSnapshot volumeDown;
 	public AudioMixerSnapshot volumeUp;
 	public FaceChange pilotFace;
@@ -70,9 +70,9 @@ public class GameController : MonoBehaviour {
 		player.KHz = killahertz;
 		bigTimer.enabled = true;
 		startingHealth = player.health;
-		if (bgMusicClip) {
+		if (bgMusicClip.Length>0) {
 			bgMusic = GetComponent<AudioSource> ();
-			bgMusic.clip = bgMusicClip;
+			bgMusic.clip = bgMusicClip[Random.Range(0, bgMusicClip.Length)];
 			bgMusic.Play ();
 		}
 	}
