@@ -82,10 +82,12 @@
      <Compile Include="Assets\Scripts\MusicRandomizer.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
      <Compile Include="Assets\Scripts\RandomRotator.cs" />
+     <Compile Include="Assets\Scripts\RandomizerNebulazer.cs" />
      <Compile Include="Assets\Scripts\Rotator.cs" />
      <Compile Include="Assets\Scripts\SaturateRed.cs" />
      <Compile Include="Assets\Scripts\ScoreBoardController.cs" />
      <Compile Include="Assets\Scripts\ScrollTexture.cs" />
+     <Compile Include="Assets\Scripts\SimpleMover.cs" />
      <Compile Include="Assets\Scripts\SliderValueDisplayer.cs" />
      <Compile Include="Assets\Scripts\SpeedDebugger.cs" />
      <Compile Include="Assets\Scripts\UpdateGameTimer.cs" />
