@@ -131,9 +131,17 @@ public class PlayerController : MonoBehaviour
 		Destroy(other.gameObject);
 	}
 
-    void FixedUpdate ()
-	{
-		float moveHorizontal = Input.GetAxis ("Mouse X");
+    void FixedUpdate (){
+		float moveHorizontal = 0;
+
+		#if UNITY_STANDALONE || UNITY_EDITOR
+			moveHorizontal = Input.GetAxis ("Mouse X");
+		#endif
+
+		#if UNITY_ANDROID
+			moveHorizontal = Input.acceleration.x * 20.0f;
+		#endif
+
 		Vector3 movement = new Vector3 (moveHorizontal, 0.0f, 0.0f);
         GetComponent<Rigidbody>().velocity = movement * speed;
 
