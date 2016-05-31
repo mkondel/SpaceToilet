@@ -29,6 +29,8 @@ public class PlayerController : MonoBehaviour
 	public AudioClip damageSoundClip;
 	public AudioClip deathSoundClip;
 
+	public GameObject myBody, myLeftEng, myRightEng, myGlass;
+
 	private float fireRateHZ;
 	private float nextFire;
 	private int shots;
@@ -44,6 +46,13 @@ public class PlayerController : MonoBehaviour
 		muzzleFlashPlasma.StartPlayback ();
 		muzzleAnimation = muzzleFlashBullet;
 		shipAudioSource = GetComponent<AudioSource> ();
+
+		#if UNITY_ANDROID
+			myBody.GetComponent<MeshRenderer>().material = Resources.Load("SilverMaterialAndroid", typeof(Material)) as Material;
+			myGlass.GetComponent<MeshRenderer>().material = Resources.Load("GlassMaterialAndroid", typeof(Material)) as Material;
+			myLeftEng.GetComponent<MeshRenderer>().material = Resources.Load("RedMaterialAndroid", typeof(Material)) as Material;
+			myRightEng.GetComponent<MeshRenderer>().material = Resources.Load("RedMaterialAndroid", typeof(Material)) as Material;
+		#endif
 	}
 
 	void Update (){
@@ -136,10 +145,8 @@ public class PlayerController : MonoBehaviour
 
 		#if UNITY_STANDALONE || UNITY_EDITOR
 			moveHorizontal = Input.GetAxis ("Mouse X");
-		#endif
-
-		#if UNITY_ANDROID
-			moveHorizontal = Input.acceleration.x * 20.0f;
+		#elif UNITY_ANDROID
+			moveHorizontal = Input.acceleration.x * 75.0f;
 		#endif
 
 		Vector3 movement = new Vector3 (moveHorizontal, 0.0f, 0.0f);

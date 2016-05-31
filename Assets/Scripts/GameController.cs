@@ -199,10 +199,10 @@ public class GameController : MonoBehaviour {
 		currHertz++;
 		totalMonsters--;
 		if (!gameover && !KHz) {
-			Debug.Log ("Enemies: "+totalMonsters+" MAX: "+enemiesMax+" basic weapon");
+//			Debug.Log ("Enemies: "+totalMonsters+" MAX: "+enemiesMax+" basic weapon");
 			enemiesMax++;
 		}else{
-			Debug.Log ("Enemies: "+totalMonsters+" MAX: "+enemiesMax+" KHz mode");
+//			Debug.Log ("Enemies: "+totalMonsters+" MAX: "+enemiesMax+" KHz mode");
 			enemiesMax--;
 		}
 	}
