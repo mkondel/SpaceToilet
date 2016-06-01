@@ -3,24 +3,31 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour {
+	
+	private static WaitForSeconds waitingTime;
+	private float waitTime = 0.5f;
 
 	public void BackToMenu(){
-		SceneManager.LoadScene(0);
+		StartCoroutine( LoadShooterSceneDelayed(0) ) ;
+	}
+
+	public void StartShooter(){
+		StartCoroutine( LoadShooterSceneDelayed(1) ) ;
 	}
 
 	public void RestartShooter(){
-		if (SceneManager.sceneCount == 1) {
-			Debug.Log ("reloading the only scene, which should be the shooter.  for testing...");
-			SceneManager.LoadScene (SceneManager.GetActiveScene().name);
-		} else if (SceneManager.sceneCount > 1) {
-			Debug.Log ("reloading shooter scene normally.");
-			SceneManager.LoadScene (1);
-		} else {
+		if (SceneManager.sceneCount < 1) {
 			Debug.Log ("Cant load the scene needed to restart shooter...");
+		} else {
+			Debug.Log ("reloading shooter scene normally.");
+			StartShooter();
 		}
 	}
-		
-	public void StartShooter(){
-		SceneManager.LoadScene (1);
+
+	IEnumerator LoadShooterSceneDelayed(int sceneIndex) {
+		waitingTime = new WaitForSeconds (waitTime);
+		yield return waitingTime;
+		Debug.Log ("Changing to Shooter Scene");
+		SceneManager.LoadScene (sceneIndex);
 	}
 }

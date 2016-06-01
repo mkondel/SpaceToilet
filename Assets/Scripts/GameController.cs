@@ -89,6 +89,7 @@ public class GameController : MonoBehaviour {
 
 		//When the game is either won or lost, display restart button, and allow for user to restart by pressing 'R'
 		if (gameOverMenu.IsActive() && Input.GetKeyDown (KeyCode.R)) {
+			Debug.Log ("here?");
 			gameOverMenu.onClick.Invoke ();
 		}
 

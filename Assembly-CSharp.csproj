@@ -74,6 +74,7 @@
      <Compile Include="Assets\Scripts\EnemyController.cs" />
      <Compile Include="Assets\Scripts\ExplosionController.cs" />
      <Compile Include="Assets\Scripts\FaceChange.cs" />
+     <Compile Include="Assets\Scripts\Fader.cs" />
      <Compile Include="Assets\Scripts\GameController.cs" />
      <Compile Include="Assets\Scripts\GameOverBackgroudns.cs" />
      <Compile Include="Assets\Scripts\GameTitle.cs" />
