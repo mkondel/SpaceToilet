@@ -11,7 +11,7 @@ public class MainMenu : MonoBehaviour {
 	public void RestartShooter(){
 		if (SceneManager.sceneCount == 1) {
 			Debug.Log ("reloading the only scene, which should be the shooter.  for testing...");
-			SceneManager.LoadScene (0);
+			SceneManager.LoadScene (SceneManager.GetActiveScene().name);
 		} else if (SceneManager.sceneCount > 1) {
 			Debug.Log ("reloading shooter scene normally.");
 			SceneManager.LoadScene (1);
