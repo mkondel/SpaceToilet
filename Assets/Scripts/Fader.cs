@@ -31,7 +31,7 @@ public class Fader : MonoBehaviour {
 			} else {
 				newAlpha = myImage.color.a + fadeSpeed * Time.deltaTime;
 			}
-			Debug.Log (myImage.color.a+" fading to "+endColor.a);
+//			Debug.Log (myImage.color.a+" fading to "+endColor.a);
 			myImage.color = new Color (myImage.color.r, myImage.color.g, myImage.color.b, Mathf.Clamp01 (newAlpha)); //Color.Lerp (myImage.color, endColor, fadeSpeed);
 		}
 	}

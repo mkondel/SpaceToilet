@@ -12,6 +12,8 @@ public class LightByOS : MonoBehaviour {
 			Instantiate(regularLightsPrefab);
 		#elif UNITY_ANDROID
 			Instantiate(androidLightsPrefab);
+		#else
+			Instantiate(regularLightsPrefab);
 		#endif
 	}
 	

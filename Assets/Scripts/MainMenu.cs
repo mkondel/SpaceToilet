@@ -8,11 +8,11 @@ public class MainMenu : MonoBehaviour {
 	private float waitTime = 0.5f;
 
 	public void BackToMenu(){
-		StartCoroutine( LoadShooterSceneDelayed(0) ) ;
+		StartCoroutine( LoadSceneDelayed(0) ) ;
 	}
 
 	public void StartShooter(){
-		StartCoroutine( LoadShooterSceneDelayed(1) ) ;
+		StartCoroutine( LoadSceneDelayed(1) ) ;
 	}
 
 	public void RestartShooter(){
@@ -24,7 +24,7 @@ public class MainMenu : MonoBehaviour {
 		}
 	}
 
-	IEnumerator LoadShooterSceneDelayed(int sceneIndex) {
+	IEnumerator LoadSceneDelayed(int sceneIndex) {
 		waitingTime = new WaitForSeconds (waitTime);
 		yield return waitingTime;
 		Debug.Log ("Changing to Shooter Scene");

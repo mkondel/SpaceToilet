@@ -4,9 +4,9 @@ using System.Collections;
 
 public class ScoreBoardController : MonoBehaviour {
 
-	public Text shots_text;
-	public Text grade_text;
-	public Text kills_text;
+	public Text accText;
+	public Text gradeText;
+	public Text killsText;
 
 	public void ShowScores(string grade="XX", int kills=0, int total=0, int shots=0, int hits=0){
 
@@ -16,8 +16,8 @@ public class ScoreBoardController : MonoBehaviour {
 		} else {
 			accuracy = 0;
 		}
-		kills_text.text = "KILLED\n"+ kills.ToString () +"/"+total.ToString();
-		grade_text.text = grade;
-		shots_text.text = "ACCURACY\n"+ accuracy.ToString ("n2");
+		killsText.text = "KILLED\n"+ kills.ToString () +"/"+total.ToString();
+		gradeText.text = grade;
+		accText.text = "ACCURACY\n"+ accuracy.ToString ("n2");
 	}
 }
