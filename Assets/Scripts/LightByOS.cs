@@ -10,7 +10,7 @@ public class LightByOS : MonoBehaviour {
 	void Start () {
 		#if UNITY_EDITOR
 			Instantiate(regularLightsPrefab);
-		#elif UNITY_ANDROID
+		#elif UNITY_ANDROID || UNITY_IOS
 			Instantiate(androidLightsPrefab);
 		#else
 			Instantiate(regularLightsPrefab);

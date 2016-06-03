@@ -145,7 +145,7 @@ public class PlayerController : MonoBehaviour
 
 		#if UNITY_STANDALONE || UNITY_EDITOR
 			moveHorizontal = Input.GetAxis ("Mouse X");
-		#elif UNITY_ANDROID
+		#elif UNITY_ANDROID || UNITY_IOS
 			moveHorizontal = Input.acceleration.x * 75.0f;
 		#endif
 

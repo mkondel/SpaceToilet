@@ -10,12 +10,10 @@ public class Fader : MonoBehaviour {
 	public bool disableAfterDone = false;
 
 	private Image myImage;
-	private Color endColor;
 
 	void Start(){
 		myImage = GetComponent<Image> ();
 		myImage.color = new Color (myImage.color.r, myImage.color.g, myImage.color.b, Mathf.Clamp01 (startAlpha));
-		endColor = new Color (myImage.color.r, myImage.color.g, myImage.color.b, Mathf.Clamp01 (endAlpha));
 	}
 
 	void Update(){
