@@ -24,21 +24,21 @@ public class LoadMusicSliderValue : MonoBehaviour {
 		case VolTypes.FX:
 			volVal = pers.settingsOfTheGame.fxVolume;
 			break;
-		case VolTypes.KHZ:
-			volVal = pers.settingsOfTheGame.khVolume;
-			break;
-		case VolTypes.EXPLOSION:
-			volVal = pers.settingsOfTheGame.explosionsVolume;
-			break;
-		case VolTypes.BUZZ:
-			volVal = pers.settingsOfTheGame.buzzVolume;
-			break;
-		case VolTypes.WINNING:
-			volVal = pers.settingsOfTheGame.winningVolume;
-			break;
-		case VolTypes.LOOSING:
-			volVal = pers.settingsOfTheGame.loosingVolume;
-			break;
+//		case VolTypes.KHZ:
+//			volVal = pers.settingsOfTheGame.khVolume;
+//			break;
+//		case VolTypes.EXPLOSION:
+//			volVal = pers.settingsOfTheGame.explosionsVolume;
+//			break;
+//		case VolTypes.BUZZ:
+//			volVal = pers.settingsOfTheGame.buzzVolume;
+//			break;
+//		case VolTypes.WINNING:
+//			volVal = pers.settingsOfTheGame.winningVolume;
+//			break;
+//		case VolTypes.LOOSING:
+//			volVal = pers.settingsOfTheGame.loosingVolume;
+//			break;
 		default:
 			break;
 		}

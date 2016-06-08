@@ -45,7 +45,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\LoadMusicSliderValue.cs" />
      <Compile Include="Assets\Prefabs\Standard Assets\ParticleSystems\Scripts\AfterburnerPhysicsForce.cs" />
      <Compile Include="Assets\Prefabs\Standard Assets\ParticleSystems\Scripts\ExplosionFireAndDebris.cs" />
      <Compile Include="Assets\Prefabs\Standard Assets\ParticleSystems\Scripts\ExplosionPhysicsForce.cs" />
@@ -80,6 +79,7 @@
      <Compile Include="Assets\Scripts\GameTitle.cs" />
      <Compile Include="Assets\Scripts\ImagePickerByOS.cs" />
      <Compile Include="Assets\Scripts\LightByOS.cs" />
+     <Compile Include="Assets\Scripts\LoadMusicSliderValue.cs" />
      <Compile Include="Assets\Scripts\MainMenu.cs" />
      <Compile Include="Assets\Scripts\Mover.cs" />
      <Compile Include="Assets\Scripts\MusicRandomizer.cs" />

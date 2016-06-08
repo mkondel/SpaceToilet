@@ -13,6 +13,12 @@ public class Persister : MonoBehaviour {
 	public AudioMixer mainMixer;
 	public GameObject pause_menu;
 
+//	public AudioSource khzSource;
+//	public AudioSource explosionsSource;
+//	public AudioSource buzzSource;
+//	public AudioSource winningSource;
+//	public AudioSource loosingSource;
+
 	private string pathToSaveFile;
 	private bool isPaused;
 
@@ -28,21 +34,26 @@ public class Persister : MonoBehaviour {
 		settingsOfTheGame.fxVolume = newLvl;
 		mainMixer.SetFloat("sfxVol", newLvl);
 	}
-	public void setKhVolume(float newLvl){
-		settingsOfTheGame.khVolume = newLvl;
-	}
-	public void setExplosionsVolume(float newLvl){
-		settingsOfTheGame.explosionsVolume = newLvl;
-	}
-	public void setBuzzVolume(float newLvl){
-		settingsOfTheGame.buzzVolume = newLvl;
-	}
-	public void setWinningVolume(float newLvl){
-		settingsOfTheGame.winningVolume = newLvl;
-	}
-	public void setLoosingVolume(float newLvl){
-		settingsOfTheGame.loosingVolume = newLvl;
-	}
+//	public void setKhVolume(float newLvl){
+//		settingsOfTheGame.khVolume = newLvl;
+//		khzSource.volume = newLvl;
+//	}
+//	public void setExplosionsVolume(float newLvl){
+//		settingsOfTheGame.explosionsVolume = newLvl;
+//		explosionsSource.volume = newLvl;
+//	}
+//	public void setBuzzVolume(float newLvl){
+//		settingsOfTheGame.buzzVolume = newLvl;
+//		buzzSource.volume = newLvl;
+//	}
+//	public void setWinningVolume(float newLvl){
+//		settingsOfTheGame.winningVolume = newLvl;
+//		winningSource.volume = newLvl;
+//	}
+//	public void setLoosingVolume(float newLvl){
+//		settingsOfTheGame.loosingVolume = newLvl;
+//		loosingSource.volume = newLvl;
+//	}
 
 	// Update is called once per frame
 	void Update () {
@@ -126,11 +137,11 @@ public class CustomGameSettings{
 	public float mainVolume;
 	public float musicVolume;
 	public float fxVolume;
-	public float khVolume;
-	public float explosionsVolume;
-	public float buzzVolume;
-	public float winningVolume;
-	public float loosingVolume;
+//	public float khVolume;
+//	public float explosionsVolume;
+//	public float buzzVolume;
+//	public float winningVolume;
+//	public float loosingVolume;
 
 	public float[] mainMenuMusicVolumes;
 	public float[] shooterMusicVolumes;
