@@ -10,6 +10,32 @@ public class Persister : MonoBehaviour {
 	public string dataFileName = "savedSettings.data";
 	public CustomGameSettings settingsOfTheGame;
 
+	public void setMainVolume(float newLvl){
+		settingsOfTheGame.mainVolume = newLvl;
+	}
+	public void setMusicVolume(float newLvl){
+		settingsOfTheGame.musicVolume = newLvl;
+	}
+	public void setFxVolume(float newLvl){
+		settingsOfTheGame.fxVolume = newLvl;
+	}
+	public void setKhVolume(float newLvl){
+		settingsOfTheGame.khVolume = newLvl;
+	}
+	public void setExplosionsVolume(float newLvl){
+		settingsOfTheGame.explosionsVolume = newLvl;
+	}
+	public void setBuzzVolume(float newLvl){
+		settingsOfTheGame.buzzVolume = newLvl;
+	}
+	public void setWinningVolume(float newLvl){
+		settingsOfTheGame.winningVolume = newLvl;
+	}
+	public void setLoosingVolume(float newLvl){
+		settingsOfTheGame.loosingVolume = newLvl;
+	}
+
+
 	private string pathToSaveFile;
 
 	// Use this for initialization

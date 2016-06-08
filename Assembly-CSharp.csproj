@@ -45,6 +45,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\LoadMusicSliderValue.cs" />
      <Compile Include="Assets\Prefabs\Standard Assets\ParticleSystems\Scripts\AfterburnerPhysicsForce.cs" />
      <Compile Include="Assets\Prefabs\Standard Assets\ParticleSystems\Scripts\ExplosionFireAndDebris.cs" />
      <Compile Include="Assets\Prefabs\Standard Assets\ParticleSystems\Scripts\ExplosionPhysicsForce.cs" />
