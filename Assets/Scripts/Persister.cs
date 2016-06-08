@@ -14,6 +14,7 @@ public class Persister : MonoBehaviour {
 
 	public void setMainVolume(float newLvl){
 		settingsOfTheGame.mainVolume = newLvl;
+		mainMixer.SetFloat ("mainVol", newLvl);
 	}
 	public void setMusicVolume(float newLvl){
 		settingsOfTheGame.musicVolume = newLvl;
