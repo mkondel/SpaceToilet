@@ -5,11 +5,11 @@ using System.Collections;
 public class LoadMusicSliderValue : MonoBehaviour {
 
 	public Persister pers;
-	public Vector2 limits = new Vector2(-40f,-0.001f);
 
 	// Use this for initialization
 	void Start(){
+		Slider mySlider = GetComponent<Slider> ();
 		Debug.Log ("Start in LoadMusicSliderValue " + pers.settingsOfTheGame.musicVolume);
-		GetComponent<Slider>().value = Mathf.Clamp( pers.settingsOfTheGame.musicVolume, limits.x, limits.y );
+		mySlider.value = Mathf.Clamp( pers.settingsOfTheGame.musicVolume, mySlider.minValue, mySlider.maxValue );
 	}
 }

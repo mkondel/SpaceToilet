@@ -3,21 +3,25 @@ using System.Collections;
 using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+using UnityEngine.Audio;
 
 public class Persister : MonoBehaviour {
 
 	public static Persister persister;
 	public string dataFileName = "savedSettings.data";
 	public CustomGameSettings settingsOfTheGame;
+	public AudioMixer mainMixer;
 
 	public void setMainVolume(float newLvl){
 		settingsOfTheGame.mainVolume = newLvl;
 	}
 	public void setMusicVolume(float newLvl){
 		settingsOfTheGame.musicVolume = newLvl;
+		mainMixer.SetFloat("musicVol", newLvl);
 	}
 	public void setFxVolume(float newLvl){
 		settingsOfTheGame.fxVolume = newLvl;
+		mainMixer.SetFloat("sfxVol", newLvl);
 	}
 	public void setKhVolume(float newLvl){
 		settingsOfTheGame.khVolume = newLvl;
