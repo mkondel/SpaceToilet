@@ -11,6 +11,10 @@ public class Persister : MonoBehaviour {
 	public string dataFileName = "savedSettings.data";
 	public CustomGameSettings settingsOfTheGame;
 	public AudioMixer mainMixer;
+	public GameObject pause_menu;
+
+	private string pathToSaveFile;
+	private bool isPaused;
 
 	public void setMainVolume(float newLvl){
 		settingsOfTheGame.mainVolume = newLvl;
@@ -40,10 +44,27 @@ public class Persister : MonoBehaviour {
 		settingsOfTheGame.loosingVolume = newLvl;
 	}
 
+	// Update is called once per frame
+	void Update () {
+		if (Input.GetButtonDown ("Cancel") && !isPaused){
+			DoPause();
+		} else if (Input.GetButtonDown ("Cancel") && isPaused){
+			UnPause ();
+		}
+	}
+		
+	public void DoPause(){
+		isPaused = true;
+		Time.timeScale = 0;		//Set time.timescale to 0, this will cause animations and physics to stop updating
+		pause_menu.SetActive (true);
+	}
 
-	private string pathToSaveFile;
+	public void UnPause(){
+		isPaused = false;
+		Time.timeScale = 1;		//Set time.timescale to 1, animations and physics continue updating at regular speed
+		pause_menu.SetActive (false);
+	}
 
-	// Use this for initialization
 	void Awake () {
 		Debug.Log ("Awake in Persister()");
 		pathToSaveFile = Application.persistentDataPath + "/" + dataFileName;
@@ -57,6 +78,10 @@ public class Persister : MonoBehaviour {
 			Debug.Log ("persister is not null and not this.  Destroying self.");
 			Destroy (gameObject);
 		}
+	}
+
+	void Start(){
+		SetSettings();
 	}
 
 	void OnApplicationQuit(){
@@ -78,6 +103,7 @@ public class Persister : MonoBehaviour {
 			Debug.Log ("Loading settings from filename = " + pathToSaveFile);
 			BinaryFormatter bf = new BinaryFormatter ();
 			FileStream file = File.Open (pathToSaveFile, FileMode.Open);
+//			settingsOfTheGame = new CustomGameSettings((CustomGameSettings)bf.Deserialize (file));
 			settingsOfTheGame = (CustomGameSettings)bf.Deserialize (file);
 			file.Close ();
 			Debug.Log ("settings loaded");
@@ -85,6 +111,12 @@ public class Persister : MonoBehaviour {
 			Debug.Log ("making new settings object");
 			settingsOfTheGame = new CustomGameSettings ();
 		}
+	}
+
+	void SetSettings(){
+		setMainVolume( settingsOfTheGame.mainVolume );
+		setMusicVolume( settingsOfTheGame.musicVolume );
+		setFxVolume( settingsOfTheGame.fxVolume );
 	}
 }
 
@@ -104,8 +136,22 @@ public class CustomGameSettings{
 	public float[] shooterMusicVolumes;
 
 	public CustomGameSettings(){
-		Debug.Log ("initialising new settings object");
+		Debug.Log ("initialising new CustomGameSettings object");
 		mainMenuMusicVolumes = new float[6];
 		shooterMusicVolumes = new float[5];
 	}
+
+//	public CustomGameSettings(CustomGameSettings copyFrom){
+//		Debug.Log ("initialising new CustomGameSettings object by copying from another");
+//		mainVolume = copyFrom.mainVolume;
+//		musicVolume = copyFrom.musicVolume;
+//		fxVolume = copyFrom.fxVolume;
+//		khVolume = copyFrom.khVolume;
+//		explosionsVolume = copyFrom.explosionsVolume;
+//		buzzVolume = copyFrom.buzzVolume;
+//		winningVolume = copyFrom.winningVolume;
+//		loosingVolume = copyFrom.loosingVolume;
+//		mainMenuMusicVolumes = copyFrom.mainMenuMusicVolumes;
+//		shooterMusicVolumes = copyFrom.shooterMusicVolumes;
+//	}
 }
