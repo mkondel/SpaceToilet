@@ -13,47 +13,8 @@ public class Persister : MonoBehaviour {
 	public AudioMixer mainMixer;
 	public GameObject pause_menu;
 
-//	public AudioSource khzSource;
-//	public AudioSource explosionsSource;
-//	public AudioSource buzzSource;
-//	public AudioSource winningSource;
-//	public AudioSource loosingSource;
-
 	private string pathToSaveFile;
 	private bool isPaused;
-
-	public void setMainVolume(float newLvl){
-		settingsOfTheGame.mainVolume = newLvl;
-		mainMixer.SetFloat ("mainVol", newLvl);
-	}
-	public void setMusicVolume(float newLvl){
-		settingsOfTheGame.musicVolume = newLvl;
-		mainMixer.SetFloat("musicVol", newLvl);
-	}
-	public void setFxVolume(float newLvl){
-		settingsOfTheGame.fxVolume = newLvl;
-		mainMixer.SetFloat("sfxVol", newLvl);
-	}
-//	public void setKhVolume(float newLvl){
-//		settingsOfTheGame.khVolume = newLvl;
-//		khzSource.volume = newLvl;
-//	}
-//	public void setExplosionsVolume(float newLvl){
-//		settingsOfTheGame.explosionsVolume = newLvl;
-//		explosionsSource.volume = newLvl;
-//	}
-//	public void setBuzzVolume(float newLvl){
-//		settingsOfTheGame.buzzVolume = newLvl;
-//		buzzSource.volume = newLvl;
-//	}
-//	public void setWinningVolume(float newLvl){
-//		settingsOfTheGame.winningVolume = newLvl;
-//		winningSource.volume = newLvl;
-//	}
-//	public void setLoosingVolume(float newLvl){
-//		settingsOfTheGame.loosingVolume = newLvl;
-//		loosingSource.volume = newLvl;
-//	}
 
 	// Update is called once per frame
 	void Update () {
@@ -62,18 +23,6 @@ public class Persister : MonoBehaviour {
 		} else if (Input.GetButtonDown ("Cancel") && isPaused){
 			UnPause ();
 		}
-	}
-		
-	public void DoPause(){
-		isPaused = true;
-		Time.timeScale = 0;		//Set time.timescale to 0, this will cause animations and physics to stop updating
-		pause_menu.SetActive (true);
-	}
-
-	public void UnPause(){
-		isPaused = false;
-		Time.timeScale = 1;		//Set time.timescale to 1, animations and physics continue updating at regular speed
-		pause_menu.SetActive (false);
 	}
 
 	void Awake () {
@@ -114,7 +63,6 @@ public class Persister : MonoBehaviour {
 			Debug.Log ("Loading settings from filename = " + pathToSaveFile);
 			BinaryFormatter bf = new BinaryFormatter ();
 			FileStream file = File.Open (pathToSaveFile, FileMode.Open);
-//			settingsOfTheGame = new CustomGameSettings((CustomGameSettings)bf.Deserialize (file));
 			settingsOfTheGame = (CustomGameSettings)bf.Deserialize (file);
 			file.Close ();
 			Debug.Log ("settings loaded");
@@ -129,6 +77,30 @@ public class Persister : MonoBehaviour {
 		setMusicVolume( settingsOfTheGame.musicVolume );
 		setFxVolume( settingsOfTheGame.fxVolume );
 	}
+
+	public void setMainVolume(float newLvl){
+		settingsOfTheGame.mainVolume = newLvl;
+		mainMixer.SetFloat ("mainVol", newLvl);
+	}
+	public void setMusicVolume(float newLvl){
+		settingsOfTheGame.musicVolume = newLvl;
+		mainMixer.SetFloat("musicVol", newLvl);
+	}
+	public void setFxVolume(float newLvl){
+		settingsOfTheGame.fxVolume = newLvl;
+		mainMixer.SetFloat("sfxVol", newLvl);
+	}
+
+	public void DoPause(){
+		isPaused = true;
+		Time.timeScale = 0;		//Set time.timescale to 0, this will cause animations and physics to stop updating
+		pause_menu.SetActive (true);
+	}
+	public void UnPause(){
+		isPaused = false;
+		Time.timeScale = 1;		//Set time.timescale to 1, animations and physics continue updating at regular speed
+		pause_menu.SetActive (false);
+	}
 }
 
 //NEEDS: - playlist un-check not to play, track by track
@@ -137,11 +109,6 @@ public class CustomGameSettings{
 	public float mainVolume;
 	public float musicVolume;
 	public float fxVolume;
-//	public float khVolume;
-//	public float explosionsVolume;
-//	public float buzzVolume;
-//	public float winningVolume;
-//	public float loosingVolume;
 
 	public float[] mainMenuMusicVolumes;
 	public float[] shooterMusicVolumes;
@@ -151,18 +118,4 @@ public class CustomGameSettings{
 		mainMenuMusicVolumes = new float[6];
 		shooterMusicVolumes = new float[5];
 	}
-
-//	public CustomGameSettings(CustomGameSettings copyFrom){
-//		Debug.Log ("initialising new CustomGameSettings object by copying from another");
-//		mainVolume = copyFrom.mainVolume;
-//		musicVolume = copyFrom.musicVolume;
-//		fxVolume = copyFrom.fxVolume;
-//		khVolume = copyFrom.khVolume;
-//		explosionsVolume = copyFrom.explosionsVolume;
-//		buzzVolume = copyFrom.buzzVolume;
-//		winningVolume = copyFrom.winningVolume;
-//		loosingVolume = copyFrom.loosingVolume;
-//		mainMenuMusicVolumes = copyFrom.mainMenuMusicVolumes;
-//		shooterMusicVolumes = copyFrom.shooterMusicVolumes;
-//	}
 }
