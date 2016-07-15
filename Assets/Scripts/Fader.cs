@@ -20,7 +20,7 @@ public class Fader : MonoBehaviour {
 		if (myImage.color.a == Mathf.Clamp01 (endAlpha)) {
 			Debug.Log ("done with fade "+myImage.color.a);
 			if (disableAfterDone) {
-				gameObject.SetActive (false);
+				this.gameObject.SetActive (false);
 			}
 		} else {
 			float newAlpha;

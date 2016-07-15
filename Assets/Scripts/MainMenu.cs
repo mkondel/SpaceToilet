@@ -9,6 +9,7 @@ public class MainMenu : MonoBehaviour {
 
 	public void BackToMenu(){
 		StartCoroutine( LoadSceneDelayed(0) ) ;
+		Time.timeScale = 1;		//unpause
 	}
 
 	public void StartShooter(){

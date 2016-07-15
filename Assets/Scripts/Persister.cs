@@ -4,21 +4,25 @@ using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 
 //Persister class keeps volume/mouse settings between scenes.
 //Also saves them to a binary file to persist between app restarts.
 //Persister responds to ESC key to stop animation and opening theme.
+//Shows/hides pause menu, which is different in each scene.  Both current pause menus are inside Persister prefab.
 public class Persister : MonoBehaviour {
 
 	public static Persister persister;
 	public string dataFileName = "savedSettings.data";
 	public CustomGameSettings settingsOfTheGame;
 	public AudioMixer mainMixer;
-	public GameObject pause_menu;
+	public GameObject[] pause_menu_by_scene;
 	public GameTitle gameTitle;
+	public GameObject mainMenu;
 
 	private string pathToSaveFile;
 	private bool isPaused;
+	private GameObject pauseMenu;
 
 	// Update is called once per frame
 	void Update () {
@@ -46,11 +50,19 @@ public class Persister : MonoBehaviour {
 
 	void Start(){
 		SetSettings();
+		pauseMenu = pause_menu_by_scene [SceneManager.GetActiveScene ().buildIndex];
 	}
 
 	void OnApplicationQuit(){
 		Debug.Log ("Saving settings because app is quitting...");
 		SaveSettings ();
+	}
+
+	void OnLevelWasLoaded(int lvl){
+		pauseMenu = pause_menu_by_scene [SceneManager.GetActiveScene ().buildIndex];
+		if (lvl == 0) {	//this is the main menu scene
+			mainMenu.gameObject.SetActive(true);
+		}
 	}
 
 	void SaveSettings(){
@@ -97,18 +109,18 @@ public class Persister : MonoBehaviour {
 
 	public void DoPause(){
 		isPaused = true;
-		Time.timeScale = 0;		//Set time.timescale to 0, this will cause animations and physics to stop updating
-		if (!gameTitle.Abort) {
-			gameTitle.AbortEverything ();
-			UnPause ();
-		} else {
-			pause_menu.SetActive (true);
+		Time.timeScale = 0;					//Set time.timescale to 0, this will cause animations and physics to stop updating
+		if (!gameTitle.Abort) {				//if game title animation is playing
+			gameTitle.AbortEverything ();	//stop playing the animation
+			UnPause ();						//unpause to let main menu work
+		} else {							//if no title animation is playing
+			pauseMenu.SetActive (true);		//just show the pause menu for current scene
 		}
 	}
 	public void UnPause(){
 		isPaused = false;
-		Time.timeScale = 1;		//Set time.timescale to 1, animations and physics continue updating at regular speed
-		pause_menu.SetActive (false);
+		Time.timeScale = 1;					//Set time.timescale to 1, animations and physics continue updating at regular speed
+		pauseMenu.SetActive (false);		//hide the pause menu for current scene
 	}
 }
 
