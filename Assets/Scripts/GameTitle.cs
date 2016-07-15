@@ -3,6 +3,9 @@ using UnityEngine.UI;
 using UnityEngine.Audio;
 using System.Collections;
 
+//GameTitle class animates the letters of the title on game startup.
+//Currently GameTitle class changes font size and line spacing.
+//Starting with letters really oversized, then gradually shirinking and aligning.
 public class GameTitle : MonoBehaviour {
 
 	public Vector2 durations;
@@ -18,6 +21,13 @@ public class GameTitle : MonoBehaviour {
 	private bool activate_hat;
 	private bool spread_lines;
 	private bool abort;
+
+	public bool Abort {
+		get {
+			return abort;
+		}
+	}
+
 	private Vector2 initial;
 
 	// Use this for initialization
@@ -39,8 +49,8 @@ public class GameTitle : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetButtonDown ("Cancel"))
-			AbortEverything ();
+//		if (Input.GetButtonDown ("Cancel"))
+//			AbortEverything ();
 		if (!abort) {
 			if (text.fontSize >= font_line.x) {
 				curr_size -= deltas.x * Time.deltaTime;
@@ -61,6 +71,7 @@ public class GameTitle : MonoBehaviour {
 		if (activate_hat) {
 			if(hat_spin)hat_spin.SetActive (true);
 			if(menu_pane)menu_pane.SetActive (true);
+			abort = true;
 		}
 	}
 

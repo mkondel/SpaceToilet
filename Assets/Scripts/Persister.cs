@@ -5,6 +5,9 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using UnityEngine.Audio;
 
+//Persister class keeps volume/mouse settings between scenes.
+//Also saves them to a binary file to persist between app restarts.
+//Persister responds to ESC key to stop animation and opening theme.
 public class Persister : MonoBehaviour {
 
 	public static Persister persister;
@@ -12,6 +15,7 @@ public class Persister : MonoBehaviour {
 	public CustomGameSettings settingsOfTheGame;
 	public AudioMixer mainMixer;
 	public GameObject pause_menu;
+	public GameTitle gameTitle;
 
 	private string pathToSaveFile;
 	private bool isPaused;
@@ -94,7 +98,12 @@ public class Persister : MonoBehaviour {
 	public void DoPause(){
 		isPaused = true;
 		Time.timeScale = 0;		//Set time.timescale to 0, this will cause animations and physics to stop updating
-		pause_menu.SetActive (true);
+		if (!gameTitle.Abort) {
+			gameTitle.AbortEverything ();
+			UnPause ();
+		} else {
+			pause_menu.SetActive (true);
+		}
 	}
 	public void UnPause(){
 		isPaused = false;

@@ -10,7 +10,8 @@ public class ImagePickerByOS : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+
+		//bogus warning pops up in Mono, 'rect' IS used, but under #ifs
 		RectTransform rect = GetComponent<RectTransform>();
 
 		#if UNITY_IOS
