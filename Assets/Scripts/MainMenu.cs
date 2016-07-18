@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour {
 	
 	private static WaitForSeconds waitingTime;
-	private float waitTime = 0.5f;
+	private float waitTime = 1f;
 
 	public void BackToMenu(){
 		StartCoroutine( LoadSceneDelayed(0) ) ;

@@ -26,7 +26,7 @@ public class GameController : MonoBehaviour {
 	private int enemiesMax;
 	private int totalMonsters;
 	private int escapedMonsters;
-	private static WaitForSeconds restartButtonWait = new WaitForSeconds (3.0f);
+	private static WaitForSeconds restartButtonWait = new WaitForSeconds (1f);
 	private bool gameover;
 	private bool gamewon;
 	private int startingHealth;

@@ -71,13 +71,12 @@ public class Persister : MonoBehaviour
 
 	void OnLevelWasLoaded (int lvl)
 	{
+		DoFadeIn ();
 		pauseMenu = pause_menu_by_scene [SceneManager.GetActiveScene ().buildIndex];
 		if (lvl == 0) {	//this is the main menu scene
 			mainMenu.SetActive (true);
 		}else if (lvl == 1) {
 			shooterMenu.SetActive (true);
-			fadeInObject.SetActive (true);
-			fadeIn.FadeOut ();
 		}
 	}
 
@@ -152,15 +151,25 @@ public class Persister : MonoBehaviour
 
 	public void BackToMenu ()
 	{
+		DoFadeOut ();
 		StartCoroutine (LoadSceneDelayed (0));
 		Time.timeScale = 1;		//unpause
 	}
 
 	public void StartShooter ()
 	{
+		DoFadeOut ();
+		StartCoroutine( LoadSceneDelayed(1) ) ;
+	}
+
+	void DoFadeOut(){
 		fadeOutObject.SetActive(true);
 		fadeOut.FadeIn ();
-		StartCoroutine( LoadSceneDelayed(1) ) ;
+	}
+
+	void DoFadeIn(){
+		fadeInObject.SetActive(true);
+		fadeIn.FadeOut ();
 	}
 
 	public void RestartShooter ()
