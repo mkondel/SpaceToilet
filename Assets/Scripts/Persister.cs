@@ -21,11 +21,12 @@ public class Persister : MonoBehaviour
 	public GameTitle gameTitle;
 	public GameObject mainMenu;
 	public GameObject fadeOutObject;
+	public GameObject shooterMenu;
 
 	private string pathToSaveFile;
 	private bool isPaused;
 	private GameObject pauseMenu;
-	private static WaitForSeconds waitingTime = new WaitForSeconds (1f);
+	private static WaitForSeconds waitingTime = new WaitForSeconds (1.2f);
 	private FadeInOut fadeOut;
 
 	// Update is called once per frame
@@ -43,6 +44,11 @@ public class Persister : MonoBehaviour
 		Debug.Log ("Awake in Persister()");
 		pathToSaveFile = Application.persistentDataPath + "/" + dataFileName;
 		Debug.Log ("pathToSaveFile = " + pathToSaveFile);
+
+		SetSettings ();
+		pauseMenu = pause_menu_by_scene [SceneManager.GetActiveScene ().buildIndex];
+		fadeOut = fadeOutObject.GetComponent<FadeInOut> ();
+
 		if (persister == null) {
 			Debug.Log ("persister is null");
 			DontDestroyOnLoad (gameObject);
@@ -52,13 +58,6 @@ public class Persister : MonoBehaviour
 			Debug.Log ("persister is not null and not this.  Destroying self.");
 			Destroy (gameObject);
 		}
-	}
-
-	void Start ()
-	{
-		SetSettings ();
-		pauseMenu = pause_menu_by_scene [SceneManager.GetActiveScene ().buildIndex];
-		fadeOut = fadeOutObject.GetComponent<FadeInOut> ();
 	}
 
 	void OnApplicationQuit ()
@@ -73,9 +72,6 @@ public class Persister : MonoBehaviour
 		if (lvl == 0) {	//this is the main menu scene
 			mainMenu.gameObject.SetActive (true);
 		}
-
-		//reset faders
-		fadeOut.ResetFader ();
 	}
 
 	void SaveSettings ()
@@ -157,6 +153,7 @@ public class Persister : MonoBehaviour
 	{
 		fadeOutObject.SetActive(true);
 		fadeOut.FadeIn ();
+		shooterMenu.SetActive (true);
 		StartCoroutine( LoadSceneDelayed(1) ) ;
 	}
 
