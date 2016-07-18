@@ -11,26 +11,31 @@ public class Fader : MonoBehaviour {
 
 	private Image myImage;
 
-	void Start(){
-		myImage = GetComponent<Image> ();
+	void ResetFader(){
 		myImage.color = new Color (myImage.color.r, myImage.color.g, myImage.color.b, Mathf.Clamp01 (startAlpha));
 	}
 
+	void Start(){
+		myImage = GetComponent<Image> ();
+		ResetFader ();
+	}
+
 	void Update(){
-		if (myImage.color.a == Mathf.Clamp01 (endAlpha)) {
-			Debug.Log ("done with fade "+myImage.color.a);
-			if (disableAfterDone) {
-				this.gameObject.SetActive (false);
-			}
-		} else {
-			float newAlpha;
-			if (startAlpha > endAlpha) {
-				newAlpha = myImage.color.a - fadeSpeed * Time.deltaTime;
+		if (this.gameObject.activeSelf) {
+			if (myImage.color.a == Mathf.Clamp01 (endAlpha)) {
+				Debug.Log ("done with fade " + myImage.color.a);
+				if (disableAfterDone) {
+					this.gameObject.SetActive (false);
+				}
 			} else {
-				newAlpha = myImage.color.a + fadeSpeed * Time.deltaTime;
+				float newAlpha;
+				if (startAlpha > endAlpha) {
+					newAlpha = myImage.color.a - fadeSpeed * Time.deltaTime;
+				} else {
+					newAlpha = myImage.color.a + fadeSpeed * Time.deltaTime;
+				}
+				myImage.color = new Color (myImage.color.r, myImage.color.g, myImage.color.b, Mathf.Clamp01 (newAlpha));
 			}
-//			Debug.Log (myImage.color.a+" fading to "+endColor.a);
-			myImage.color = new Color (myImage.color.r, myImage.color.g, myImage.color.b, Mathf.Clamp01 (newAlpha)); //Color.Lerp (myImage.color, endColor, fadeSpeed);
 		}
 	}
 }
