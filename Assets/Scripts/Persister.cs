@@ -21,6 +21,7 @@ public class Persister : MonoBehaviour
 	public GameTitle gameTitle;
 	public GameObject mainMenu;
 	public GameObject fadeOutObject;
+	public GameObject fadeInObject;
 	public GameObject shooterMenu;
 
 	private string pathToSaveFile;
@@ -28,6 +29,7 @@ public class Persister : MonoBehaviour
 	private GameObject pauseMenu;
 	private static WaitForSeconds waitingTime = new WaitForSeconds (1.2f);
 	private FadeInOut fadeOut;
+	private FadeInOut fadeIn;
 
 	// Update is called once per frame
 	void Update ()
@@ -48,6 +50,7 @@ public class Persister : MonoBehaviour
 		SetSettings ();
 		pauseMenu = pause_menu_by_scene [SceneManager.GetActiveScene ().buildIndex];
 		fadeOut = fadeOutObject.GetComponent<FadeInOut> ();
+		fadeIn = fadeInObject.GetComponent<FadeInOut> ();
 
 		if (persister == null) {
 			Debug.Log ("persister is null");
@@ -70,7 +73,11 @@ public class Persister : MonoBehaviour
 	{
 		pauseMenu = pause_menu_by_scene [SceneManager.GetActiveScene ().buildIndex];
 		if (lvl == 0) {	//this is the main menu scene
-			mainMenu.gameObject.SetActive (true);
+			mainMenu.SetActive (true);
+		}else if (lvl == 1) {
+			shooterMenu.SetActive (true);
+			fadeInObject.SetActive (true);
+			fadeIn.FadeOut ();
 		}
 	}
 
@@ -153,7 +160,6 @@ public class Persister : MonoBehaviour
 	{
 		fadeOutObject.SetActive(true);
 		fadeOut.FadeIn ();
-		shooterMenu.SetActive (true);
 		StartCoroutine( LoadSceneDelayed(1) ) ;
 	}
 
