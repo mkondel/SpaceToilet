@@ -17,16 +17,17 @@ public class Persister : MonoBehaviour
 	public string dataFileName = "savedSettings.data";
 	public CustomGameSettings settingsOfTheGame;
 	public AudioMixer mainMixer;
-	public GameObject[] pause_menu_by_scene;
+//	public GameObject[] pause_menu_by_scene;
+	public GameObject pauseMenu;
 	public GameTitle gameTitle;
 	public GameObject mainMenu;
 	public GameObject fadeOutObject;
 	public GameObject fadeInObject;
 	public GameObject shooterMenu;
+	public GameObject quitButtonInMenu;
 
 	private string pathToSaveFile;
 	private bool isPaused;
-	private GameObject pauseMenu;
 	private static WaitForSeconds waitingTime = new WaitForSeconds (1.2f);
 	private FadeInOut fadeOut;
 	private FadeInOut fadeIn;
@@ -51,7 +52,6 @@ public class Persister : MonoBehaviour
 		pathToSaveFile = Application.persistentDataPath + "/" + dataFileName;
 		Debug.Log ("pathToSaveFile = " + pathToSaveFile);
 
-		pauseMenu = pause_menu_by_scene [SceneManager.GetActiveScene ().buildIndex];
 		fadeOut = fadeOutObject.GetComponent<FadeInOut> ();
 		fadeIn = fadeInObject.GetComponent<FadeInOut> ();
 
@@ -75,7 +75,11 @@ public class Persister : MonoBehaviour
 	void OnLevelWasLoaded (int lvl)
 	{
 		DoFadeIn ();
-		pauseMenu = pause_menu_by_scene [SceneManager.GetActiveScene ().buildIndex];
+
+		//if in main menu, only show back button in options.  when in shooter scene, also show the quit button there.
+		int idx1 = SceneManager.GetActiveScene ().buildIndex;
+		quitButtonInMenu.SetActive((idx1 == 1));
+
 		if (lvl == 0) {	//this is the main menu scene
 			mainMenu.SetActive (true);
 		}else if (lvl == 1) {
