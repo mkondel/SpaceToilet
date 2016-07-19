@@ -31,6 +31,10 @@ public class Persister : MonoBehaviour
 	private FadeInOut fadeOut;
 	private FadeInOut fadeIn;
 
+	void Start(){
+		SetSettings ();
+	}
+
 	// Update is called once per frame
 	void Update ()
 	{
@@ -56,7 +60,6 @@ public class Persister : MonoBehaviour
 			DontDestroyOnLoad (gameObject);
 			persister = this;
 			LoadSettings ();
-			SetSettings ();
 		} else if (persister != this) {
 			Debug.Log ("persister is not null and not this.  Destroying self.");
 			Destroy (gameObject);
