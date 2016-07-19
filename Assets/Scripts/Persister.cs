@@ -47,7 +47,6 @@ public class Persister : MonoBehaviour
 		pathToSaveFile = Application.persistentDataPath + "/" + dataFileName;
 		Debug.Log ("pathToSaveFile = " + pathToSaveFile);
 
-		SetSettings ();
 		pauseMenu = pause_menu_by_scene [SceneManager.GetActiveScene ().buildIndex];
 		fadeOut = fadeOutObject.GetComponent<FadeInOut> ();
 		fadeIn = fadeInObject.GetComponent<FadeInOut> ();
@@ -57,6 +56,7 @@ public class Persister : MonoBehaviour
 			DontDestroyOnLoad (gameObject);
 			persister = this;
 			LoadSettings ();
+			SetSettings ();
 		} else if (persister != this) {
 			Debug.Log ("persister is not null and not this.  Destroying self.");
 			Destroy (gameObject);

@@ -4,8 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour {
 	
-	private static WaitForSeconds waitingTime;
-	private float waitTime = 1f;
+	private static WaitForSeconds waitingTime = new WaitForSeconds (1f);
 
 	public void BackToMenu(){
 		StartCoroutine( LoadSceneDelayed(0) ) ;
@@ -26,7 +25,6 @@ public class MainMenu : MonoBehaviour {
 	}
 
 	IEnumerator LoadSceneDelayed(int sceneIndex) {
-		waitingTime = new WaitForSeconds (waitTime);
 		yield return waitingTime;
 		Debug.Log ("Changing to Shooter Scene");
 		SceneManager.LoadScene (sceneIndex);
