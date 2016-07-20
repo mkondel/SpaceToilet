@@ -31,6 +31,8 @@ public class PlayerController : MonoBehaviour
 
 	public GameObject myBody, myLeftEng, myRightEng, myGlass;
 
+	public Vector3 centerVector = Vector3.up;
+
 	private float fireRateHZ;
 	private float nextFire;
 	private int shots;
@@ -146,7 +148,8 @@ public class PlayerController : MonoBehaviour
 		#if UNITY_STANDALONE || UNITY_EDITOR
 			moveHorizontal = Input.GetAxis ("Mouse X");
 		#elif UNITY_ANDROID || UNITY_IOS
-			moveHorizontal = Input.acceleration.x * 75.0f;
+			//moveHorizontal = Input.acceleration.x * 75.0f;
+			moveHorizontal = Mathf.Clamp (Vector3.Angle(Input.gyro.gravity, centerVector), -1f, 1f);
 		#endif
 
 		Vector3 movement = new Vector3 (moveHorizontal, 0.0f, 0.0f);

@@ -9,22 +9,20 @@ using UnityEngine.SceneManagement;
 //Persister class keeps volume/mouse settings between scenes.
 //Also saves them to a binary file to persist between app restarts.
 //Persister responds to ESC key to stop animation and opening theme.
-//Shows/hides pause menu, which is different in each scene.  Both current pause menus are inside Persister prefab.
+//Shows/hides options menu.  Menus are inside Persister prefab.
 public class Persister : MonoBehaviour
 {
-
 	public static Persister persister;
 	public string dataFileName = "savedSettings.data";
 	public CustomGameSettings settingsOfTheGame;
 	public AudioMixer mainMixer;
-//	public GameObject[] pause_menu_by_scene;
 	public GameObject pauseMenu;
 	public GameTitle gameTitle;
 	public GameObject mainMenu;
 	public GameObject fadeOutObject;
 	public GameObject fadeInObject;
-	public GameObject shooterMenu;
 	public GameObject quitButtonInMenu;
+	public GameObject controlsSettingsMenu;
 
 	private string pathToSaveFile;
 	private bool isPaused;
@@ -82,8 +80,6 @@ public class Persister : MonoBehaviour
 
 		if (lvl == 0) {	//this is the main menu scene
 			mainMenu.SetActive (true);
-		}else if (lvl == 1) {
-			shooterMenu.SetActive (true);
 		}
 	}
 
@@ -151,9 +147,10 @@ public class Persister : MonoBehaviour
 
 	public void UnPause ()
 	{
-		isPaused = false;
-		Time.timeScale = 1;					//Set time.timescale to 1, animations and physics continue updating at regular speed
-		pauseMenu.SetActive (false);		//hide the pause menu for current scene
+		isPaused = false;							//aint paused no more1
+		Time.timeScale = 1;							//Set time.timescale to 1, animations and physics continue updating at regular speed
+		pauseMenu.SetActive (false);				//hide the pause menu for current scene
+		controlsSettingsMenu.SetActive(false); 		//hide the controls setting menu as well
 	}
 
 	public void BackToMenu ()
@@ -208,10 +205,29 @@ public class CustomGameSettings
 	public float[] mainMenuMusicVolumes;
 	public float[] shooterMusicVolumes;
 
+	public Vector3 fullLeftTiltVector = Vector3.left;
+	public Vector3 fullRightTiltVector = Vector3.right;
+
+	private float maxAngle = 90f;
+	private Vector3 centerVector = Vector3.up;
+
+	public Vector3 CenterVector {
+		get {
+			return centerVector;
+		}
+	}
+
 	public CustomGameSettings ()
 	{
 		Debug.Log ("initialising new CustomGameSettings object");
 		mainMenuMusicVolumes = new float[6];
 		shooterMusicVolumes = new float[5];
+	}
+
+	public void SetNewTiltLimits(Vector3 L, Vector3 R){
+		fullLeftTiltVector = L;
+		fullRightTiltVector = R;
+		maxAngle = Vector3.Angle (fullLeftTiltVector, fullRightTiltVector);
+		centerVector = Vector3.Lerp(fullLeftTiltVector, fullRightTiltVector, .5f);
 	}
 }
