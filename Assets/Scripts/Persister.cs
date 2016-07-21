@@ -6,6 +6,9 @@ using System.IO;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
+using System.Xml;
+using System.Xml.Serialization;
+
 //Persister class keeps volume/mouse settings between scenes.
 //Also saves them to a binary file to persist between app restarts.
 //Persister responds to ESC key to stop animation and opening theme.
@@ -29,6 +32,7 @@ public class Persister : MonoBehaviour
 	private static WaitForSeconds waitingTime = new WaitForSeconds (1.2f);
 	private FadeInOut fadeOut;
 	private FadeInOut fadeIn;
+	private GyroToText myGyro;
 
 	void Start(){
 		SetSettings ();
@@ -52,6 +56,7 @@ public class Persister : MonoBehaviour
 
 		fadeOut = fadeOutObject.GetComponent<FadeInOut> ();
 		fadeIn = fadeInObject.GetComponent<FadeInOut> ();
+		myGyro = GetComponent<GyroToText> ();
 
 		if (persister == null) {
 			Debug.Log ("persister is null");
@@ -80,15 +85,22 @@ public class Persister : MonoBehaviour
 
 		if (lvl == 0) {	//this is the main menu scene
 			mainMenu.SetActive (true);
+		}else if (lvl == 1) {
+			//find the gyro controller
+			//set the values for LR tilt
 		}
 	}
 
 	void SaveSettings ()
 	{
 		Debug.Log ("Saving settings");
-		BinaryFormatter bf = new BinaryFormatter ();
+//		BinaryFormatter bf = new BinaryFormatter ();
 		FileStream file = File.Create (pathToSaveFile);
-		bf.Serialize (file, settingsOfTheGame);
+//		bf.Serialize (file, settingsOfTheGame);
+
+		var serializer = new XmlSerializer(typeof(CustomGameSettings));
+		serializer.Serialize(file, settingsOfTheGame);
+
 		file.Close ();
 	}
 
@@ -97,9 +109,15 @@ public class Persister : MonoBehaviour
 		Debug.Log ("Loading settings");
 		if (File.Exists (pathToSaveFile)) {
 			Debug.Log ("Loading settings from filename = " + pathToSaveFile);
-			BinaryFormatter bf = new BinaryFormatter ();
+
+//			BinaryFormatter bf = new BinaryFormatter ();
 			FileStream file = File.Open (pathToSaveFile, FileMode.Open);
-			settingsOfTheGame = (CustomGameSettings)bf.Deserialize (file);
+//			settingsOfTheGame = (CustomGameSettings)bf.Deserialize (file);
+
+			var serializer = new XmlSerializer(typeof(CustomGameSettings));
+			settingsOfTheGame = serializer.Deserialize(file) as CustomGameSettings;
+
+
 			file.Close ();
 			Debug.Log ("settings loaded");
 		} else {
@@ -113,6 +131,8 @@ public class Persister : MonoBehaviour
 		setMainVolume (settingsOfTheGame.mainVolume);
 		setMusicVolume (settingsOfTheGame.musicVolume);
 		setFxVolume (settingsOfTheGame.fxVolume);
+		myGyro.L = settingsOfTheGame.fullLeftTiltVector;
+		myGyro.R = settingsOfTheGame.fullRightTiltVector;
 	}
 
 	public void setMainVolume (float newLvl)
@@ -189,13 +209,19 @@ public class Persister : MonoBehaviour
 	IEnumerator LoadSceneDelayed (int sceneIndex)
 	{
 		yield return waitingTime;
-		Debug.Log ("Changing to Shooter Scene");
+		Debug.Log ("Changing to "+sceneIndex+" Scene");
 		SceneManager.LoadScene (sceneIndex);
+	}
+
+	public void SaveTiltSettings(){
+		settingsOfTheGame.fullLeftTiltVector  = myGyro.L;
+		settingsOfTheGame.fullRightTiltVector = myGyro.R;
 	}
 }
 
 //NEEDS: - playlist un-check not to play, track by track
-[Serializable]
+//[Serializable]
+[XmlRoot("CustomGameSettings")]
 public class CustomGameSettings
 {
 	public float mainVolume;
@@ -205,17 +231,8 @@ public class CustomGameSettings
 	public float[] mainMenuMusicVolumes;
 	public float[] shooterMusicVolumes;
 
-	public Vector3 fullLeftTiltVector = Vector3.left;
-	public Vector3 fullRightTiltVector = Vector3.right;
-
-	private float maxAngle = 90f;
-	private Vector3 centerVector = Vector3.up;
-
-	public Vector3 CenterVector {
-		get {
-			return centerVector;
-		}
-	}
+	public Vector3 fullLeftTiltVector;
+	public Vector3 fullRightTiltVector;
 
 	public CustomGameSettings ()
 	{
@@ -223,11 +240,22 @@ public class CustomGameSettings
 		mainMenuMusicVolumes = new float[6];
 		shooterMusicVolumes = new float[5];
 	}
+}
+	
+//[System.Serializable]
+[XmlRoot("Vector3Serializer")]
+public class Vector3Serializer
+{
+	public float x;
+	public float y;
+	public float z;
 
-	public void SetNewTiltLimits(Vector3 L, Vector3 R){
-		fullLeftTiltVector = L;
-		fullRightTiltVector = R;
-		maxAngle = Vector3.Angle (fullLeftTiltVector, fullRightTiltVector);
-		centerVector = Vector3.Lerp(fullLeftTiltVector, fullRightTiltVector, .5f);
+	public void Fill(Vector3 v3)
+	{
+		x = v3.x;
+		y = v3.y;
+		z = v3.z;
 	}
+
+	public Vector3 V3 { get { return new Vector3(x, y, z); } set { Fill(value); } }
 }

@@ -31,14 +31,13 @@ public class PlayerController : MonoBehaviour
 
 	public GameObject myBody, myLeftEng, myRightEng, myGlass;
 
-	public Vector3 centerVector = Vector3.up;
-
 	private float fireRateHZ;
 	private float nextFire;
 	private int shots;
 	private Animator muzzleAnimation;
 	private static WaitForSeconds plasmaTimeout = new WaitForSeconds (0.5f);
 	private AudioSource shipAudioSource;
+	private GyroToText gyroInput;
 
 	void Start(){
 		fireRateHZ = 1f;
@@ -55,6 +54,8 @@ public class PlayerController : MonoBehaviour
 			myLeftEng.GetComponent<MeshRenderer>().material = Resources.Load("RedMaterialAndroid", typeof(Material)) as Material;
 			myRightEng.GetComponent<MeshRenderer>().material = Resources.Load("RedMaterialAndroid", typeof(Material)) as Material;
 		#endif
+
+		gyroInput = GameObject.Find ("Persister").GetComponent<GyroToText> ();
 	}
 
 	void Update (){
@@ -149,7 +150,8 @@ public class PlayerController : MonoBehaviour
 			moveHorizontal = Input.GetAxis ("Mouse X");
 		#elif UNITY_ANDROID || UNITY_IOS
 			//moveHorizontal = Input.acceleration.x * 75.0f;
-			moveHorizontal = Mathf.Clamp (Vector3.Angle(Input.gyro.gravity, centerVector), -1f, 1f);
+			//moveHorizontal = Mathf.Clamp (Vector3.Angle(Input.gyro.gravity, centerVector), -1f, 1f);
+			moveHorizontal = gyroInput.UserDefinedTilt () * 20.0f;
 		#endif
 
 		Vector3 movement = new Vector3 (moveHorizontal, 0.0f, 0.0f);

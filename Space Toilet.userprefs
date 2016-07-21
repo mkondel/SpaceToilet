@@ -1,10 +1,14 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj" RefactoringSettings.EnableRefactorings="True">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/GyroToText.cs">
+    <Files>
+      <File FileName="Assets/Scripts/GyroToText.cs" Line="13" Column="20" />
+      <File FileName="Assets/Scripts/Persister.cs" Line="121" Column="1" />
+      <File FileName="Assets/Scripts/PlayerController.cs" Line="40" Column="2" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/max/Desktop/projects/toilets/Space Toilet/Assets/Scripts/Persister.cs" line="79" column="1" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>
