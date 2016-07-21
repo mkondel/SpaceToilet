@@ -78,6 +78,7 @@
      <Compile Include="Assets\Scripts\GameController.cs" />
      <Compile Include="Assets\Scripts\GameOverBackgroudns.cs" />
      <Compile Include="Assets\Scripts\GameTitle.cs" />
+     <Compile Include="Assets\Scripts\GyroToText.cs" />
      <Compile Include="Assets\Scripts\ImagePickerByOS.cs" />
      <Compile Include="Assets\Scripts\LightByOS.cs" />
      <Compile Include="Assets\Scripts\LoadMusicSliderValue.cs" />
