@@ -217,22 +217,26 @@ public class Persister : MonoBehaviour
 		settingsOfTheGame.fullLeftTiltVector  = myGyro.L;
 		settingsOfTheGame.fullRightTiltVector = myGyro.R;
 	}
+
+	public void SetMouseSensitivity(float newS){
+		settingsOfTheGame.mouseSensitivity = newS;
+	}
 }
 
 //NEEDS: - playlist un-check not to play, track by track
 //[Serializable]
 [XmlRoot("CustomGameSettings")]
+[System.Serializable]
 public class CustomGameSettings
 {
 	public float mainVolume;
 	public float musicVolume;
 	public float fxVolume;
-
 	public float[] mainMenuMusicVolumes;
 	public float[] shooterMusicVolumes;
-
 	public Vector3 fullLeftTiltVector;
 	public Vector3 fullRightTiltVector;
+	public float mouseSensitivity;
 
 	public CustomGameSettings ()
 	{
@@ -240,22 +244,4 @@ public class CustomGameSettings
 		mainMenuMusicVolumes = new float[6];
 		shooterMusicVolumes = new float[5];
 	}
-}
-	
-//[System.Serializable]
-[XmlRoot("Vector3Serializer")]
-public class Vector3Serializer
-{
-	public float x;
-	public float y;
-	public float z;
-
-	public void Fill(Vector3 v3)
-	{
-		x = v3.x;
-		y = v3.y;
-		z = v3.z;
-	}
-
-	public Vector3 V3 { get { return new Vector3(x, y, z); } set { Fill(value); } }
 }

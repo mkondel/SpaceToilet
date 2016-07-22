@@ -38,6 +38,9 @@ public class PlayerController : MonoBehaviour
 	private static WaitForSeconds plasmaTimeout = new WaitForSeconds (0.5f);
 	private AudioSource shipAudioSource;
 	private GyroToText gyroInput;
+	private float inputScale;
+	private GameObject persObj;
+	private Persister pers;
 
 	void Start(){
 		fireRateHZ = 1f;
@@ -47,6 +50,7 @@ public class PlayerController : MonoBehaviour
 		muzzleFlashPlasma.StartPlayback ();
 		muzzleAnimation = muzzleFlashBullet;
 		shipAudioSource = GetComponent<AudioSource> ();
+		inputScale = 1f;
 
 		#if UNITY_ANDROID
 			myBody.GetComponent<MeshRenderer>().material = Resources.Load("SilverMaterialAndroid", typeof(Material)) as Material;
@@ -55,7 +59,9 @@ public class PlayerController : MonoBehaviour
 			myRightEng.GetComponent<MeshRenderer>().material = Resources.Load("RedMaterialAndroid", typeof(Material)) as Material;
 		#endif
 
-		gyroInput = GameObject.Find ("Persister").GetComponent<GyroToText> ();
+		persObj = GameObject.Find ("Persister");
+		pers = persObj.GetComponent<Persister>();
+		gyroInput = pers.GetComponent<GyroToText> ();
 	}
 
 	void Update (){
@@ -144,18 +150,18 @@ public class PlayerController : MonoBehaviour
 	}
 
     void FixedUpdate (){
-		float moveHorizontal = 0;
+		float moveHorizontal = 0f;
 
 		#if UNITY_STANDALONE || UNITY_EDITOR
+			inputScale = 2f;				//scale by user set mouse sensitivity, user cant adjust input sensitivity, but this scale instead
 			moveHorizontal = Input.GetAxis ("Mouse X");
 		#elif UNITY_ANDROID || UNITY_IOS
-			//moveHorizontal = Input.acceleration.x * 75.0f;
-			//moveHorizontal = Mathf.Clamp (Vector3.Angle(Input.gyro.gravity, centerVector), -1f, 1f);
-			moveHorizontal = gyroInput.UserDefinedTilt () * 20.0f;
+			inputScale = 20.0f;				//always scale mobile input by constant, user can adjust range, unlike on PC
+			moveHorizontal = gyroInput.UserDefinedTilt ();
 		#endif
 
-		Vector3 movement = new Vector3 (moveHorizontal, 0.0f, 0.0f);
-        GetComponent<Rigidbody>().velocity = movement * speed;
+		Vector3 movement = new Vector3 (moveHorizontal * inputScale, 0.0f, 0.0f);
+		GetComponent<Rigidbody>().velocity = movement * speed;
 
         GetComponent<Rigidbody>().position = new Vector3 
         (
