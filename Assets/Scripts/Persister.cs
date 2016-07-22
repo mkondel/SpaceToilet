@@ -29,6 +29,9 @@ public class Persister : MonoBehaviour
 	public GameObject controlsSettingsMenu;
 	public Text mouseSensitivityText;
 	public Slider mouseSensitivitySlider;
+	public Slider mainVolSlider;
+	public Slider musicVolSlider;
+	public Slider effectsVolSlider;
 
 	private string pathToSaveFile;
 	private bool isPaused;
@@ -131,30 +134,39 @@ public class Persister : MonoBehaviour
 
 	void SetSettings ()
 	{
-		setMainVolume (settingsOfTheGame.mainVolume);
-		setMusicVolume (settingsOfTheGame.musicVolume);
-		setFxVolume (settingsOfTheGame.fxVolume);
+		SetMainVolume (settingsOfTheGame.mainVolume);
+		SetMusicVolume (settingsOfTheGame.musicVolume);
+		SetFxVolume (settingsOfTheGame.fxVolume);
 		myGyro.L = settingsOfTheGame.fullLeftTiltVector;
 		myGyro.R = settingsOfTheGame.fullRightTiltVector;
 		SetMouseSensitivity (settingsOfTheGame.mouseSensitivity);
 	}
 
-	public void setMainVolume (float newLvl)
+	public void SetMainVolume (float newLvl)
 	{
 		settingsOfTheGame.mainVolume = newLvl;
 		mainMixer.SetFloat ("mainVol", newLvl);
+		if (mainVolSlider.value != newLvl) {
+			mainVolSlider.value = newLvl;
+		}
 	}
 
-	public void setMusicVolume (float newLvl)
+	public void SetMusicVolume (float newLvl)
 	{
 		settingsOfTheGame.musicVolume = newLvl;
 		mainMixer.SetFloat ("musicVol", newLvl);
+		if (musicVolSlider.value != newLvl) {
+			musicVolSlider.value = newLvl;
+		}
 	}
 
-	public void setFxVolume (float newLvl)
+	public void SetFxVolume (float newLvl)
 	{
 		settingsOfTheGame.fxVolume = newLvl;
 		mainMixer.SetFloat ("sfxVol", newLvl);
+		if (effectsVolSlider.value != newLvl) {
+			effectsVolSlider.value = newLvl;
+		}
 	}
 
 	public void DoPause ()
@@ -225,7 +237,9 @@ public class Persister : MonoBehaviour
 	public void SetMouseSensitivity(float newS){
 		settingsOfTheGame.mouseSensitivity = newS;
 		mouseSensitivityText.text = "Mouse Sensitivity " + newS.ToString ();
-		mouseSensitivitySlider.value = newS;
+		if (mouseSensitivitySlider.value != newS) {
+			mouseSensitivitySlider.value = newS;
+		}
 	}
 }
 
