@@ -5,6 +5,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 using System.Xml;
 using System.Xml.Serialization;
@@ -26,6 +27,8 @@ public class Persister : MonoBehaviour
 	public GameObject fadeInObject;
 	public GameObject quitButtonInMenu;
 	public GameObject controlsSettingsMenu;
+	public Text mouseSensitivityText;
+	public Slider mouseSensitivitySlider;
 
 	private string pathToSaveFile;
 	private bool isPaused;
@@ -133,6 +136,7 @@ public class Persister : MonoBehaviour
 		setFxVolume (settingsOfTheGame.fxVolume);
 		myGyro.L = settingsOfTheGame.fullLeftTiltVector;
 		myGyro.R = settingsOfTheGame.fullRightTiltVector;
+		SetMouseSensitivity (settingsOfTheGame.mouseSensitivity);
 	}
 
 	public void setMainVolume (float newLvl)
@@ -220,6 +224,8 @@ public class Persister : MonoBehaviour
 
 	public void SetMouseSensitivity(float newS){
 		settingsOfTheGame.mouseSensitivity = newS;
+		mouseSensitivityText.text = "Mouse Sensitivity " + newS.ToString ();
+		mouseSensitivitySlider.value = newS;
 	}
 }
 
