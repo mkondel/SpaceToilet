@@ -26,12 +26,13 @@ public class Persister : MonoBehaviour
 	public GameObject fadeOutObject;
 	public GameObject fadeInObject;
 	public GameObject quitButtonInMenu;
-	public GameObject controlsSettingsMenu;
 	public Text mouseSensitivityText;
 	public Slider mouseSensitivitySlider;
 	public Slider mainVolSlider;
 	public Slider musicVolSlider;
 	public Slider effectsVolSlider;
+	public GameObject[] controlsMenus;
+	public GameObject controlsSettingsMenu;
 
 	private string pathToSaveFile;
 	private bool isPaused;
@@ -42,6 +43,7 @@ public class Persister : MonoBehaviour
 
 	void Start(){
 		SetSettings ();
+		EnablePlatformSpecifics ();
 	}
 
 	// Update is called once per frame
@@ -241,6 +243,14 @@ public class Persister : MonoBehaviour
 			mouseSensitivitySlider.value = newS;
 		}
 	}
+
+	void EnablePlatformSpecifics(){
+		#if UNITY_STANDALONE || UNITY_EDITOR
+			controlsMenus[1].SetActive(true);
+		#elif UNITY_ANDROID || UNITY_IOS
+			controlsMenus[0].SetActive(true);
+		#endif
+	}
 }
 
 //NEEDS: - playlist un-check not to play, track by track
@@ -263,5 +273,9 @@ public class CustomGameSettings
 		Debug.Log ("initialising new CustomGameSettings object");
 		mainMenuMusicVolumes = new float[6];
 		shooterMusicVolumes = new float[5];
+
+		//these are good starting defaults for tilt on my phone...
+		fullLeftTiltVector = new Vector3(-1f, 0f, -1f);
+		fullRightTiltVector = new Vector3(1f, 0f, -1f);
 	}
 }

@@ -4,7 +4,7 @@ using System.Collections;
 
 public class GyroToText : MonoBehaviour {
 
-	public Slider debugSlider;
+	public Slider gyroSlider;
 	public Text debugText;
 	public Vector3 R {
 		get {
@@ -40,6 +40,7 @@ public class GyroToText : MonoBehaviour {
 	public void RestoreLR(){
 		L = bakL;
 		R = bakR;
+		SetOtherValues ();
 	}
 
 	void Start(){
@@ -50,7 +51,7 @@ public class GyroToText : MonoBehaviour {
 
 	void Update(){
 		#if UNITY_ANDROID || UNITY_IOS
-			if (debugSlider) {
+			if (gyroSlider) {
 				UserDefinedTilt ();
 			}
 		#endif
@@ -64,8 +65,8 @@ public class GyroToText : MonoBehaviour {
 		Vector3 planeVector = Vector3.ProjectOnPlane (inputVector, n);
 		float c = DetermineSignedAngle(planeVector);
 		float finalAnswer = -Mathf.Clamp (c / m, -1f, 1f);
-		if (debugSlider && debugText) {
-			debugSlider.value = finalAnswer;
+		if (gyroSlider && debugText) {
+			gyroSlider.value = finalAnswer;
 			debugText.text = l.ToString () + "\n" + r.ToString ();
 		}
 		return finalAnswer;
@@ -81,18 +82,20 @@ public class GyroToText : MonoBehaviour {
 	//SetL assigns a new value to the left most tilt vector
 	public void SetL(){
 		L = Input.gyro.gravity;
+		SetOtherValues ();
 	}
 
 	//SetR assigns a new value to the right most tilt vector
 	public void SetR(){
 		R = Input.gyro.gravity;
+		SetOtherValues ();
 	}
 
 	//FullTiltReset resets all the vectors for tilt back to starting values
 	public void FullTiltReset(){
-//		Vector3 vecD = new Vector3 (0.01f, 0.01f, 0.01f);
-		l = Vector3.left;// + vecD;
-		r = Vector3.right;// - vecD;
+		//wierd numbers, but good starting defaults on my phone...
+		l = new Vector3(-1f, 0f, -1f);
+		r = new Vector3(1f, 0f, -1f);
 		SetOtherValues ();
 	}
 
