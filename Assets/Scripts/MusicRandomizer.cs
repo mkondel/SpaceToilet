@@ -10,6 +10,7 @@ public class MusicRandomizer : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		Debug.Log ("Start in MusicRandomizer");
 		if (bgMusicClip.Length>0) {
 			bgMusic = GetComponent<AudioSource> ();
 			if (music_index_override > -1 && music_index_override < bgMusicClip.Length) {

@@ -33,6 +33,8 @@ public class Persister : MonoBehaviour
 	public Slider effectsVolSlider;
 	public GameObject[] controlsMenus;
 	public GameObject controlsSettingsMenu;
+	public AudioClip[] bgMusicClipsShooter;
+	public AudioClip[] bgMusicClipsMenu;
 
 	private string pathToSaveFile;
 	private bool isPaused;
@@ -40,21 +42,7 @@ public class Persister : MonoBehaviour
 	private FadeInOut fadeOut;
 	private FadeInOut fadeIn;
 	private GyroToText myGyro;
-
-	void Start(){
-		SetSettings ();
-		EnablePlatformSpecifics ();
-	}
-
-	// Update is called once per frame
-	void Update ()
-	{
-		if (Input.GetButtonDown ("Cancel") && !isPaused) {
-			DoPause ();
-		} else if (Input.GetButtonDown ("Cancel") && isPaused) {
-			UnPause ();
-		}
-	}
+	private AudioSource bgMusic;
 
 	void Awake ()
 	{
@@ -65,6 +53,7 @@ public class Persister : MonoBehaviour
 		fadeOut = fadeOutObject.GetComponent<FadeInOut> ();
 		fadeIn = fadeInObject.GetComponent<FadeInOut> ();
 		myGyro = GetComponent<GyroToText> ();
+		bgMusic = GetComponent<AudioSource> ();
 
 		if (persister == null) {
 			Debug.Log ("persister is null");
@@ -77,6 +66,23 @@ public class Persister : MonoBehaviour
 		}
 	}
 
+	void Start(){
+		Debug.Log ("Start in Persister");
+		SetSettings ();
+		EnablePlatformSpecifics ();
+		SceneManager.LoadScene (0);
+	}
+
+	// Update is called once per frame
+	void Update ()
+	{
+		if (Input.GetButtonDown ("Cancel") && !isPaused) {
+			DoPause ();
+		} else if (Input.GetButtonDown ("Cancel") && isPaused) {
+			UnPause ();
+		}
+	}
+		
 	void OnApplicationQuit ()
 	{
 		Debug.Log ("Saving settings because app is quitting...");
@@ -85,23 +91,36 @@ public class Persister : MonoBehaviour
 
 	void OnLevelWasLoaded (int lvl)
 	{
+		Debug.Log ("OnLevelWasLoaded in Persister");
 		DoFadeIn ();
 
 		//if in main menu, only show back button in options.  when in shooter scene, also show the quit button there.
 		int idx1 = SceneManager.GetActiveScene ().buildIndex;
+		//can prolly delete idx1 and just use lvl here....
 		quitButtonInMenu.SetActive((idx1 == 1));
 
 		if (lvl == 0) {	//this is the main menu scene
 			mainMenu.SetActive (true);
+			PlayMusicForScene(bgMusicClipsMenu);
 		}else if (lvl == 1) {
 			//find the gyro controller
 			//set the values for LR tilt
+			//play music track from this scene
+			PlayMusicForScene(bgMusicClipsShooter);
+		}
+	}
+
+	private void PlayMusicForScene(AudioClip[] bgMusicClips){
+		//load clips from this scene
+		if (bgMusicClips.Length>0) {
+			bgMusic.clip = bgMusicClips[UnityEngine.Random.Range(0, bgMusicClips.Length)];
+			bgMusic.Play ();
 		}
 	}
 
 	void SaveSettings ()
 	{
-		Debug.Log ("Saving settings");
+		Debug.Log ("SaveSettings in Persister");
 //		BinaryFormatter bf = new BinaryFormatter ();
 		FileStream file = File.Create (pathToSaveFile);
 //		bf.Serialize (file, settingsOfTheGame);
@@ -114,7 +133,7 @@ public class Persister : MonoBehaviour
 
 	void LoadSettings ()
 	{
-		Debug.Log ("Loading settings");
+		Debug.Log ("Loading settings in Persister");
 		if (File.Exists (pathToSaveFile)) {
 			Debug.Log ("Loading settings from filename = " + pathToSaveFile);
 
@@ -124,7 +143,6 @@ public class Persister : MonoBehaviour
 
 			var serializer = new XmlSerializer(typeof(CustomGameSettings));
 			settingsOfTheGame = serializer.Deserialize(file) as CustomGameSettings;
-
 
 			file.Close ();
 			Debug.Log ("settings loaded");
@@ -271,8 +289,6 @@ public class CustomGameSettings
 	public CustomGameSettings ()
 	{
 		Debug.Log ("initialising new CustomGameSettings object");
-		mainMenuMusicVolumes = new float[6];
-		shooterMusicVolumes = new float[5];
 
 		//these are good starting defaults for tilt on my phone...
 		fullLeftTiltVector = new Vector3(-1f, 0f, -1f);

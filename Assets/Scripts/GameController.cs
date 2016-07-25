@@ -17,7 +17,6 @@ public class GameController : MonoBehaviour {
 	public Slider healthSlider;
 	public Slider hertzSlider;
 	public UpdateGameTimer bigTimer;
-	public AudioClip[] bgMusicClip;
 	public AudioMixerSnapshot volumeDown;
 	public AudioMixerSnapshot volumeUp;
 	public FaceChange pilotFace;
@@ -30,11 +29,11 @@ public class GameController : MonoBehaviour {
 	private bool gameover;
 	private bool gamewon;
 	private int startingHealth;
-	private AudioSource bgMusic;
 	private float hpPercent;
 	private bool KHz;
 	private int currHertz;
 	private static float bgMusicFadeTime = 5f;
+//	private Persister pers;
 
 	private class ScoreCard{
 		public int kills = 0;
@@ -60,6 +59,7 @@ public class GameController : MonoBehaviour {
 
 
 	void Awake () {
+		Debug.Log ("Awake in GameController");
 		totalMonsters = escapedMonsters = 0;
 		score = new ScoreCard();
 		enemiesMax = 1;
@@ -70,15 +70,14 @@ public class GameController : MonoBehaviour {
 		player.KHz = killahertz;
 		bigTimer.enabled = true;
 		startingHealth = player.health;
-		if (bgMusicClip.Length>0) {
-			bgMusic = GetComponent<AudioSource> ();
-			bgMusic.clip = bgMusicClip[Random.Range(0, bgMusicClip.Length)];
-			bgMusic.Play ();
-		}
+
+		//get access to the Persister
+//		pers = GameObject.Find ("Persister").GetComponent<Persister>();
 	}
 
 
 	void Start(){
+		Debug.Log ("Start in GameController");
 		StartCoroutine (FadeUp (0.5f));
 //		pilotFace.KhzMode = true;
 //		pilotLightningBG.SetActive (true);
