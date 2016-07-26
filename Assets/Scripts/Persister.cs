@@ -33,6 +33,7 @@ public class Persister : MonoBehaviour
 	public Slider effectsVolSlider;
 	public GameObject[] controlsMenus;
 	public GameObject controlsSettingsMenu;
+	public GameObject helpMenu;
 	public AudioClip[] bgMusicClipsShooter;
 	public AudioClip[] bgMusicClipsMenu;
 
@@ -207,6 +208,7 @@ public class Persister : MonoBehaviour
 		Time.timeScale = 1;							//Set time.timescale to 1, animations and physics continue updating at regular speed
 		pauseMenu.SetActive (false);				//hide the pause menu for current scene
 		controlsSettingsMenu.SetActive(false); 		//hide the controls setting menu as well
+		helpMenu.SetActive(false); 					//hide the help menu
 	}
 
 	public void BackToMenu ()
