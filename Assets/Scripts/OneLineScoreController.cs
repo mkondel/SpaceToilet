@@ -11,77 +11,42 @@ public class OneLineScoreController : MonoBehaviour {
 	public Text accuracy;
 	public Text kills;
 
-	private string nameStr;
-
 	public string NameStr {
-		get {
-			return nameStr;
-		}
 		set {
-			nameStr = value;
 			playerName.text = value;
 		}
 	}
 
-	private string timeStr;
-
 	public string TimeStr {
-		get {
-			return timeStr;
-		}
 		set {
-			timeStr = value;
 			time.text = value;
 		}
 	}
 
-	private string gradeStr;
-
 	public string GradeStr {
-		get {
-			return gradeStr;
-		}
 		set {
-			gradeStr = value;
 			grade.text = value;
 		}
 	}
 
-	private string accuracyStr;
-
 	public string AccuracyStr {
-		get {
-			return accuracyStr;
-		}
 		set {
-			accuracyStr = value;
 			accuracy.text = value;
 		}
 	}
 
-	private string killsStr;
-
 	public string KillsStr {
-		get {
-			return killsStr;
-		}
 		set {
-			killsStr = value;
 			kills.text = value;
 		}
 	}
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-
-//	LoadFromOneString takes a string array and sets local private vars
-	public void LoadFromOneStringArray(string[] allInOne){
-		NameStr = allInOne[0];
-		TimeStr = allInOne[1];
-		GradeStr = allInOne[2];
-		AccuracyStr = allInOne[3];
-		KillsStr = allInOne[4];
+	//LoadFromOneString takes a string array and sets local private vars
+	public void LoadFromOneStringArray(OneScoreFromTopTen oneScoreOnly){
+		NameStr = oneScoreOnly.PlayerName;
+		TimeStr = oneScoreOnly.TimeValueAsString();
+		GradeStr = oneScoreOnly.GradeMe();
+		AccuracyStr = oneScoreOnly.AccuracyValueAsString();
+		KillsStr = oneScoreOnly.KillsValueAsString();
 	}
 }

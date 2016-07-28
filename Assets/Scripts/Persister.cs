@@ -6,9 +6,9 @@ using System.IO;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-
 using System.Xml;
 using System.Xml.Serialization;
+using System.Collections.Generic;
 
 //Persister class keeps volume/mouse settings between scenes.
 //Also saves them to a binary file to persist between app restarts.
@@ -142,14 +142,20 @@ public class Persister : MonoBehaviour
 			FileStream file = File.Open (pathToSaveFile, FileMode.Open);
 //			settingsOfTheGame = (CustomGameSettings)bf.Deserialize (file);
 
+			Debug.Log ("making serializer");
 			var serializer = new XmlSerializer(typeof(CustomGameSettings));
+			Debug.Log ("done making serializer");
+			Debug.Log ("using serializer");
 			settingsOfTheGame = serializer.Deserialize(file) as CustomGameSettings;
+			Debug.Log ("done using serializer");
 
 			file.Close ();
 			Debug.Log ("settings loaded");
 		} else {
 			Debug.Log ("making new settings object");
 			settingsOfTheGame = new CustomGameSettings ();
+			settingsOfTheGame.GenerateFakeTopTenScores ();
+			Debug.Log ("done making new settings object");
 		}
 	}
 
@@ -287,7 +293,7 @@ public class CustomGameSettings
 	public Vector3 fullLeftTiltVector;
 	public Vector3 fullRightTiltVector;
 	public float mouseSensitivity;
-	public string[][] topTenScores;
+	public List<OneScoreFromTopTen> topTenScores;
 
 	public CustomGameSettings ()
 	{
@@ -296,22 +302,160 @@ public class CustomGameSettings
 		//these are good starting defaults for tilt on my phone...
 		fullLeftTiltVector = new Vector3(-1f, 0f, -1f);
 		fullRightTiltVector = new Vector3(1f, 0f, -1f);
+	}
 
+	public void GenerateFakeTopTenScores(){
 		//generate fake top 10 scores
-		topTenScores = new string[10][];
-		for (int i = 0; i < topTenScores.Length; i++) {
-			topTenScores[i] = MakeRandomScore();
+		topTenScores = new List<OneScoreFromTopTen>();
+		for (int i = 0; i < 10; i++) {
+			OneScoreFromTopTen newScore = new OneScoreFromTopTen ();
+			newScore.MakeRandomScore();
+			//append top 10 rank to the name for debugging
+			newScore.PlayerName += i.ToString ();
+			topTenScores.Add(newScore);
+			Debug.Log("Made this in Persister: "+topTenScores[i].ToString());
+		}
+		topTenScores.Sort ();
+	}
+
+	//CheckIfInTopTen returns true if newScore is higher than the current 10th place
+	public bool CheckIfInTopTen(OneScoreFromTopTen newScore){
+		//if new score is higher than 10th score
+		//CompareTo() returns <0 if this precedes other in the sort order
+		if (newScore.CompareTo (topTenScores [topTenScores.Count-1]) < 0) {
+			return true;
+		} else {
+			return false;
 		}
 	}
 
-	string[] MakeRandomScore(){
-		string[] fakeStringArray = new string[5];
-		fakeStringArray [0] = "Fake Name "+UnityEngine.Random.Range(1,99999).ToString();
-		fakeStringArray [1] = UnityEngine.Random.Range(1,99).ToString()+":"+UnityEngine.Random.Range(1,99).ToString()+":"+UnityEngine.Random.Range(1,999).ToString()+"ms";
-		fakeStringArray [2] = "A";
-		fakeStringArray [3] = UnityEngine.Random.Range(1,99).ToString()+"%";
-		fakeStringArray [4] = UnityEngine.Random.Range(1,99).ToString()+"%";
-		Debug.Log ("Made fake score "+fakeStringArray.ToString ());
-		return fakeStringArray;
+	//InsertNewTopTenScore adds the new score to the top ten list and sorts the new list, makes sure to keep only the top 10
+	public void InsertNewTopTenScore(OneScoreFromTopTen newScore){
+		//make a temp list to hold 11 scores
+		List<OneScoreFromTopTen> tempTopElevenScores = new List<OneScoreFromTopTen>( topTenScores.ToArray());
+
+		//add to the score list (count will be 11)
+		tempTopElevenScores.Add (newScore);
+
+		//sort
+		tempTopElevenScores.Sort();
+
+		//only keep the top 10 (count will be 10)
+		tempTopElevenScores.RemoveAt(tempTopElevenScores.Count-1);
+
+		//real top scores = new top 10 scores
+		topTenScores = tempTopElevenScores;
+	}
+}
+
+
+//this class handles one score from top 10
+[XmlRoot("CustomGameSettings")]
+[System.Serializable]
+public class OneScoreFromTopTen : IComparable{
+	private string playerName;
+
+	public string PlayerName {
+		get {
+			return playerName;
+		}
+		set {
+			playerName = value;
+		}
+	}
+
+	private float timeValue;
+
+	public float TimeValue {
+		get {
+			return timeValue;
+		}
+		set {
+			timeValue = value;
+		}
+	}
+	public string TimeValueAsString(){
+		return UpdateGameTimer.TurnIntMillisecondsToString (timeValue);
+//		return timeValue.ToString ();
+	}
+
+	private float accuracyValue;
+
+	public float AccuracyValue {
+		get {
+			return accuracyValue;
+		}
+		set {
+			accuracyValue = value;
+		}
+	}
+	public string AccuracyValueAsString(){
+		return accuracyValue.ToString ("P0");
+	}
+
+	private float killsValue;
+
+	public float KillsValue {
+		get {
+			return killsValue;
+		}
+		set {
+			killsValue = value;
+		}
+	}
+	public string KillsValueAsString(){
+		return killsValue.ToString ("P0");
+	}
+
+	public OneScoreFromTopTen(){
+		//constructor
+	}
+
+	public OneScoreFromTopTen MakeRandomScore(){
+		PlayerName = "Fake Name ";
+		TimeValue = UnityEngine.Random.Range(10000,50000)/1000f;
+		AccuracyValue = UnityEngine.Random.Range (30, 99)/100f;
+		KillsValue = UnityEngine.Random.Range (30, 99)/100f;
+		Debug.Log ("Made fake score "+this.ToString ());
+		return this;
+	}
+
+	public string GradeMe(){
+		string possible_grades = "FFFFFFDCBA";
+		float grade_value = (accuracyValue + killsValue)/2.0f;
+		int idx = (int)(grade_value * (float)possible_grades.Length);
+		if (idx >= possible_grades.Length) idx = possible_grades.Length-1;
+		return possible_grades[idx].ToString();
+	}
+
+	public float GradeMeAsFloat(){
+		return (accuracyValue + killsValue)/2.0f;
+	}
+
+	public override string ToString ()
+	{
+		return string.Format ("[OneScoreFromTopTen: PlayerName={0}, TimeValue={1}, Grade={2}, AccuracyValue={3}, KillsValue={4}]", PlayerName, TimeValue, GradeMe(), AccuracyValue, KillsValue);
+	}
+
+	public int CompareTo(object obj){
+		if (obj == null) return -1;
+
+		OneScoreFromTopTen other = obj as OneScoreFromTopTen;
+
+		if (this.GradeMeAsFloat() > other.GradeMeAsFloat()) {
+			//this grade is higher, automatically makes this precede other in the top ten list
+			return -1;
+		}else if(this.GradeMeAsFloat() == other.GradeMeAsFloat()){
+			//grades are the same for this and other
+			//if other time is shorter, then other is higher on the top 10 list, this follows other in the top ten list
+			if (other.TimeValue < this.TimeValue) {
+				return 1;
+			}else{
+				return 0;
+			}
+		}
+
+		//same by default?
+		return 0;
 	}
 }

@@ -13,11 +13,15 @@ public class UpdateGameTimer : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		float time_float = Time.timeSinceLevelLoad;
+		my_text.text = TurnIntMillisecondsToString (Time.timeSinceLevelLoad);
+	}
+
+	public static string TurnIntMillisecondsToString (float time_float){
 		int seconds_only = Mathf.RoundToInt (time_float);
 		int secs = seconds_only % 60;
 		int mins = seconds_only / 60;
 		int ms   = ((int)(time_float*1000f) - seconds_only)%1000;
-		my_text.text = string.Format("{0:00}:{1:00}:{2:000}ms", mins, secs, ms);
+
+		return string.Format("{0:00}:{1:00}:{2:000}ms", mins, secs, ms);
 	}
 }

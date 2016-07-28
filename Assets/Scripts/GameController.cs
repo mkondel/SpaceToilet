@@ -21,6 +21,7 @@ public class GameController : MonoBehaviour {
 	public AudioMixerSnapshot volumeUp;
 	public FaceChange pilotFace;
 	public GameObject pilotLightningBG;
+	public GameObject nameEntryDialog;
 
 	private int enemiesMax;
 	private int totalMonsters;
@@ -33,13 +34,15 @@ public class GameController : MonoBehaviour {
 	private bool KHz;
 	private int currHertz;
 	private static float bgMusicFadeTime = 5f;
-//	private Persister pers;
+	private Persister pers;
+	private ScoreBoardController scoreController;
 
 	private class ScoreCard{
 		public int kills = 0;
 		public int shots = 0;
 		public int hits  = 0;
 		public int total = 0;
+		public float timer = 0f;
 
 		public override string ToString(){return kills+" kills, "+shots+" shots, "+hits+" hits, "+total+" total";}
 
@@ -53,6 +56,15 @@ public class GameController : MonoBehaviour {
 			if (idx < 5) idx = 5;
 			if (idx >= possible_grades.Length) idx = possible_grades.Length-1;
 			return possible_grades[idx].ToString();
+		}
+
+		//s stands for player shots
+		public OneScoreFromTopTen GetAsOneScore(int s){
+			OneScoreFromTopTen newScore = new OneScoreFromTopTen ();
+			newScore.AccuracyValue = (float)hits/s;
+			newScore.KillsValue = (float)kills/total;
+			newScore.TimeValue = timer;
+			return newScore;
 		}
 	};
 	private ScoreCard score;
@@ -68,11 +80,8 @@ public class GameController : MonoBehaviour {
 		gamewon = false;
 		KHz = false;
 		player.KHz = killahertz;
-		bigTimer.enabled = true;
+		bigTimer.gameObject.SetActive(true);
 		startingHealth = player.health;
-
-		//get access to the Persister
-//		pers = GameObject.Find ("Persister").GetComponent<Persister>();
 	}
 
 
@@ -81,6 +90,10 @@ public class GameController : MonoBehaviour {
 		StartCoroutine (FadeUp (0.5f));
 //		pilotFace.KhzMode = true;
 //		pilotLightningBG.SetActive (true);
+
+		//get access to the Persister
+		pers = GameObject.Find ("Persister").GetComponent<Persister>();
+		scoreController = scoreBoard.GetComponent<ScoreBoardController> ();
 	}
 
 
@@ -99,6 +112,9 @@ public class GameController : MonoBehaviour {
 			if (totalMonsters < enemiesMax) {
 				RandomlyPlacedNewMonster();		//Make sure to make new monsters as long as necessary
 			}else if (totalMonsters == 0) {
+				//save the time in score
+				score.timer = Time.timeSinceLevelLoad;
+				//win the game
 				GameWon();
 			}
 
@@ -122,7 +138,9 @@ public class GameController : MonoBehaviour {
 
 		} else {
 		//Game is over, one way or another
-			bigTimer.enabled = false;
+			//disable timer display
+			bigTimer.gameObject.SetActive(false);
+			//end the game
 			GameOver ();
 			if (gameOverMenu && !gameOverMenu.gameObject.activeInHierarchy)
 				StartCoroutine (ShowRestartButton());
@@ -134,6 +152,22 @@ public class GameController : MonoBehaviour {
 	//Player wins!
 		gameover = gamewon = true;
 		gameWonPanel.gameObject.SetActive (true);
+
+		//check if the score made it to the top ten
+		OneScoreFromTopTen newScore = score.GetAsOneScore(player.Shots);
+		if (pers.settingsOfTheGame.CheckIfInTopTen(newScore)) {
+			//show user name input
+			nameEntryDialog.SetActive(true);
+		}
+	}
+
+	public void SaveNewTopTenRecord (string newPlayerName){
+		//get the current score
+		OneScoreFromTopTen newScore = score.GetAsOneScore(player.Shots);
+		//set the new player name
+		newScore.PlayerName = newPlayerName;
+		//insert new record into the top ten list
+		pers.settingsOfTheGame.InsertNewTopTenScore (newScore);
 	}
 
 
@@ -182,7 +216,7 @@ public class GameController : MonoBehaviour {
 			StartCoroutine (FadeDown (bgMusicFadeTime));
 			scoreBoard.SetActive(true);
 
-			scoreBoard.GetComponent<ScoreBoardController> ().ShowScores(score.GetGrade(player.Shots), score.kills, score.total, player.Shots, score.hits);
+			scoreController.ShowScores(score.GetGrade(player.Shots), score.kills, score.total, player.Shots, score.hits);
 		}
 	}
 
