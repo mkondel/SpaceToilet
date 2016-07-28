@@ -287,6 +287,7 @@ public class CustomGameSettings
 	public Vector3 fullLeftTiltVector;
 	public Vector3 fullRightTiltVector;
 	public float mouseSensitivity;
+	public string[][] topTenScores;
 
 	public CustomGameSettings ()
 	{
@@ -295,5 +296,22 @@ public class CustomGameSettings
 		//these are good starting defaults for tilt on my phone...
 		fullLeftTiltVector = new Vector3(-1f, 0f, -1f);
 		fullRightTiltVector = new Vector3(1f, 0f, -1f);
+
+		//generate fake top 10 scores
+		topTenScores = new string[10][];
+		for (int i = 0; i < topTenScores.Length; i++) {
+			topTenScores[i] = MakeRandomScore();
+		}
+	}
+
+	string[] MakeRandomScore(){
+		string[] fakeStringArray = new string[5];
+		fakeStringArray [0] = "Fake Name "+UnityEngine.Random.Range(1,99999).ToString();
+		fakeStringArray [1] = UnityEngine.Random.Range(1,99).ToString()+":"+UnityEngine.Random.Range(1,99).ToString()+":"+UnityEngine.Random.Range(1,999).ToString()+"ms";
+		fakeStringArray [2] = "A";
+		fakeStringArray [3] = UnityEngine.Random.Range(1,99).ToString()+"%";
+		fakeStringArray [4] = UnityEngine.Random.Range(1,99).ToString()+"%";
+		Debug.Log ("Made fake score "+fakeStringArray.ToString ());
+		return fakeStringArray;
 	}
 }

@@ -6,22 +6,25 @@ public class TopTenBoardController : MonoBehaviour {
 
 	public OneLineScoreController[] topPlaces;
 
+	private string[][] allTheTopScores;
+
 	// Use this for initialization
 	void Start () {
-		for (int i = 0; i < topPlaces.Length; i++) {
-			SetRandomScore (i);
+		ReloadFromCurrentSettings ();
+	}
+
+	//read from persister
+	public void ReloadFromCurrentSettings(){
+		allTheTopScores = GameObject.Find ("Persister").GetComponent<Persister>().settingsOfTheGame.topTenScores;
+		for (int i = 0; i < allTheTopScores.Length; i++) {
+			SetScoreForOneRow(i, allTheTopScores[i]);
 		}
 	}
 
-
-	void SetRandomScore(int idx){
-		string[] fakeStringArray = new string[5];
-		fakeStringArray [0] = "Fake Name "+Random.Range(1,99999).ToString();
-		fakeStringArray [1] = Random.Range(1,99).ToString()+":"+Random.Range(1,99).ToString()+":"+Random.Range(1,999).ToString()+"ms";
-		fakeStringArray [2] = "A";
-		fakeStringArray [3] = Random.Range(1,99).ToString()+"%";
-		fakeStringArray [4] = Random.Range(1,99).ToString()+"%";
-		Debug.Log (fakeStringArray.ToString ());
-		topPlaces[idx].LoadFromOneStringArray (fakeStringArray);
+	//set one of the top 10 scores
+	//idx is the score index, scoreArray is a string[5] with [name,time,grade,accuracy,kills]
+	void SetScoreForOneRow(int idx, string[] scoreArray){
+		Debug.Log ("Top "+idx.ToString()+" score is "+scoreArray.ToString ());
+		topPlaces[idx].LoadFromOneStringArray (scoreArray);
 	}
 }
