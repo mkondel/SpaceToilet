@@ -36,6 +36,7 @@ public class Persister : MonoBehaviour
 	public GameObject helpMenu;
 	public AudioClip[] bgMusicClipsShooter;
 	public AudioClip[] bgMusicClipsMenu;
+	public Dropdown difficultyDropdown;
 
 	private string pathToSaveFile;
 	private bool isPaused;
@@ -167,6 +168,7 @@ public class Persister : MonoBehaviour
 		myGyro.L = settingsOfTheGame.fullLeftTiltVector;
 		myGyro.R = settingsOfTheGame.fullRightTiltVector;
 		SetMouseSensitivity (settingsOfTheGame.mouseSensitivity);
+		SetDifficulty (settingsOfTheGame.difficultyMode);
 	}
 
 	public void SetMainVolume (float newLvl)
@@ -277,6 +279,29 @@ public class Persister : MonoBehaviour
 			controlsMenus[0].SetActive(true);
 		#endif
 	}
+
+	public void SetDifficulty(Int32 newDiff){
+		//SetDifficulty is called by the dropdown in options menu
+		//and will reset player health accordingly on the next ShooterScene load
+		switch (newDiff) {
+		case 0:			//Easy mode
+//			startingPlayerHealth = 10000;
+			break;
+		case 1:			//Normal
+//			startingPlayerHealth = 1000;
+			break;
+		case 2:			//Hard
+//			startingPlayerHealth = 100;
+			break;
+		default:		//Non-sensical
+			Debug.Log ("SetDifficulty received a value not in [0,1,2]: " + newDiff.ToString ()+". Setting to 1=Normal");
+			newDiff = 1;
+			break;
+		}
+		Debug.Log ("SetDifficulty=" + newDiff.ToString ());//+" startingPlayerHealth="+startingPlayerHealth.ToString());
+		difficultyDropdown.value = newDiff;				//set the menu if loading settings from file
+		settingsOfTheGame.difficultyMode = newDiff;		//set the settingsOfTheGame value to be saved to file
+	}
 }
 
 //NEEDS: - playlist un-check not to play, track by track
@@ -294,6 +319,7 @@ public class CustomGameSettings
 	public Vector3 fullRightTiltVector;
 	public float mouseSensitivity;
 	public List<OneScoreFromTopTen> topTenScores;
+	public Int32 difficultyMode;
 
 	public CustomGameSettings ()
 	{
@@ -302,6 +328,9 @@ public class CustomGameSettings
 		//these are good starting defaults for tilt on my phone...
 		fullLeftTiltVector = new Vector3(-1f, 0f, -1f);
 		fullRightTiltVector = new Vector3(1f, 0f, -1f);
+
+		//set default difficulty to normal = 1 (easy = 0, hard = 2)
+		difficultyMode = 1;
 	}
 
 	public void GenerateFakeTopTenScores(){
