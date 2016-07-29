@@ -81,7 +81,7 @@ public class GameController : MonoBehaviour {
 		KHz = false;
 		player.KHz = killahertz;
 		bigTimer.gameObject.SetActive(true);
-		startingHealth = player.health;
+//		startingHealth = player.health;
 	}
 
 
@@ -94,6 +94,12 @@ public class GameController : MonoBehaviour {
 		//get access to the Persister
 		pers = GameObject.Find ("Persister").GetComponent<Persister>();
 		scoreController = scoreBoard.GetComponent<ScoreBoardController> ();
+
+		//when difficultyMode is 0, Easy, health=10000
+		//1 is Normal, health=1000
+		//2 is Hard, health=100
+		player.Health = Mathf.FloorToInt( Mathf.Pow(10, 4-pers.settingsOfTheGame.difficultyMode) );
+		startingHealth = player.Health;
 	}
 
 
@@ -129,7 +135,7 @@ public class GameController : MonoBehaviour {
 				pilotFace.KhzMode = false;
 			}
 				
-			if (player.health <= 0) {
+			if (player.Health <= 0) {
 				PlayerDead ();
 				KHz = false;
 			}
@@ -189,7 +195,7 @@ public class GameController : MonoBehaviour {
 
 	void PlayerHealthAndFace(){
 	//Update to show current values of health in both the bar and pilot face
-		hpPercent = (float)player.health / startingHealth;
+		hpPercent = (float)player.Health / startingHealth;
 		healthSlider.value = hpPercent;
 		if (pilotFace)
 			pilotFace.HealthToFace (hpPercent);

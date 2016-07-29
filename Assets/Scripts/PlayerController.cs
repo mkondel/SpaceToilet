@@ -10,7 +10,6 @@ public class Boundary
 
 public class PlayerController : MonoBehaviour
 {
-	public int health;
 	public float speed;
     public float tilt;
 	public int KHz;
@@ -40,6 +39,15 @@ public class PlayerController : MonoBehaviour
 	private GyroToText gyroInput;
 	private GameObject persObj;
 	private Persister pers;
+	private int health;
+	public int Health {
+		get {
+			return health;
+		}
+		set {
+			health = value;
+		}
+	}
 
 	void Start(){
 		fireRateHZ = 1f;
