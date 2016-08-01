@@ -72,12 +72,12 @@ public class EnemyBController : EnemyController {
 
 	void OnDestroy(){
 		if (in_game) {
-			GC.MonsterKilled ();
+			GC.MonsterKilled (10);
 			MakeDeathSound ();
 			Explode ();
 		}
 		else
-			GC.MonsterEscaped ();
+			GC.MonsterEscaped (10);
 	}
 
 	void GetOneAudioSource(){

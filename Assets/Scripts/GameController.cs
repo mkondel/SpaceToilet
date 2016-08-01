@@ -59,11 +59,12 @@ public class GameController : MonoBehaviour {
 		}
 
 		//s stands for player shots
-		public OneScoreFromTopTen GetAsOneScore(int s){
+		public OneScoreFromTopTen GetAsOneScore(int s, int difficulty){
 			OneScoreFromTopTen newScore = new OneScoreFromTopTen ();
 			newScore.AccuracyValue = (float)hits/s;
 			newScore.KillsValue = (float)kills/total;
 			newScore.TimeValue = timer;
+			newScore.Difficulty = difficulty;
 			return newScore;
 		}
 	};
@@ -140,6 +141,7 @@ public class GameController : MonoBehaviour {
 				KHz = false;
 			}
 
+			Debug.Log ("GameController Update() calling UpdateGunAndDisplay ("+currHertz+")");
 			UpdateGunAndDisplay (currHertz);	//Set gun fire rate and Hz bar display
 
 		} else {
@@ -160,7 +162,7 @@ public class GameController : MonoBehaviour {
 		gameWonPanel.gameObject.SetActive (true);
 
 		//check if the score made it to the top ten
-		OneScoreFromTopTen newScore = score.GetAsOneScore(player.Shots);
+		OneScoreFromTopTen newScore = score.GetAsOneScore(player.Shots, pers.settingsOfTheGame.difficultyMode);
 		if (pers.settingsOfTheGame.CheckIfInTopTen(newScore)) {
 			//show user name input
 			nameEntryDialog.SetActive(true);
@@ -169,7 +171,7 @@ public class GameController : MonoBehaviour {
 
 	public void SaveNewTopTenRecord (string newPlayerName){
 		//get the current score
-		OneScoreFromTopTen newScore = score.GetAsOneScore(player.Shots);
+		OneScoreFromTopTen newScore = score.GetAsOneScore(player.Shots, pers.settingsOfTheGame.difficultyMode);
 		//set the new player name
 		newScore.PlayerName = newPlayerName;
 		//insert new record into the top ten list
@@ -234,9 +236,11 @@ public class GameController : MonoBehaviour {
 	}
 
 
-	public void MonsterKilled(){	//Signifies monster getting killed by player
+	public void MonsterKilled(int hertzContribution){	//Signifies monster getting killed by player
 		score.kills++;
-		currHertz++;
+		Debug.Log ("GameController MonsterKilled() currHertz("+currHertz+") + hertzContribution("+hertzContribution+")");
+//		currHertz++;
+		currHertz = currHertz + hertzContribution;
 		totalMonsters--;
 		if (!gameover && !KHz) {
 //			Debug.Log ("Enemies: "+totalMonsters+" MAX: "+enemiesMax+" basic weapon");
@@ -246,10 +250,12 @@ public class GameController : MonoBehaviour {
 			enemiesMax--;
 		}
 	}
-	public void MonsterEscaped(){	//Signifies monster not dying inside GameSpace, and escaping through the back
+	public void MonsterEscaped(int hertzContribution){	//Signifies monster not dying inside GameSpace, and escaping through the back
 		escapedMonsters++;
 		if (currHertz>0) {
-			currHertz--;
+			Debug.Log ("GameController MonsterEscaped() currHertz("+currHertz+") - hertzContribution("+hertzContribution+")");
+//			currHertz--;
+			currHertz = currHertz - hertzContribution;
 		}
 		totalMonsters--;
 	}

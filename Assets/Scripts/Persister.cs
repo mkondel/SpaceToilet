@@ -436,6 +436,16 @@ public class OneScoreFromTopTen : IComparable{
 		return killsValue.ToString ("P0");
 	}
 
+	private int difficulty;
+	public int Difficulty {
+		get {
+			return difficulty;
+		}
+		set {
+			difficulty = value;
+		}
+	}
+
 	public OneScoreFromTopTen(){
 		//constructor
 	}
@@ -445,6 +455,7 @@ public class OneScoreFromTopTen : IComparable{
 		TimeValue = UnityEngine.Random.Range(10000,50000)/1000f;
 		AccuracyValue = UnityEngine.Random.Range (30, 99)/100f;
 		KillsValue = UnityEngine.Random.Range (30, 99)/100f;
+		Difficulty = Mathf.FloorToInt(UnityEngine.Random.Range(0,3));
 		Debug.Log ("Made fake score "+this.ToString ());
 		return this;
 	}
@@ -454,7 +465,7 @@ public class OneScoreFromTopTen : IComparable{
 		float grade_value = (accuracyValue + killsValue)/2.0f;
 		int idx = (int)(grade_value * (float)possible_grades.Length);
 		if (idx >= possible_grades.Length) idx = possible_grades.Length-1;
-		return possible_grades[idx].ToString();
+		return possible_grades[idx].ToString() +new string[]{" (e)"," (n)"," (h)"}[Difficulty];
 	}
 
 	public float GradeMeAsFloat(){
