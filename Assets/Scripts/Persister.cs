@@ -273,7 +273,7 @@ public class Persister : MonoBehaviour
 	}
 
 	void EnablePlatformSpecifics(){
-		#if UNITY_STANDALONE || UNITY_EDITOR
+		#if UNITY_STANDALONE || UNITY_EDITOR || UNITY_WEBGL
 			controlsMenus[1].SetActive(true);
 		#elif UNITY_ANDROID || UNITY_IOS
 			controlsMenus[0].SetActive(true);
