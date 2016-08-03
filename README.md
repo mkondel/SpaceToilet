@@ -18,3 +18,15 @@ Audio for music and sound effects:
 - http://freesound.org/people/frankum/sounds/317364/
 - http://freesound.org/people/frankum/sounds/208519/
 - http://freesound.org/people/frankum/sounds/171291/
+
+Image art:
+- http://tsgk.captainn.net/index.php?p=sheetinfo&t=2228
+- http://hubblesite.org/newscenter/archive/releases/2012/37/image/
+- https://commons.wikimedia.org/wiki/File:NGC_5139_Hubble_WFC3.jpg
+- http://opengameart.org/content/texture-nebulas
+- http://opengameart.org/content/plasmaball
+- http://opengameart.org/content/lightning-animation
+- http://opengameart.org/content/sci-fi-space-simple-bullets
+- http://opengameart.org/content/wgstudio-explosion-animation
+- http://opengameart.org/content/explosion
+- http://opengameart.org/content/simple-explosion-bleeds-game-art
