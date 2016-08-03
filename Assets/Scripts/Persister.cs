@@ -123,12 +123,12 @@ public class Persister : MonoBehaviour
 	void SaveSettings ()
 	{
 		Debug.Log ("SaveSettings in Persister");
-//		BinaryFormatter bf = new BinaryFormatter ();
+		BinaryFormatter bf = new BinaryFormatter ();
 		FileStream file = File.Create (pathToSaveFile);
-//		bf.Serialize (file, settingsOfTheGame);
+		bf.Serialize (file, settingsOfTheGame);
 
-		var serializer = new XmlSerializer(typeof(CustomGameSettings));
-		serializer.Serialize(file, settingsOfTheGame);
+//		var serializer = new XmlSerializer(typeof(CustomGameSettings));
+//		serializer.Serialize(file, settingsOfTheGame);
 
 		file.Close ();
 	}
@@ -139,15 +139,15 @@ public class Persister : MonoBehaviour
 		if (File.Exists (pathToSaveFile)) {
 			Debug.Log ("Loading settings from filename = " + pathToSaveFile);
 
-//			BinaryFormatter bf = new BinaryFormatter ();
+			BinaryFormatter bf = new BinaryFormatter ();
 			FileStream file = File.Open (pathToSaveFile, FileMode.Open);
-//			settingsOfTheGame = (CustomGameSettings)bf.Deserialize (file);
+			settingsOfTheGame = (CustomGameSettings)bf.Deserialize (file);
 
-			Debug.Log ("making serializer");
-			var serializer = new XmlSerializer(typeof(CustomGameSettings));
-			Debug.Log ("done making serializer");
-			Debug.Log ("using serializer");
-			settingsOfTheGame = serializer.Deserialize(file) as CustomGameSettings;
+//			Debug.Log ("making serializer");
+//			var serializer = new XmlSerializer(typeof(CustomGameSettings));
+//			Debug.Log ("done making serializer");
+//			Debug.Log ("using serializer");
+//			settingsOfTheGame = serializer.Deserialize(file) as CustomGameSettings;
 			Debug.Log ("done using serializer");
 
 			file.Close ();
@@ -165,8 +165,8 @@ public class Persister : MonoBehaviour
 		SetMainVolume (settingsOfTheGame.mainVolume);
 		SetMusicVolume (settingsOfTheGame.musicVolume);
 		SetFxVolume (settingsOfTheGame.fxVolume);
-		myGyro.L = settingsOfTheGame.fullLeftTiltVector;
-		myGyro.R = settingsOfTheGame.fullRightTiltVector;
+		myGyro.L = settingsOfTheGame.fullLeftTiltVector.AsVector3();
+		myGyro.R = settingsOfTheGame.fullRightTiltVector.AsVector3();
 		SetMouseSensitivity (settingsOfTheGame.mouseSensitivity);
 		SetDifficulty (settingsOfTheGame.difficultyMode);
 	}
@@ -260,8 +260,8 @@ public class Persister : MonoBehaviour
 	}
 
 	public void SaveTiltSettings(){
-		settingsOfTheGame.fullLeftTiltVector  = myGyro.L;
-		settingsOfTheGame.fullRightTiltVector = myGyro.R;
+		settingsOfTheGame.fullLeftTiltVector.SetFromVector3(myGyro.L);
+		settingsOfTheGame.fullRightTiltVector.SetFromVector3(myGyro.R);
 	}
 
 	public void SetMouseSensitivity(float newS){
@@ -304,10 +304,57 @@ public class Persister : MonoBehaviour
 	}
 }
 
-//NEEDS: - playlist un-check not to play, track by track
-//[Serializable]
+
+//SerializableVectorThree class helps save/load settings, unity does not serialize vec3 by itself
+[Serializable]
 [XmlRoot("CustomGameSettings")]
-[System.Serializable]
+public class SerializableVectorThree
+{
+	private float x;
+	public float X {
+		get {
+			return x;
+		}
+		set {
+			x = value;
+		}
+	}
+
+	private float y;
+	public float Y {
+		get {
+			return y;
+		}
+		set {
+			y = value;
+		}
+	}
+
+	private float z;
+	public float Z {
+		get {
+			return z;
+		}
+		set {
+			z = value;
+		}
+	}
+
+	public Vector3 AsVector3 (){
+		return new Vector3 (x, y, z);
+	}
+
+	public void SetFromVector3(Vector3 v){
+		X = v.x;
+		Y = v.y;
+		Z = v.z;
+	}
+}
+
+//NEEDS: - playlist un-check not to play, track by track
+[Serializable]
+[XmlRoot("CustomGameSettings")]
+//[System.Serializable]
 public class CustomGameSettings
 {
 	public float mainVolume;
@@ -315,8 +362,8 @@ public class CustomGameSettings
 	public float fxVolume;
 	public float[] mainMenuMusicVolumes;
 	public float[] shooterMusicVolumes;
-	public Vector3 fullLeftTiltVector;
-	public Vector3 fullRightTiltVector;
+	public SerializableVectorThree fullLeftTiltVector;
+	public SerializableVectorThree fullRightTiltVector;
 	public float mouseSensitivity;
 	public List<OneScoreFromTopTen> topTenScores;
 	public Int32 difficultyMode;
@@ -327,8 +374,10 @@ public class CustomGameSettings
 		Debug.Log ("initialising new CustomGameSettings object");
 
 		//these are good starting defaults for tilt on my phone...
-		fullLeftTiltVector = new Vector3(-1f, 0f, -1f);
-		fullRightTiltVector = new Vector3(1f, 0f, -1f);
+		fullLeftTiltVector = new SerializableVectorThree();
+		fullRightTiltVector = new SerializableVectorThree();
+		fullLeftTiltVector.SetFromVector3( new Vector3(-1f, 0f, -1f) );
+		fullRightTiltVector.SetFromVector3( new Vector3(1f, 0f, -1f) );
 
 		//set default difficulty to normal = 1 (easy = 0, hard = 2)
 		difficultyMode = 1;
@@ -380,8 +429,9 @@ public class CustomGameSettings
 
 
 //this class handles one score from top 10
+[Serializable]
 [XmlRoot("CustomGameSettings")]
-[System.Serializable]
+//[System.Serializable]
 public class OneScoreFromTopTen : IComparable{
 	private string playerName;
 
