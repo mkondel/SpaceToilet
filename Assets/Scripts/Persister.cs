@@ -320,6 +320,7 @@ public class CustomGameSettings
 	public float mouseSensitivity;
 	public List<OneScoreFromTopTen> topTenScores;
 	public Int32 difficultyMode;
+	public string[] fakeNamesList = new string[10]{"John","Anastasia","Kirk","Mary","Fran","Bob","Ahmed","Ted","Ned","Zed"};
 
 	public CustomGameSettings ()
 	{
@@ -340,7 +341,7 @@ public class CustomGameSettings
 			OneScoreFromTopTen newScore = new OneScoreFromTopTen ();
 			newScore.MakeRandomScore();
 			//append top 10 rank to the name for debugging
-			newScore.PlayerName += i.ToString ();
+			newScore.PlayerName = fakeNamesList[i];
 			topTenScores.Add(newScore);
 			Debug.Log("Made this in Persister: "+topTenScores[i].ToString());
 		}
