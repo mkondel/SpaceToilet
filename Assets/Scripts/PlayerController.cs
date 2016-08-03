@@ -158,7 +158,7 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate (){
 		float moveHorizontal = 0f;
 
-		#if UNITY_STANDALONE || UNITY_EDITOR
+		#if UNITY_STANDALONE || UNITY_EDITOR || UNITY_WEBGL
 			//scale by user set mouse sensitivity, user cant adjust input sensitivity, but this scale instead
 			moveHorizontal = Input.GetAxis ("Mouse X") * pers.settingsOfTheGame.mouseSensitivity;
 		#elif UNITY_ANDROID || UNITY_IOS
