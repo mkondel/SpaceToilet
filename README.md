@@ -30,3 +30,6 @@ Image art:
 - http://opengameart.org/content/wgstudio-explosion-animation
 - http://opengameart.org/content/explosion
 - http://opengameart.org/content/simple-explosion-bleeds-game-art
+
+Links to binaries for different OS:
+- https://s3.amazonaws.com/spacetoilets/web/SpaceToilet_WebGL/index.html
