@@ -7,6 +7,9 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Space Toilet</title>
 
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+
     <!-- Bootstrap -->
 <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -36,134 +39,106 @@
         <div class="panel panel-default">
             <div class="panel-heading"><h1>Downloads</h1></div>
             <div class="panel-body">
-              <p><a href="https://s3.amazonaws.com/spacetoilets/web/SpaceToilet_WebGL/index.html">Play the online version</a> by clicking this link.</p>
-              <p>Mac version</p>
-              <p>Linux version</p>
-              <p>Android version</p>
-              <p>Windows version</p>
-            </div>
-        </div>
+              <div class="panel-group" id="accordion">
+                <div class="panel panel-default">
+                <!-- buttons -->
+                  <button class="btn btn-primary" data-toggle="collapse" data-parent="#accordion" href="#macVersion">Mac <span class="caret"></span></button>
+                  <button class="btn btn-primary" data-toggle="collapse" data-parent="#accordion" href="#linuxVersion">Linux <span class="caret"></span></button>
+                  <button class="btn btn-primary" data-toggle="collapse" data-parent="#accordion" href="#androidVersion">Android <span class="caret"></span></button>
+                  <button class="btn btn-primary" data-toggle="collapse" data-parent="#accordion" href="#windowsVersion">Windows <span class="caret"></span></button>
+                  <button class="btn btn-primary" data-toggle="collapse" data-parent="#accordion" href="#iosVersion">iOS <span class="caret"></span></button>
+                  <button class="btn btn-primary" data-toggle="collapse" data-parent="#accordion" href="#cloudVersion">Cloud version <span class="caret"></span></button>
+
+                  <!-- hidden panels -->
+                  <div id="macVersion" class="panel-collapse collapse">
+                    <div class="panel-body">
+                      <span class="glyphicon glyphicon-download"></span>
+                      <a href="https://s3.amazonaws.com/spacetoilets/mac/SpaceToilet_OSX.zip">Mac version. ZIP file (54MB)</a>
+                    </div>
+                  </div>
+                  <div id="linuxVersion" class="panel-collapse collapse">
+                    <div class="panel-body">
+                      <span class="glyphicon glyphicon-download"></span>
+                      <a href="https://s3.amazonaws.com/spacetoilets/linux/SpaceToilet_Linux.zip">Linux version. ZIP file (55MB)</a>
+                      <p>Note that on linux need to set resolution before playing 1st time. To do this, hold the Alt key when starting the game.</p>
+                    </div>
+                  </div>
+                  <div id="androidVersion" class="panel-collapse collapse">
+                    <div class="panel-body">
+                      <span class="glyphicon glyphicon-download"></span>
+                      <a href="https://s3.amazonaws.com/spacetoilets/android/SpaceToilet_Android.apk">Android version. APK file (49MB)</a>
+                    </div>
+                  </div>
+                  <div id="windowsVersion" class="panel-collapse collapse">
+                    <div class="panel-body">
+                      <span class="glyphicon glyphicon-download"></span>
+                      <a href="https://s3.amazonaws.com/spacetoilets/windows/SpaceToilet_Windows.zip">Windows version. ZIP file (73MB)</a>
+                    </div>
+                  </div>
+                  <div id="iosVersion" class="panel-collapse collapse">
+                    <div class="panel-body">
+                      <span class="glyphicon glyphicon-download"></span>
+                      <a href="IOS WTF??">iOS version.</a> <p> This was tested on Ipad Mini 2. Should work on every iOS device. Please note that how are you even installing this on an ipad? It's not from an official publisher...</p>
+                    </div>
+                  </div>
+                  <div id="cloudVersion" class="panel-collapse collapse">
+                    <div class="panel-body">
+                      <span class="glyphicon glyphicon-cloud-download"></span>
+                      <a href="https://s3.amazonaws.com/spacetoilets/web/SpaceToilet_WebGL/index.html">Cloud version. Click this link to play in your browser (170MB)</a>
+                    </div>
+                  </div>
+                </div> <!-- class="panel panel-default" INSIDE ACCORDION-->
+              </div> <!-- id="accordion" -->
+            </div> <!-- class="panel-body" -->
+        </div> <!-- class="panel panel-default" FOR ALL DOWNLOADS PANEL -->
         <div class="panel panel-default">
             <div class="panel-heading"><h1>Screenshots</h1></div>
             <div class="panel-body">
                 
-                  <div class="col-sm-6 col-md-3">
-                    <div class="thumbnail">
-                      <a href="title 2.png"><img src="title 2.png" alt="title 2.png"></a>
-                      <div class="caption center">
-                        <h4>Title Screen</h4>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="col-sm-6 col-md-3">
-                    <div class="thumbnail">
-                      <a href="gameplay 1.png"><img src="gameplay 1.png" alt="gameplay 1.png"></a>
-                      <div class="caption center">
-                        <h4>Start of the game</h4>
-                      </div>
-                    </div>
-                  </div>
-                
-                  <div class="col-sm-6 col-md-3">
-                    <div class="thumbnail">
-                      <a href="gameplay 3.png"><img src="gameplay 3.png" alt="gameplay 3.png"></a>
-                      <div class="caption center">
-                        <h4>Another early game</h4>
-                      </div>
-                    </div>
-                  </div>
-                
-                  <div class="col-sm-6 col-md-3">
-                    <div class="thumbnail">
-                      <a href="gameplay 4.png"><img src="gameplay 4.png" alt="gameplay 4.png"></a>
-                      <div class="caption center">
-                        <h4>Shooting in normal mode</h4>
-                      </div>
-                    </div>
-                  </div>
-                
-                  <div class="col-sm-6 col-md-3">
-                    <div class="thumbnail">
-                      <a href="gameplay 5.png"><img src="gameplay 5.png" alt="gameplay 5.png"></a>
-                      <div class="caption center">
-                        <h4>Shooting in KHz mode</h4>
-                      </div>
-                    </div>
-                  </div>
-                
-                  <div class="col-sm-6 col-md-3">
-                    <div class="thumbnail">
-                      <a href="options.png"><img src="options.png" alt="options.png"></a>
-                      <div class="caption center">
-                        <h4>Options menu</h4>
-                      </div>
-                    </div>
-                  </div>
-
-                
-                  <div class="col-sm-6 col-md-3">
-                    <div class="thumbnail">
-                      <a href="controls mouse.png"><img src="controls mouse.png" alt="controls mouse.png"></a>
-                      <div class="caption center">
-                        <h4>Calibrate controls</h4>
-                      </div>
-                    </div>
-                  </div>
-                
-                  <div class="col-sm-6 col-md-3">
-                    <div class="thumbnail">
-                      <a href="help.png"><img src="help.png" alt="help.png"></a>
-                      <div class="caption center">
-                        <h4>Help menu</h4>
-                      </div>
-                    </div>
-                  </div>
-                
-                  <div class="col-sm-6 col-md-3">
-                    <div class="thumbnail">
-                      <a href="scoreboard.png"><img src="scoreboard.png" alt="scoreboard.png"></a>
-                      <div class="caption center">
-                        <h4>Scoreboard</h4>
-                      </div>
-                    </div>
-                  </div>
-            </div>
+                  <div class="col-sm-6 col-md-3"><div class="thumbnail"><a href="title 2.png"><img src="title 2.png" alt="title 2.png"></a><div class="caption center"><h4>Title Screen</h4></div></div></div>
+                  <div class="col-sm-6 col-md-3"><div class="thumbnail"><a href="gameplay 1.png"><img src="gameplay 1.png" alt="gameplay 1.png"></a><div class="caption center"><h4>Start of the game</h4></div></div></div>
+                  <div class="col-sm-6 col-md-3"><div class="thumbnail"><a href="gameplay 3.png"><img src="gameplay 3.png" alt="gameplay 3.png"></a><div class="caption center"><h4>Another early game</h4></div></div></div>
+                  <div class="col-sm-6 col-md-3"><div class="thumbnail"><a href="gameplay 4.png"><img src="gameplay 4.png" alt="gameplay 4.png"></a><div class="caption center"><h4>Normal mode</h4></div></div></div>
+                  <div class="col-sm-6 col-md-3"><div class="thumbnail"><a href="gameplay 5.png"><img src="gameplay 5.png" alt="gameplay 5.png"></a><div class="caption center"><h4>KHz mode</h4></div></div></div>
+                  <div class="col-sm-6 col-md-3"><div class="thumbnail"><a href="options.png"><img src="options.png" alt="options.png"></a><div class="caption center"><h4>Options menu</h4></div></div></div>
+                  <div class="col-sm-6 col-md-3"><div class="thumbnail"><a href="controls mouse.png"><img src="controls mouse.png" alt="controls mouse.png"></a><div class="caption center"><h4>Calibrate controls</h4></div></div></div>
+                  <div class="col-sm-6 col-md-3"><div class="thumbnail"><a href="help.png"><img src="help.png" alt="help.png"></a><div class="caption center"><h4>Help menu</h4></div></div></div>
+                  <div class="col-sm-6 col-md-3"><div class="thumbnail"><a href="scoreboard.png"><img src="scoreboard.png" alt="scoreboard.png"></a><div class="caption center"><h4>Scoreboard</h4></div></div></div></div>
         </div>
         <div class="panel panel-default">
             <div class="panel-heading"><h1>Attributions</h1></div>
             <div class="panel-body">
                 <p>I used a lot of art by other people.  Thank you to all the artists who shared their work for free.</p>
                 <h3>Images and Art:</h3>
-                <p><a href="http://tsgk.captainn.net/index.php?p=sheetinfo&t=2228"> <span class="glyphicon glyphicon-picture"></span> http://tsgk.captainn.net/index.php?p=sheetinfo&t=2228</a></p>
-                <p><a href="http://hubblesite.org/newscenter/archive/releases/2012/37/image/"> <span class="glyphicon glyphicon-picture"></span> http://hubblesite.org/newscenter/archive/releases/2012/37/image/</a></p>
-                <p><a href="https://commons.wikimedia.org/wiki/File:NGC_5139_Hubble_WFC3.jpg"> <span class="glyphicon glyphicon-picture"></span> https://commons.wikimedia.org/wiki/File:NGC_5139_Hubble_WFC3.jpg</a></p>
-                <p><a href="http://opengameart.org/content/texture-nebulas"> <span class="glyphicon glyphicon-picture"></span> http://opengameart.org/content/texture-nebulas</a></p>
-                <p><a href="http://opengameart.org/content/plasmaball"> <span class="glyphicon glyphicon-picture"></span> http://opengameart.org/content/plasmaball</a></p>
-                <p><a href="http://opengameart.org/content/lightning-animation"> <span class="glyphicon glyphicon-picture"></span> http://opengameart.org/content/lightning-animation</a></p>
-                <p><a href="http://opengameart.org/content/sci-fi-space-simple-bullets"> <span class="glyphicon glyphicon-picture"></span> http://opengameart.org/content/sci-fi-space-simple-bullets</a></p>
-                <p><a href="http://opengameart.org/content/wgstudio-explosion-animation"> <span class="glyphicon glyphicon-picture"></span> http://opengameart.org/content/wgstudio-explosion-animation</a></p>
-                <p><a href="http://opengameart.org/content/explosion"> <span class="glyphicon glyphicon-picture"></span> http://opengameart.org/content/explosion</a></p>
-                <p><a href="http://opengameart.org/content/simple-explosion-bleeds-game-art"> <span class="glyphicon glyphicon-picture"></span> http://opengameart.org/content/simple-explosion-bleeds-game-art</a></p>
+                <p><span class="glyphicon glyphicon-picture"></span> <a href="http://tsgk.captainn.net/index.php?p=sheetinfo&t=2228">http://tsgk.captainn.net/index.php?p=sheetinfo&t=2228</a></p>
+                <p><span class="glyphicon glyphicon-picture"></span> <a href="http://hubblesite.org/newscenter/archive/releases/2012/37/image/">http://hubblesite.org/newscenter/archive/releases/2012/37/image/</a></p>
+                <p><span class="glyphicon glyphicon-picture"></span> <a href="https://commons.wikimedia.org/wiki/File:NGC_5139_Hubble_WFC3.jpg">https://commons.wikimedia.org/wiki/File:NGC_5139_Hubble_WFC3.jpg</a></p>
+                <p><span class="glyphicon glyphicon-picture"></span> <a href="http://opengameart.org/content/texture-nebulas">http://opengameart.org/content/texture-nebulas</a></p>
+                <p><span class="glyphicon glyphicon-picture"></span> <a href="http://opengameart.org/content/plasmaball">http://opengameart.org/content/plasmaball</a></p>
+                <p><span class="glyphicon glyphicon-picture"></span> <a href="http://opengameart.org/content/lightning-animation">http://opengameart.org/content/lightning-animation</a></p>
+                <p><span class="glyphicon glyphicon-picture"></span> <a href="http://opengameart.org/content/sci-fi-space-simple-bullets">http://opengameart.org/content/sci-fi-space-simple-bullets</a></p>
+                <p><span class="glyphicon glyphicon-picture"></span> <a href="http://opengameart.org/content/wgstudio-explosion-animation">http://opengameart.org/content/wgstudio-explosion-animation</a></p>
+                <p><span class="glyphicon glyphicon-picture"></span> <a href="http://opengameart.org/content/explosion">http://opengameart.org/content/explosion</a></p>
+                <p><span class="glyphicon glyphicon-picture"></span> <a href="http://opengameart.org/content/simple-explosion-bleeds-game-art">http://opengameart.org/content/simple-explosion-bleeds-game-art</a></p>
 
                 <h3>Music and sound effects:</h3>
-                <p><a href="http://freesound.org/people/toiletrolltube/sounds/182924/"> <span class="glyphicon glyphicon-headphones"></span> http://freesound.org/people/toiletrolltube/sounds/182924/</a></p>
-                <p><a href="http://freesound.org/people/Halleck/sounds/19487/"> <span class="glyphicon glyphicon-headphones"></span> http://freesound.org/people/Halleck/sounds/19487/</a></p>
-                <p><a href="http://freesound.org/people/Syna-Max/sounds/64940/"> <span class="glyphicon glyphicon-headphones"></span> http://freesound.org/people/Syna-Max/sounds/64940/</a></p>
-                <p><a href="http://freesound.org/people/18hiltc/sounds/186943/"> <span class="glyphicon glyphicon-headphones"></span> http://freesound.org/people/18hiltc/sounds/186943/</a></p>
-                <p><a href="http://freesound.org/people/Tuudurt/sounds/275104/"> <span class="glyphicon glyphicon-headphones"></span> http://freesound.org/people/Tuudurt/sounds/275104/</a></p>
-                <p><a href="http://freesound.org/people/Kastenfrosch/sounds/113989/"> <span class="glyphicon glyphicon-headphones"></span> http://freesound.org/people/Kastenfrosch/sounds/113989/</a></p>
-                <p><a href="http://freesound.org/people/Kastenfrosch/sounds/162457/"> <span class="glyphicon glyphicon-headphones"></span> http://freesound.org/people/Kastenfrosch/sounds/162457/</a></p>
-                <p><a href="http://freesound.org/people/lostchocolatelab/sounds/1470/"> <span class="glyphicon glyphicon-headphones"></span> http://freesound.org/people/lostchocolatelab/sounds/1470/</a></p>
-                <p><a href="http://freesound.org/people/frankum/sounds/320498/"> <span class="glyphicon glyphicon-headphones"></span> http://freesound.org/people/frankum/sounds/320498/</a></p>
-                <p><a href="http://freesound.org/people/frankum/sounds/324880/"> <span class="glyphicon glyphicon-headphones"></span> http://freesound.org/people/frankum/sounds/324880/</a></p>
-                <p><a href="http://freesound.org/people/frankum/sounds/333799/"> <span class="glyphicon glyphicon-headphones"></span> http://freesound.org/people/frankum/sounds/333799/</a></p>
-                <p><a href="http://freesound.org/people/frankum/sounds/344494/"> <span class="glyphicon glyphicon-headphones"></span> http://freesound.org/people/frankum/sounds/344494/</a></p>
-                <p><a href="http://freesound.org/people/frankum/sounds/346193/"> <span class="glyphicon glyphicon-headphones"></span> http://freesound.org/people/frankum/sounds/346193/</a></p>
-                <p><a href="http://freesound.org/people/frankum/sounds/171284/"> <span class="glyphicon glyphicon-headphones"></span> http://freesound.org/people/frankum/sounds/171284/</a></p>
-                <p><a href="http://freesound.org/people/frankum/sounds/317364/"> <span class="glyphicon glyphicon-headphones"></span> http://freesound.org/people/frankum/sounds/317364/</a></p>
-                <p><a href="http://freesound.org/people/frankum/sounds/208519/"> <span class="glyphicon glyphicon-headphones"></span> http://freesound.org/people/frankum/sounds/208519/</a></p>
-                <p><a href="http://freesound.org/people/frankum/sounds/171291/"> <span class="glyphicon glyphicon-headphones"></span> http://freesound.org/people/frankum/sounds/171291/</a></p>
+                <p><span class="glyphicon glyphicon-headphones"></span> <a href="http://freesound.org/people/toiletrolltube/sounds/182924/">http://freesound.org/people/toiletrolltube/sounds/182924/</a></p>
+                <p><span class="glyphicon glyphicon-headphones"></span> <a href="http://freesound.org/people/Halleck/sounds/19487/">http://freesound.org/people/Halleck/sounds/19487/</a></p>
+                <p><span class="glyphicon glyphicon-headphones"></span> <a href="http://freesound.org/people/Syna-Max/sounds/64940/">http://freesound.org/people/Syna-Max/sounds/64940/</a></p>
+                <p><span class="glyphicon glyphicon-headphones"></span> <a href="http://freesound.org/people/18hiltc/sounds/186943/">http://freesound.org/people/18hiltc/sounds/186943/</a></p>
+                <p><span class="glyphicon glyphicon-headphones"></span> <a href="http://freesound.org/people/Tuudurt/sounds/275104/">http://freesound.org/people/Tuudurt/sounds/275104/</a></p>
+                <p><span class="glyphicon glyphicon-headphones"></span> <a href="http://freesound.org/people/Kastenfrosch/sounds/113989/">http://freesound.org/people/Kastenfrosch/sounds/113989/</a></p>
+                <p><span class="glyphicon glyphicon-headphones"></span> <a href="http://freesound.org/people/Kastenfrosch/sounds/162457/">http://freesound.org/people/Kastenfrosch/sounds/162457/</a></p>
+                <p><span class="glyphicon glyphicon-headphones"></span> <a href="http://freesound.org/people/lostchocolatelab/sounds/1470/">http://freesound.org/people/lostchocolatelab/sounds/1470/</a></p>
+                <p><span class="glyphicon glyphicon-headphones"></span> <a href="http://freesound.org/people/frankum/sounds/320498/">http://freesound.org/people/frankum/sounds/320498/</a></p>
+                <p><span class="glyphicon glyphicon-headphones"></span> <a href="http://freesound.org/people/frankum/sounds/324880/">http://freesound.org/people/frankum/sounds/324880/</a></p>
+                <p><span class="glyphicon glyphicon-headphones"></span> <a href="http://freesound.org/people/frankum/sounds/333799/">http://freesound.org/people/frankum/sounds/333799/</a></p>
+                <p><span class="glyphicon glyphicon-headphones"></span> <a href="http://freesound.org/people/frankum/sounds/344494/">http://freesound.org/people/frankum/sounds/344494/</a></p>
+                <p><span class="glyphicon glyphicon-headphones"></span> <a href="http://freesound.org/people/frankum/sounds/346193/">http://freesound.org/people/frankum/sounds/346193/</a></p>
+                <p><span class="glyphicon glyphicon-headphones"></span> <a href="http://freesound.org/people/frankum/sounds/171284/">http://freesound.org/people/frankum/sounds/171284/</a></p>
+                <p><span class="glyphicon glyphicon-headphones"></span> <a href="http://freesound.org/people/frankum/sounds/317364/">http://freesound.org/people/frankum/sounds/317364/</a></p>
+                <p><span class="glyphicon glyphicon-headphones"></span> <a href="http://freesound.org/people/frankum/sounds/208519/">http://freesound.org/people/frankum/sounds/208519/</a></p>
+                <p><span class="glyphicon glyphicon-headphones"></span> <a href="http://freesound.org/people/frankum/sounds/171291/">http://freesound.org/people/frankum/sounds/171291/</a></p>
             </div>
         </div>
         <div class="panel panel-default">
